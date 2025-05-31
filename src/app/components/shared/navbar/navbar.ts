@@ -10,11 +10,6 @@ import {RouterLink, RouterModule} from '@angular/router';
 export class Navbar {
   hide : boolean = true;
   toggleMenu(){
-    if(this.hide){
-      this.hide = false;
-    }else{
-      this.hide = true;
-    }
-
+    this.hide = !this.hide;
   }
 }
