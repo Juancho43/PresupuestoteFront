@@ -1,0 +1,11 @@
+@if(!this.clientsResource.isLoading() && !this.clientsResource.error()){
+  @let data = this.clientsResource.value()?.data!;
+}@else{
+  @let data = this.data;
+}
+
+
+<app-person-list-component
+  [data] = data
+/>
+

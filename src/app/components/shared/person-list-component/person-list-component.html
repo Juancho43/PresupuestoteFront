@@ -1,0 +1,4 @@
+@let personData = this.data;
+@for (data of personData(); track data.id) {
+  <app-person-card-component [person]="data"/>
+}

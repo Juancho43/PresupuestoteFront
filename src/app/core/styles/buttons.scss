@@ -1,0 +1,29 @@
+@use '../../../styles.scss' as core;
+button {
+  border: none;
+}
+
+.Botones button,
+.Boton1 {
+  background-color: core.$cerezo;
+  color: core.$blanquecino;
+  border-radius: 10px;
+  padding: 10px;
+  width: 30%;
+  font-family: core.$fontOtro;
+}
+
+.Boton1 {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.Botones button:hover,
+.Boton1:hover {
+  box-shadow: 5px 5px 5px core.$nogal;
+}
+
+.Botones button:active,
+.Boton1:active {
+  box-shadow: inset 2px 2px 2px core.$blanquecino;
+}
