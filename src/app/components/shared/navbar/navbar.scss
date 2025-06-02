@@ -1,4 +1,6 @@
 @use '../../../../styles.scss' as core;
+@use '../../../core/styles/buttons.scss';
+
 nav{
   background-color: core.$nogal;
   width: 100vw;

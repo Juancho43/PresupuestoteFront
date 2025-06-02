@@ -1,12 +1,27 @@
 import { Routes } from '@angular/router';
 import { ClientViewComponent } from './components/clients/client-view/client-view-component';
+import {LoginFormComponent} from './components/auth/login-form-component/login-form-component';
+import {LogoutFormComponent} from './components/auth/logout-form-component/logout-form-component';
+import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
+import {AuthorizeFormComponent} from './components/auth/authorize-form-component/authorize-form.component';
+import {authGuard} from './core/guards/auth.guard';
+import {AboutComponent} from './components/about-component/about-component';
+import {HomeComponent} from './components/home-component/home-component';
+
 export const routes: Routes = [
 
   //PagesRoutes
-  // {path: 'home', component: HomeComponent},
-  // {path: 'about', component: AboutComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  //AuthRoutes
+
+  { path : 'login', component: LoginFormComponent},
+  { path : 'logout', component: LogoutFormComponent, canActivate: [authGuard]},
+  { path : 'register', component: RegisterFormComponent},
+  { path : 'authorize', component: AuthorizeFormComponent, canActivate: [authGuard] },
+
   //ClientRoutes
-  {path: 'client', component: ClientViewComponent},
+  {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
   // {path: 'client/detail/:clientId', component: ClientDetailsComponent},
   // {path: 'client/edit/:clientId', component: ClientViewComponent},
   // //BudgetRoutes

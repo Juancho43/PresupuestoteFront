@@ -16,18 +16,18 @@ export class ClientService implements ICrudeable<Client> {
     private http = inject(HttpClient);
 
     getAll(): Observable<ApiResponseCollection<Client>> {
-       return this.http.get<ApiResponseCollection<Client>>(environment.apiUrl + clientEndpoint.getAll);
+       return this.http.get<ApiResponseCollection<Client>>(environment.apiUrlV1 + clientEndpoint.getAll);
     }
     getById(id: number): Observable<ApiResponse<Client>> {
-        return this.http.get<ApiResponse<Client>>(environment.apiUrl + clientEndpoint.getById.replace(':id', id.toString()));
+        return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString()));
     }
     create(entity: Client): Observable<ApiResponse<Client>> {
-      return this.http.post<ApiResponse<Client>>(environment.apiUrl + clientEndpoint.create, entity);
+      return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity);
     }
     update(entity: Client): Observable<ApiResponse<Client>> {
-      return this.http.post<ApiResponse<Client>>(environment.apiUrl + clientEndpoint.update.replace(':id',entity.id!.toString()), entity);
+      return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.update.replace(':id',entity.id!.toString()), entity);
     }
     delete(id: number): Observable<ApiResponse<Client>> {
-      return this.http.get<ApiResponse<Client>>(environment.apiUrl + clientEndpoint.delete.replace(':id', id.toString()));
+      return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
     }
 }

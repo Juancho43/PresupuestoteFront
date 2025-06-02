@@ -8,6 +8,7 @@ import {IPersonCardComponent} from '../card-component/i-person-card.component';
     IPersonCardComponent
   ],
   templateUrl: './person-list-component.html',
+  standalone: true,
   styleUrl: './person-list-component.scss'
 })
 export class PersonListComponent {
