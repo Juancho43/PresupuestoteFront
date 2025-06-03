@@ -7,6 +7,7 @@ import {AuthorizeFormComponent} from './components/auth/authorize-form-component
 import {authGuard} from './core/guards/auth.guard';
 import {AboutComponent} from './components/sections/about-component/about-component';
 import {HomeComponent} from './components/sections/home-component/home-component';
+import {ClientDetailComponent} from './components/clients/client-detail-component/client-detail-component';
 
 export const routes: Routes = [
 
@@ -22,7 +23,7 @@ export const routes: Routes = [
 
   //ClientRoutes
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
-  // {path: 'client/detail/:clientId', component: ClientDetailsComponent},
+  {path: 'client/detail/:clientId', component: ClientDetailComponent},
   // {path: 'client/edit/:clientId', component: ClientViewComponent},
   // //BudgetRoutes
   // {path: 'budget', component: BudgetViewComponent},
