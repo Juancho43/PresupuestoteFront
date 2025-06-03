@@ -5,8 +5,8 @@ import {LogoutFormComponent} from './components/auth/logout-form-component/logou
 import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
 import {AuthorizeFormComponent} from './components/auth/authorize-form-component/authorize-form.component';
 import {authGuard} from './core/guards/auth.guard';
-import {AboutComponent} from './components/about-component/about-component';
-import {HomeComponent} from './components/home-component/home-component';
+import {AboutComponent} from './components/sections/about-component/about-component';
+import {HomeComponent} from './components/sections/home-component/home-component';
 
 export const routes: Routes = [
 

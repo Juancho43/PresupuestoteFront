@@ -1,6 +1,5 @@
-//@use "../../../styles";
-@use '../../core/styles/variables.scss' as styles;
-
+@use '../../../../styles.scss' as styles;
+@use '../../../core/styles/_layout.scss' as layout;
 section{
   align-items: center;
   height: 80vh;

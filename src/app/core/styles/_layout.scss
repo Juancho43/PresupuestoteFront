@@ -1,0 +1,11 @@
+@use '../../../styles.scss' as core;
+
+section{
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+  overflow-y: auto;
+}

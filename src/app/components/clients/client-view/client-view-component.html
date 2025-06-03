@@ -1,8 +1,14 @@
-let data = this.clientsResource.value()?.data!;
-@if(!this.clientsResource.isLoading() && !this.clientsResource.error()){
-  <app-person-list-component
-    [data] = data
-  />
-}
+@let data = this.clientsResource.value()?.data!;
+
+<section>
+  @if(!this.clientsResource.isLoading() && !this.clientsResource.error()){
+
+    <app-person-list-component
+      [data] = data
+    />
+    <app-client-form-component/>
+  }
+</section>
+
 
 

@@ -1,5 +1,5 @@
 @use '../../../../styles.scss' as core;
-@use '../../../core/styles/buttons.scss';
+@use '../../../core/styles/buttons';
 
 nav{
   background-color: core.$nogal;

@@ -1,0 +1,94 @@
+@use '../../../styles.scss' as core;
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: core.$gris;
+  width:  50vh;
+  max-height: 76vh;
+  margin: auto;
+  padding: 1em;
+  border-radius: 10px 10px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+legend{
+  text-decoration: underline;
+  font-family: core.$fontTitulo;
+  margin-bottom: 6px;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 1em;
+}
+
+.Botones {
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+form label {
+  font-family: core.$fontOtro;
+}
+
+form input,
+form textarea,
+form select {
+  font-family: core.$fontOtro;
+  border: none;
+  border-radius: 8px;
+  background-color: core.$arce;
+  padding: 10px;
+  margin: 8px;
+  width: 90%;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form .dateHandler{
+  display:flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+form .invalid{
+  color: core.$negro;
+  background-color: rgba(255, 0, 0, 50%);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 4px ;
+}
+form .invalid p{
+  text-align: left;
+  text-indent: 4px;
+  font-family: core.$fontOtro;
+}
+form .invalid p::before{
+  content: "#";
+
+}
+
+.disactive{
+  background-color: core.$blanquecino;
+  color: core.$negro;
+}
+
+@media only screen and (max-width: 950px) {
+  form{
+    border-radius: 5%;
+    min-width: 50vh;
+    max-width: 40vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  form{
+    min-width: 80vw;
+  }
+
+}

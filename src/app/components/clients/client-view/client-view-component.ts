@@ -5,11 +5,13 @@ import {PersonListComponent} from '../../shared/person-list-component/person-lis
 import {IPerson} from '../../../core/interfaces/Entities/IPerson';
 import {ClientService} from '../../../core/services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
+import {ClientFormComponent} from '../client-form-component/client-form-component';
 
 @Component({
   selector: 'app-client-view',
   imports: [
-    PersonListComponent
+    PersonListComponent,
+    ClientFormComponent
   ],
   templateUrl: './client-view-component.html',
   styleUrl: './client-view-component.scss'
@@ -21,6 +23,8 @@ export class ClientViewComponent {
       return this.service.getAll();
     }
   })
+
+
   client : Client = {
     id: 10,
     balance: 0,

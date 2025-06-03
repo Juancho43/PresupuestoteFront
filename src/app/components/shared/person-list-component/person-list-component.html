@@ -1,4 +1,25 @@
 @let personData = this.data;
-@for (data of personData(); track data.id) {
-  <app-person-card-component [person]="data"/>
-}
+
+<div class="List">
+  <h3 class="List-title">Listado de clientes</h3>
+
+
+<!--  @for (client of clients | paginate: { itemsPerPage: pageSize, currentPage:page }; track $index) {-->
+    @for (data of personData(); track data.id) {
+      <app-person-card-component [person]="data"/>
+    }
+    @empty {
+<!--      <app-text-card [message]="'No hay clientes que mostrar.'"/>-->
+    }
+
+
+<!--  <pagination-controls-->
+<!--    previousLabel="Anterior"-->
+<!--    nextLabel="Siguiente"-->
+<!--    (pageChange)="pageChange($event)"-->
+<!--  />-->
+
+<!--  @if(options){-->
+<!--    <button class="Boton1" (click)="addClientHandler()">Agregar cliente</button>-->
+<!--  }-->
+</div>
