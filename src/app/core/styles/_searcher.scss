@@ -1,0 +1,57 @@
+@use '../../../styles.scss' as core;
+.Searcher {
+  border-radius: 15px;
+  background-color: core.$nogal;
+  padding: 1em;
+  color: core.$blanquecino;
+
+  select{
+    color: core.$blanquecino;
+    background: core.$nogal;
+    border: none;
+    border-radius: 5px;
+    height: 2em;
+    width: 10em;
+  }
+
+  input[type="text"] {
+    background: none;
+    border: none;
+    width: 50%;
+    padding: 4px;
+    color: core.$blanquecino;
+    text-decoration: underline;
+    :focus {
+      border-bottom: 1px solid core.$blanquecino;
+      outline: none;
+      width: 50%;
+      padding: 4px;
+      color: core.$blanquecino;
+      text-decoration: underline;
+    }
+  }
+
+  .Interior{
+    display: flex;
+    justify-content: space-evenly;
+
+    border-bottom: 1px solid core.$negro;
+    &:hover{
+      border-bottom: 1px solid core.$blanquecino;
+    }
+  }
+}
+
+
+.Searcher-button {
+  background-color: core.$blanquecino;
+  border: none;
+  border-radius: 5px;
+  :hover {
+    background-color: core.$blanquecino;
+    color: core.$nogal;
+  }
+}
+
+
+

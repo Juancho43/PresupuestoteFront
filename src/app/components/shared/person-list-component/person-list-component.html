@@ -1,8 +1,8 @@
 @let personData = this.data;
 
 <div class="List">
-  <h3 class="List-title">Listado de clientes</h3>
-
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-searcher-component/>
 
 <!--  @for (client of clients | paginate: { itemsPerPage: pageSize, currentPage:page }; track $index) {-->
     @for (data of personData(); track data.id) {

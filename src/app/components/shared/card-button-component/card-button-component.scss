@@ -1,0 +1,20 @@
+@use '../../../../styles.scss' as styles;
+button{
+  border:none;
+
+  background-color: styles.$gris;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:.9em;
+  width: 2em;
+  height:2em;
+
+  &:hover{
+    box-shadow: 2px 5px 5px styles.$cerezo;
+    cursor: pointer;
+  }
+
+}
