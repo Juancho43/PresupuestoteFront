@@ -1,7 +1,6 @@
-
 import {IPerson} from './IPerson';
-export interface Supplier extends IPerson {
-  balance:number;
-  notes: string;
+import {Invoice} from './invoice';
 
+export interface Supplier extends IPerson<Invoice> {
+  notes: string;
 }
