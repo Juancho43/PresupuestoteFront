@@ -5,6 +5,7 @@ import {ApiResponse} from '../../interfaces/ApiResponse';
 import {environment} from '../../../../environments/environment';
 import {CookieService} from './cookie-service';
 import {checkToken} from '../../guards/token.interceptor';
+import {authEndpoint} from '../endpoints/auth.endpoint';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,13 @@ export class AuthService {
   login$ = new BehaviorSubject<boolean>(false);
 
   sendLogin(data: { email: string; password: string }) {
-    return this.http.post<ApiResponse<{token:string,user : any}>>(environment.apiUrl + '/auth/login', data,
+    return this.http.post<ApiResponse<{token:string,user : any}>>(environment.apiUrl + authEndpoint.login, data,
       {context: checkToken(),}
     );
   }
 
   sendLogout() {
-    return this.http.post<ApiResponse<string>>(environment.apiUrl + '/auth/logout', {});
+    return this.http.post<ApiResponse<string>>(environment.apiUrl + authEndpoint.logout, {});
   }
 
   login(token: string) {
