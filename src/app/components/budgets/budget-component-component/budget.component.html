@@ -1,0 +1,13 @@
+@let budget = this.budget();
+<div class="Details">
+  <h3 class="Details-title">Detalle del presupuesto</h3>
+  <p>Descripción: {{ budget.description }}</p>
+  <p>Fecha confección: {{ budget.made_date | date : "dd/MM/yyyy" }}</p>
+  <p>Fecha límite: {{ budget.dead_line | date : "dd/MM/yyyy" }}</p>
+  <p>Estado: {{ budget.state }}</p>
+  <p>Estado pago: {{ budget.payment_status }}</p>
+  <p>Costo: {{ budget.cost | currency }}</p>
+  <p>Ganancia: {{ budget.profit | currency }}</p>
+  <p>Precio: {{ budget.price | currency }}</p>
+</div>
+

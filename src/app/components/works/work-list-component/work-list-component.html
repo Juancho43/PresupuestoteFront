@@ -1,1 +1,14 @@
-<p>work-list-component works!</p>
+@let data = this.works();
+<div class="List">
+  <h3 class="List-title">Listado de trabajos</h3>
+
+  @for (work of data ; track work.id; let idx = $index) {
+    <app-work-card
+      [work]="work"
+      [budgetId]="budgetId()"
+    />
+  }
+
+
+
+</div>

@@ -3,11 +3,13 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ActivatedRoute, Router} from '@angular/router';
 import {BudgetService} from '../../../core/services/http/budget-service';
 import {ClientService} from '../../../core/services/http/client-service';
+import {ClientJoinComponent} from '../../clients/client-join-component/client-join-component';
 
 @Component({
   selector: 'app-budget-form-component',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClientJoinComponent
   ],
   templateUrl: './budget-form-component.html',
   styleUrl: './budget-form-component.scss'

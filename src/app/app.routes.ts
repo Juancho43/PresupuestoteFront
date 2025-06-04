@@ -20,6 +20,7 @@ import {EmployeeViewComponent} from './components/employees/employee-view-compon
 import {EmployeeDetailComponent} from './components/employees/employee-detail-component/employee-detail-component';
 import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
 import {ClientFormComponent} from './components/clients/client-form-component/client-form-component';
+import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
 
 export const routes: Routes = [
 
@@ -39,11 +40,14 @@ export const routes: Routes = [
   {path: 'client/edit/:id', component: ClientFormComponent},
   // //BudgetRoutes
   {path: 'budget', component: BudgetViewComponent},
-  {path: 'budget/detail/:budgetId', component: BudgetDetailComponent},
+  {path: 'budget/:clientId', component: BudgetViewComponent},
+  {path: 'budget/detail/:id', component: BudgetDetailComponent},
+  {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
   {path: 'budget/new/:clientId', component: BudgetViewComponent},
-  {path: 'budget/edit/:budgetId', component: BudgetViewComponent},
+  {path: 'budget/edit/:id', component: BudgetViewComponent},
   // //WorkRoute
-  // {path: 'work', component: WorkViewComponent},
+  {path: 'work/new/:budgetId', component: WorkFormComponent},
+  {path: 'work/edit/:budgetId/:id', component: WorkFormComponent},
   // //MaterialRoute
   {path: 'material', component: MaterialViewComponent},
   {path: 'material/detail/:id', component: MaterialDetailComponent},

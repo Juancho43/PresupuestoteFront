@@ -1,1 +1,27 @@
-<p>work-card-component works!</p>
+@let work = this.work();
+
+<div class="Card">
+  <div class="Card-Details">
+    <p>{{work.state}}</p>
+    <p>Nombre: {{work.name}}</p>
+    <p>Costo: {{work.cost | currency}}</p>
+    <p>Fecha : {{work.dead_line | date:'dd/MM/yyyy'}}</p>
+  </div>
+  <div class="Card-Options">
+    <app-card-button-component
+      [text]="'Ver detalles'"
+      [icon]="'info'"
+      [link]="`/budget/detail/${budgetId()}/${work.id}`"
+    />
+    <app-card-button-component
+      [text]="'Editar'"
+      [icon]="'edit'"
+      [link]="`/work/edit/${budgetId()}/${work.id}`"
+    />
+    <app-card-button-component
+      [text]="'Eliminar'"
+      [icon]="'delete'"
+    />
+  </div>
+</div>
+

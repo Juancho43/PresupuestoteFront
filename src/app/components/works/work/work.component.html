@@ -1,0 +1,11 @@
+@let work = this.work();
+<div class="Details">
+  <h3 class="Details-title">Detalle del trabajo</h3>
+  <p>Nombre : {{ work.name }}</p>
+  <p>Notas : {{ work.notes }}</p>
+  <p>Horas estimadas: {{ work.estimated_time }}</p>
+  <p>Fecha limite: {{ work.dead_line | date : "dd/MM/yyyy" }}</p>
+  <p>Estado : {{ work.state }}</p>
+  <p>Costo: {{ work.cost | currency }}</p>
+</div>
+

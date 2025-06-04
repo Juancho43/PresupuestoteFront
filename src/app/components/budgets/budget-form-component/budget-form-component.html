@@ -20,6 +20,7 @@
     }
     <legend class="List-title"> {{ isEdit ? 'Actualizar un presupuesto' : 'Crear un presupuesto' }}</legend>
     @if (!isEdit) {
+      <app-client-join-component/>
       <label for="client">Cliente:</label>
       <input type="text" id="client" (click)="openClientForm()" placeholder="Seleccionar cliente" readonly formControlName="client">
 <!--      <input type="hidden" [value]="this.currentClient.clientId" name="idClient" formControlName="idClient">-->

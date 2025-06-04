@@ -1,1 +1,24 @@
-<p>budget-detail-component works!</p>
+@let budget = this.budgetResource.value()!.data!;
+@let currentWork = this.currentWorkResource.value()!.data!;
+<section>
+  <article>
+    <app-budget [budget]="budget" />
+    <app-client
+      [client]="budget.client!"
+      routerLink="/client/detail/{{ budget.client?.id }}"
+    />
+  </article>
+  <app-work-list
+    [works]="budget.works!"
+    [budgetId]="budget.id!"
+  />
+  @if(currentWork){
+    <app-work-detail
+      [work]="currentWork"
+    />
+  }@else{
+    <p>Seleccione un trabajo por favor</p>
+  }
+
+
+</section>
