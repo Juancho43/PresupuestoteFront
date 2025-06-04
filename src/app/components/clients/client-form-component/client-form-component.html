@@ -34,7 +34,7 @@
     }
 
 
-    @if (isEdit) {
+    @if (isEdit()) {
       <legend class="List-title">Actualizar cliente</legend>
     }@else {
       <legend class="List-title">Cargar cliente</legend>
@@ -59,7 +59,7 @@
     <button type="reset" (click)="resetForm($event)">Limpiar</button>
 
     <button type="submit" [disabled]="!canSubmit" [class.disactive]="!canSubmit">
-      @if (isEdit) {
+      @if (isEdit()) {
         Actualizar
       }@else {
         Guardar

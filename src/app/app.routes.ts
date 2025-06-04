@@ -19,6 +19,7 @@ import {InvoiceViewComponent} from './components/invoices/invoice-view-component
 import {EmployeeViewComponent} from './components/employees/employee-view-component/employee-view-component';
 import {EmployeeDetailComponent} from './components/employees/employee-detail-component/employee-detail-component';
 import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
+import {ClientFormComponent} from './components/clients/client-form-component/client-form-component';
 
 export const routes: Routes = [
 
@@ -35,7 +36,7 @@ export const routes: Routes = [
   //ClientRoutes
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
   {path: 'client/detail/:id', component: ClientDetailComponent},
-  {path: 'client/edit/:id', component: ClientViewComponent},
+  {path: 'client/edit/:id', component: ClientFormComponent},
   // //BudgetRoutes
   {path: 'budget', component: BudgetViewComponent},
   {path: 'budget/detail/:budgetId', component: BudgetDetailComponent},

@@ -1,8 +1,11 @@
-import {Component, inject} from '@angular/core';
+import {Component, effect, inject, input, OnInit, output, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClientService} from '../../../core/services/http/client-service';
-import {ActivatedRoute, Router} from '@angular/router';
 import {Client} from '../../../core/interfaces/Entities/client';
+import {rxResource} from '@angular/core/rxjs-interop';
+import {of} from 'rxjs';
+import {ApiResponse} from '../../../core/interfaces/ApiResponse';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-form-component',
@@ -11,20 +14,25 @@ import {Client} from '../../../core/interfaces/Entities/client';
   templateUrl: './client-form-component.html',
   styleUrl: './client-form-component.scss'
 })
-export class ClientFormComponent {
+export class ClientFormComponent implements OnInit {
 //Utils
   private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
   private clientService = inject(ClientService);
+  submitted = output<boolean>();
   // private clientController = inject(ClientControllerService);
   // private modalService = inject(ModalService);
 
   //Properties
-  currentClient: Client = {} as Client;
-  // clientDto: ClientRequest = this.currentClient.personId;
-
-  clientId?: number;
-  isEdit: boolean = false;
+  readonly id = input<number>(0)
+  clientResource = rxResource({
+    params:() => ({id: this.id()}),
+    stream: ({params}) => {
+      if( params.id > 0) return  this.clientService.getById(this.id());
+      return of({} as ApiResponse<Client>);
+    }
+  })
+  currentClient= signal<Client>({} as Client) ;
+  isEdit = signal(false);
 
   //Form
   clientForm: FormGroup = new FormGroup({
@@ -43,22 +51,21 @@ export class ClientFormComponent {
     ]),
   });
 
-  ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      this.clientId = Number(params.get('clientId'));
+  constructor() {
+    effect(() => {
+      this.clientResource.value();
       this.onEditHandler();
     });
+  }
+  ngOnInit(): void {
     this.setUp();
   }
 
-  ngOnDestroy() {
-    // this.clientController.setReload(false);
-  }
   setUp() {
     this.closeModal();
     this.clientForm.reset();
-    this.isEdit = false;
-    this.currentClient = {} as Client;
+    this.isEdit.set(false);
+    this.currentClient.set({} as Client);
   }
 
   get canSubmit() {
@@ -81,77 +88,59 @@ export class ClientFormComponent {
   }
 
   onEditHandler() {
-    if (this.router.url == '/client/edit/' + this.clientId) {
-      this.clientService.getById(this.clientId!).subscribe({
-        next: (res) => {
-          this.isEdit = true;
-          this.setClientToEdit(res);
-        },
-      });
-    } else {
-      this.isEdit = false;
+    if(this.id()>0){
+      this.isEdit.set(true);
+      if(!this.clientResource.isLoading()) this.setForm(this.clientResource.value()!.data!)
+
     }
   }
 
   onSubmit() {
-    // this.toPerson();
-    // if (this.isEdit) {
-    //   this.clientService.update(this.clientDto).subscribe({
-    //     next: () => {
-    //       // this.clientController.setReload(true);
-    //     },
-    //   });
-    // } else {
-    //   this.clientService.create(this.clientDto).subscribe({
-    //     next: () => {
-    //       this.clientController.setReload(true);
-    //     },
-    //   });
-    // }
-    // this.setUp();
+    if (!this.isEdit()) {
+      this.clientService.create(this.toClient()).subscribe()
+      this.submitted.emit(true);
+    } else {
+      let client = this.toClient();
+      client.id = this.clientResource.value()?.data?.id;
+      client.person.id = this.clientResource.value()?.data?.person?.id;
+      this.clientService.update(client).subscribe()
+      this.router.navigateByUrl('client');
+    }
+
+    this.setUp();
   }
 
   closeModal() {
-    if (this.router.url == '/budget/new/' + this.clientId) {
-      // this.modalService.closeModal();
+    // if (this.router.url == '/budget/new/' + this.clientId) {
+    //   // this.modalService.closeModal();
+    // }
+  }
+
+  setForm(data: Client) {
+    this.clientForm.patchValue({
+
+      name: data.person.name,
+      lastName: data.person.last_name,
+      direction: data.person.address,
+      phoneNumber: data.person.phone_number,
+      mail: data.person.mail,
+      dni: data.person.dni,
+      cuit: data.person.cuit,
+    });
+  }
+
+  toClient() : Client{
+    return{
+      person: {
+        name : this.clientForm.get('name')?.value,
+        last_name : this.clientForm.get('lastName')?.value,
+        address : this.clientForm.get('direction')?.value,
+        phone_number : this.clientForm.get('phoneNumber')?.value,
+        mail : this.clientForm.get('mail')?.value,
+        dni : this.clientForm.get('dni')?.value,
+        cuit : this.clientForm.get('cuit')?.value,
+      }
     }
   }
 
-  setClientToEdit(res: any) {
-    this.clientForm.patchValue({
-      name: res.value.personId.name,
-      lastName: res.value.personId.lastName,
-      direction: res.value.personId.address,
-      phoneNumber: res.value.personId.phoneNumber,
-      mail: res.value.personId.email,
-      dni: res.value.personId.dni,
-      cuit: res.value.personId.cuit,
-    });
-  }
-  toPerson() {
-    // this.clientDto.name = this.clientForm.get('name')?.value;
-    // this.clientDto.lastName = this.clientForm.get('lastName')?.value;
-    // this.clientDto.address = this.clientForm.get('direction')?.value;
-    // this.clientDto.phoneNumber = this.clientForm.get('phoneNumber')?.value;
-    // if (this.clientForm.get('mail')?.value == null) {
-    //   this.clientDto.email = '';
-    // } else {
-    //   this.clientDto.email = this.clientForm.get('mail')?.value;
-    // }
-    //
-    // if (this.clientForm.get('dni')?.value == null) {
-    //   this.clientDto.dni = '';
-    // } else {
-    //   this.clientDto.dni = this.clientForm.get('dni')?.value;
-    // }
-    //
-    // if (this.clientForm.get('cuit')?.value == null) {
-    //   this.clientDto.cuit = '';
-    // } else {
-    //   this.clientDto.cuit = this.clientForm.get('cuit')?.value;
-    // }
-    // if (this.isEdit) {
-    //   this.clientDto.clientId = this.clientId;
-    // }
-  }
 }

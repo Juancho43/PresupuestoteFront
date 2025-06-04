@@ -21,5 +21,8 @@ export class ClientViewComponent {
     }
   })
 
+  onFormSubmitted() {
+    this.clientsResource.reload();
+  }
 
 }
