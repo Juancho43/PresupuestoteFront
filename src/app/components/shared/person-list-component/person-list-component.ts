@@ -16,4 +16,5 @@ import {SearcherComponent} from '../searcher-component/searcher-component';
 export class PersonListComponent {
   readonly data = input.required<IPerson[]>();
   readonly entity = input.required<string>();
+  readonly route = input.required<string>();
 }

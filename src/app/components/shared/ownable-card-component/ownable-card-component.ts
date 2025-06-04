@@ -15,4 +15,5 @@ import {IOwnable} from '../../../core/interfaces/Entities/IOwnable';
 export class OwnableCardComponent {
   readonly thing = input.required<IOwnable>();
   readonly entity = input.required<string>();
+  readonly route = input.required<string>();
 }

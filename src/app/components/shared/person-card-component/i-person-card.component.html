@@ -3,6 +3,7 @@
 
 <div class="Card">
   <div class="Card-Details">
+    <h3>{{entity()}}</h3>
     <p>{{person.last_name| titlecase }} {{person.name | titlecase }}</p>
     <p>{{person.phone_number}}</p>
   </div>
@@ -10,12 +11,12 @@
     <app-card-button-component
       [text]="'Ver detalles'"
       [icon]="'info'"
-      [link]="`/${entity()}/detail/' + ${id}`"
+      [link]="`/${route()}/detail/${id}`"
       />
     <app-card-button-component
       [text]="'Editar'"
       [icon]="'edit'"
-      [link]="`/${entity()}/edit/' + ${id}`"
+      [link]="`/${route()}/edit/${id}`"
     />
     <app-card-button-component
       [text]="'Eliminar'"

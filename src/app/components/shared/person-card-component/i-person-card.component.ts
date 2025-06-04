@@ -16,4 +16,5 @@ import {CardButtonComponent} from '../card-button-component/card-button-componen
 export class IPersonCardComponent {
   readonly person = input<IPerson>();
   readonly entity = input.required<string>();
+  readonly route = input.required<string>();
 }

@@ -15,4 +15,5 @@ import {OwnableCardComponent} from '../ownable-card-component/ownable-card-compo
 export class OwnableListComponent {
   readonly data = input.required<IOwnable[]>();
   readonly entity = input.required<string>();
+  readonly route = input.required<string>();
 }
