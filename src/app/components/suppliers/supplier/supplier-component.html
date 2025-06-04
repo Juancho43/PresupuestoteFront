@@ -1,0 +1,11 @@
+@let supplier = this.supplier();
+<div class="Details">
+  <h3 class="Details-title">Detalle del proveedor</h3>
+  <p>Nombre completo: {{supplier.person.last_name}} {{supplier.person.name}}  </p>
+  <p>Número de contacto: {{supplier.person.phone_number}}</p>
+  <p>Dirección: {{supplier.person.address}}</p>
+  <p>Correo electrónico: {{supplier.person.mail}}</p>
+  <p>DNI: {{supplier.person.dni}}</p>
+  <p>CUIT: {{supplier.person.cuit}}</p>
+  <p>Notas: {{supplier.notes}}</p>
+</div>

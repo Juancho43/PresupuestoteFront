@@ -1,0 +1,13 @@
+@let employee = employeeResource.value()?.data!;
+@let payments = paymentsResource.value()?.data!;
+<section>
+  <article>
+    <app-employee [employee]="employee"/>
+    <app-payments-table-component [payments]="payments"/>
+  </article>
+  <app-ownable-list-component
+    [data]="employee.salaries"
+    entity="salario"
+    route="salary"
+  />
+</section>

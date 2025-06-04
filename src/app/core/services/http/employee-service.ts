@@ -7,6 +7,8 @@ import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {employeeEndpoint} from '../endpoints/employees.endpoint';
+import {Payment} from '../../interfaces/Entities/payment';
+import {paymentEndpoint} from '../endpoints/payments.endpoint';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,9 @@ export class EmployeeService implements ICrudeable<Employee> {
   }
   delete(id: number): Observable<ApiResponse<Employee>> {
     return this.http.get<ApiResponse<Employee>>(environment.apiUrlV1 + employeeEndpoint.delete.replace(':id', id.toString()));
+  }
+  getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
+    return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.byEmployee.replace(':id', id.toString()));
   }
 
 }

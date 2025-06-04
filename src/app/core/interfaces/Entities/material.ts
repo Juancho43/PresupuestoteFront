@@ -1,8 +1,9 @@
 import {Entity} from './entity';
-import {SubCategory} from './subcategory';
+import {Subcategory} from './subcategory';
+import {Measure} from './measure';
 
 export interface Material extends Entity{
   name: string;
-  subcategory: SubCategory;
-
+  subcategory: Subcategory;
+  measure: Measure;
 }

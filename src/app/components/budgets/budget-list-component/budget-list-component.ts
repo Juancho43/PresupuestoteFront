@@ -1,5 +1,4 @@
-import {Component, input} from '@angular/core';
-import {Budget} from '../../../core/interfaces/Entities/budget';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-budget-list-component',
@@ -8,5 +7,5 @@ import {Budget} from '../../../core/interfaces/Entities/budget';
   styleUrl: './budget-list-component.scss'
 })
 export class BudgetListComponent {
-  readonly budgets = input.required<Budget[]>()
+
 }

@@ -1,0 +1,16 @@
+@let data = this.supplierResource.value()?.data!;
+
+<section>
+  @if(!this.supplierResource.isLoading() && !this.supplierResource.error()){
+
+    <app-person-list-component
+      [data] = data
+      entity="proveedor"
+      route="supplier"
+    />
+    <app-supplier-form-component/>
+  }
+</section>
+
+
+

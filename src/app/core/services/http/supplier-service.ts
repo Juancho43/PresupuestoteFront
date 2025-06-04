@@ -7,6 +7,8 @@ import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {supplierEndpoint} from '../endpoints/suppliers.endpoint';
+import {Payment} from '../../interfaces/Entities/payment';
+import {paymentEndpoint} from '../endpoints/payments.endpoint';
 
 
 
@@ -30,6 +32,9 @@ export class SupplierService implements ICrudeable<Supplier> {
   }
   delete(id: number): Observable<ApiResponse<Supplier>> {
     return this.http.get<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));
+  }
+  getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
+    return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.bySupplier.replace(':id', id.toString()));
   }
 
 }

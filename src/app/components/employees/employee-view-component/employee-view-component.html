@@ -1,0 +1,16 @@
+@let data = this.employeeResource.value()?.data!;
+
+<section>
+  @if(!this.employeeResource.isLoading() && !this.employeeResource.error()){
+
+    <app-person-list-component
+      [data] = data
+      entity="empleado"
+      route="employee"
+    />
+    <app-employee-form-component/>
+  }
+</section>
+
+
+
