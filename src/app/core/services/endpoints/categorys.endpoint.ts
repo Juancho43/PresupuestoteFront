@@ -1,7 +1,7 @@
 export const categoryEndpoint = {
-  getAll: '/categorys',
-  getById: '/categorys/:id',
-  create: '/categorys',
-  update: '/categorys/:id',
-  delete: '/categorys/:id',
+  getAll: '/categories',
+  getById: '/categories/:id',
+  create: '/categories',
+  update: '/categories/:id',
+  delete: '/categories/:id',
 };

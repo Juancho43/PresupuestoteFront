@@ -1,7 +1,7 @@
 export const subcategoryEndpoint = {
-  getAll: '/subcategorys',
-  getById: '/subcategorys/:id',
-  create: '/subcategorys',
-  update: '/subcategorys/:id',
-  delete: '/subcategorys/:id',
+  getAll: '/subcategories',
+  getById: '/subcategories/:id',
+  create: '/subcategories',
+  update: '/subcategories/:id',
+  delete: '/subcategories/:id',
 };

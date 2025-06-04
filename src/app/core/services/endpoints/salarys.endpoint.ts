@@ -1,7 +1,7 @@
 export const salaryEndpoint = {
-  getAll: '/salarys',
-  getById: '/salarys/:id',
-  create: '/salarys',
-  update: '/salarys/:id',
-  delete: '/salarys/:id',
+  getAll: '/salaries',
+  getById: '/salaries/:id',
+  create: '/salaries',
+  update: '/salaries/:id',
+  delete: '/salaries/:id',
 };

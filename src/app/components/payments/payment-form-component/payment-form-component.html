@@ -1,1 +1,54 @@
-<p>payment-form-component works!</p>
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+
+    @if (paymentForm.invalid && paymentForm.dirty) {
+      <div class="invalid">
+
+        @if (paymentForm.get('fecha')?.invalid) {
+          <p>La fecha es obligatoria.</p>
+        }
+
+        @if (paymentForm.get('monto')?.invalid) {
+          <p>El monto es obligatorio.</p>
+        }
+
+        @if (paymentForm.get('metodoPago')?.invalid) {
+          <p>El método de pago es obligatorio.</p>
+        }
+
+        @if(paymentForm.get('Descripcion')?.invalid ){
+          <p>La descripcion es obligatoria.</p>
+        }
+
+      </div>
+    }
+
+    <legend class="List-title">
+      @if (isEdit) {
+        Actualizar pago
+      }@else {
+        Cargar pago nuevo
+      }
+    </legend>
+
+    <label for="fecha">Fecha:</label>
+    <input type="text" name="fecha" id="fecha" placeholder="fecha..." formControlName="fecha">
+    <label for="monto">Monto:</label>
+    <input type="text" name="monto" id="monto" placeholder="monto..." formControlName="monto">
+    <label for="metodoPago">Metodo de pago:</label>
+    <input type="text" name="metodoPago" id="metodoPago" placeholder="metodoPago..." formControlName="metodoPago">
+    <label for="Descripcion">Descripcion:</label>
+    <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion..." formControlName="Descripcion"></textarea>
+  </fieldset>
+  <fieldset class="Botones">
+    <button type="reset" (click)="resetForm($event)">Limpiar</button>
+
+    <button type="submit" [disabled]="!canSubmit" [class.disactive]="!canSubmit">
+      @if (isEdit) {
+        Actualizar
+      }@else {
+        Guardar
+      }
+    </button>
+  </fieldset>
+</form>

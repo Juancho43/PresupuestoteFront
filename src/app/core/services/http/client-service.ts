@@ -21,9 +21,7 @@ export class ClientService implements ICrudeable<Client> {
        return this.http.get<ApiResponseCollection<Client>>(environment.apiUrlV1 + clientEndpoint.getAll);
     }
     getById(id: number): Observable<ApiResponse<Client>> {
-        return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString())).pipe(
-
-        );
+        return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString()));
     }
     create(entity: Client): Observable<ApiResponse<Client>> {
       return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity);
