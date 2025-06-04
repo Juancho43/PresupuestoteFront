@@ -23,7 +23,7 @@ export const routes: Routes = [
 
   //ClientRoutes
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
-  {path: 'client/detail/:clientId', component: ClientDetailComponent},
+  {path: 'client/detail/:id', component: ClientDetailComponent},
   // {path: 'client/edit/:clientId', component: ClientViewComponent},
   // //BudgetRoutes
   // {path: 'budget', component: BudgetViewComponent},

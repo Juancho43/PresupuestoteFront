@@ -1,0 +1,11 @@
+<div class="List">
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-searcher-component/>
+
+  @for (data of data(); track data.id) {
+    <app-ownable-card-component
+      [thing]="data"
+      [entity]="entity()"
+    />
+  }
+</div>

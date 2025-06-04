@@ -1,0 +1,10 @@
+@let client = this.client();
+<div class="Details">
+  <h3 class="Details-title">Detalle del cliente</h3>
+  <p>Nombre completo: {{client.person.last_name}} {{client.person.name}}  </p>
+  <p>Número de contacto: {{client.person.phone_number}}</p>
+  <p>Dirección: {{client.person.address}}</p>
+  <p>Correo electrónico: {{client.person.mail}}</p>
+  <p>DNI: {{client.person.dni}}</p>
+  <p>CUIT: {{client.person.cuit}}</p>
+</div>

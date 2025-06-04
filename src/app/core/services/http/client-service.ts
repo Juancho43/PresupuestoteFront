@@ -7,6 +7,8 @@ import { ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {clientEndpoint} from '../endpoints/clients.endpoint';
+import {Payment} from '../../interfaces/Entities/payment';
+import {paymentEndpoint} from '../endpoints/payments.endpoint';
 
 
 @Injectable({
@@ -19,7 +21,9 @@ export class ClientService implements ICrudeable<Client> {
        return this.http.get<ApiResponseCollection<Client>>(environment.apiUrlV1 + clientEndpoint.getAll);
     }
     getById(id: number): Observable<ApiResponse<Client>> {
-        return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString()));
+        return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString())).pipe(
+
+        );
     }
     create(entity: Client): Observable<ApiResponse<Client>> {
       return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity);
@@ -29,5 +33,9 @@ export class ClientService implements ICrudeable<Client> {
     }
     delete(id: number): Observable<ApiResponse<Client>> {
       return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
+    }
+
+    getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
+      return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.byClient.replace(':id', id.toString()));
     }
 }

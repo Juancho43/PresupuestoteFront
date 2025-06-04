@@ -1,0 +1,22 @@
+@use '../../../styles.scss' as core;
+.Details {
+  background-color: core.$gris;
+  padding: 1em;
+  border-radius: 10px 10px;
+  margin: 1em;
+  h4{
+    margin: 10px;
+  }
+  p{
+    font-family: core.$fontOtro;
+    text-align: left;
+    line-height: 1.1em;
+  }
+}
+
+
+.Details-title{
+  text-decoration: underline;
+  font-family: core.$fontTitulo;
+  margin-bottom: 6px;
+}

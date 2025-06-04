@@ -1,1 +1,12 @@
-<p>client-detail-component works!</p>
+@let client = clientResource.value()?.data!;
+@let payments = paymentsResource.value()?.data!;
+<section>
+  <article>
+    <app-client [client]="client"/>
+    <app-payments-table-component [payments]="payments"/>
+  </article>
+  <app-ownable-list-component
+    [data]="client.budgets"
+    entity="presupuesto"
+  />
+</section>

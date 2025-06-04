@@ -16,7 +16,7 @@ export class SearcherComponent {
   filtro = new FormControl('');
   busqueda = new FormControl('');
   idClient = new FormControl(0);
-  // filteredClients: Client[] = [];
+  // filteredClients: ClientComponent[] = [];
   /*
     ngOnInit() {
       this.clientService.getClients().subscribe({
@@ -27,7 +27,7 @@ export class SearcherComponent {
     }
   */
   sort() {
-    // let sorted: Client[] = [];
+    // let sorted: ClientComponent[] = [];
     /*switch (this.filtro.value) {
       case 'alfabeticamente':
         sorted = lodash.orderBy(

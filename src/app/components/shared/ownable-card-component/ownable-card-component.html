@@ -1,0 +1,26 @@
+@let thing = this.thing();
+@let id = this.thing()?.id!;
+
+<div class="Card">
+  <div class="Card-Details">
+    <p>{{thing.description}}</p>
+    <p>{{thing.total | currency}}</p>
+  </div>
+  <div class="Card-Options">
+    <app-card-button-component
+      [text]="'Ver detalles'"
+      [icon]="'info'"
+      [link]="`/${entity()}/detail/' + ${id}`"
+    />
+    <app-card-button-component
+      [text]="'Editar'"
+      [icon]="'edit'"
+      [link]="`/${entity()}/edit/' + ${id}`"
+    />
+    <app-card-button-component
+      [text]="'Eliminar'"
+      [icon]="'delete'"
+    />
+  </div>
+
+</div>

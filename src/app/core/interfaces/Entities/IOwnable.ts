@@ -1,8 +1,8 @@
 import {Entity} from './entity';
-import {Payments} from './payments';
-
+import {Payment} from './payment';
 export interface IOwnable extends Entity {
-  payments: Payments[];
+  description: string;
+  total:number;
+  payments: Payment[]
   payment_status: string;
-
 }
