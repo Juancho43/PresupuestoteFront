@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthorizeFormComponent } from './authorize-form.component';
+import {AuthorizeFormComponent} from './authorize-form.component';
 
 describe('AutorizeFormComponent', () => {
   let component: AuthorizeFormComponent;

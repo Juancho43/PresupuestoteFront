@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WorkViewComponent } from './work-view-component';
+import {WorkViewComponent} from './work-view-component';
 
 describe('WorkViewComponent', () => {
   let component: WorkViewComponent;

@@ -13,15 +13,11 @@ button{
   height:2em;
 
   &:hover{
+    background-color: styles.$nogal;
     box-shadow: 2px 5px 5px styles.$cerezo;
     cursor: pointer;
   }
 
-  img{
-    &:hover {
-      filter: invert(1);
-    }
-  }
 }
 
 

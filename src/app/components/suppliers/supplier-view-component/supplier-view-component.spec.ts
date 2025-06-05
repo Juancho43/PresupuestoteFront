@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SupplierViewComponent } from './supplier-view-component';
+import {SupplierViewComponent} from './supplier-view-component';
 
 describe('SupplierViewComponent', () => {
   let component: SupplierViewComponent;

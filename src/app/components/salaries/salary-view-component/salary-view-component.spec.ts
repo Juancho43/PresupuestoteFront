@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SalaryViewComponent } from './salary-view-component';
+import {SalaryViewComponent} from './salary-view-component';
 
 describe('SalaryViewComponent', () => {
   let component: SalaryViewComponent;

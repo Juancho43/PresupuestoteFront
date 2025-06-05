@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MeasureViewComponent } from './measure-view-component';
+import {MeasureViewComponent} from './measure-view-component';
 
 describe('MeasureViewComponent', () => {
   let component: MeasureViewComponent;

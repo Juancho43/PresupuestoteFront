@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { ClientViewComponent } from './components/clients/client-view/client-view-component';
+import {Routes} from '@angular/router';
+import {ClientViewComponent} from './components/clients/client-view/client-view-component';
 import {LoginFormComponent} from './components/auth/login-form-component/login-form-component';
 import {LogoutFormComponent} from './components/auth/logout-form-component/logout-form-component';
 import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
@@ -9,7 +9,7 @@ import {AboutComponent} from './components/sections/about-component/about-compon
 import {HomeComponent} from './components/sections/home-component/home-component';
 import {ClientDetailComponent} from './components/clients/client-detail-component/client-detail-component';
 import {BudgetViewComponent} from './components/budgets/budget-view-component/budget-view-component';
-import { BudgetDetailComponent } from './components/budgets/budget-detail-component/budget-detail-component';
+import {BudgetDetailComponent} from './components/budgets/budget-detail-component/budget-detail-component';
 import {MaterialViewComponent} from './components/materials/material-view-component/material-view-component';
 import {MaterialDetailComponent} from './components/materials/material-detail-component/material-detail-component';
 import {SupplierDetailComponent} from './components/suppliers/supplier-detail-component/supplier-detail-component';
@@ -19,7 +19,6 @@ import {InvoiceViewComponent} from './components/invoices/invoice-view-component
 import {EmployeeViewComponent} from './components/employees/employee-view-component/employee-view-component';
 import {EmployeeDetailComponent} from './components/employees/employee-detail-component/employee-detail-component';
 import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
-import {ClientFormComponent} from './components/clients/client-form-component/client-form-component';
 import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
 import {BudgetFormComponent} from './components/budgets/budget-form-component/budget-form-component';
 

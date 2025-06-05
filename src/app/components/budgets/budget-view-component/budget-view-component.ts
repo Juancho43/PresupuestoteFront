@@ -1,5 +1,4 @@
 import {Component, inject, input} from '@angular/core';
-import {ClientFormComponent} from "../../clients/client-form-component/client-form-component";
 import {PersonListComponent} from "../../shared/person-list-component/person-list-component";
 import {OwnableListComponent} from '../../shared/ownable-list-component/ownable-list-component';
 import {BudgetFormComponent} from '../budget-form-component/budget-form-component';

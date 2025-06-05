@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OwnableCardComponent } from './ownable-card-component';
+import {OwnableCardComponent} from './ownable-card-component';
 
 describe('OwnableCardComponent', () => {
   let component: OwnableCardComponent;

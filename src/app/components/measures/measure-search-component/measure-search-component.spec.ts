@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MeasureSearchComponent } from './measure-search-component';
+import {MeasureSearchComponent} from './measure-search-component';
 
 describe('MeasureSearchComponent', () => {
   let component: MeasureSearchComponent;

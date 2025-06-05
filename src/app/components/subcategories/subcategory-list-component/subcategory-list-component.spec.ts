@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SubcategoryListComponent } from './subcategory-list-component';
+import {SubcategoryListComponent} from './subcategory-list-component';
 
 describe('SubcategoryListComponent', () => {
   let component: SubcategoryListComponent;

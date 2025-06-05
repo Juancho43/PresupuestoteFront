@@ -3,12 +3,10 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ActivatedRoute, Router} from '@angular/router';
 import {BudgetService} from '../../../core/services/http/budget-service';
 import {ClientService} from '../../../core/services/http/client-service';
-import {ClientJoinComponent} from '../../clients/client-join-component/client-join-component';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {Client} from '../../../core/interfaces/Entities/client';
 import {ApiResponse} from '../../../core/interfaces/ApiResponse';
-import {Person} from '../../../core/interfaces/Entities/person';
 
 @Component({
   selector: 'app-budget-form-component',

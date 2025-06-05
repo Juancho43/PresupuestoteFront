@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PriceSearchComponent } from './price-search-component';
+import {PriceSearchComponent} from './price-search-component';
 
 describe('PriceSearchComponent', () => {
   let component: PriceSearchComponent;

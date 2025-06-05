@@ -1,13 +1,12 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
 import {Salary} from '../../interfaces/Entities/salary';
-import {Observable } from 'rxjs';
-import {ApiResponse } from '../../interfaces/ApiResponse';
-import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
+import {Observable} from 'rxjs';
+import {ApiResponse} from '../../interfaces/ApiResponse';
+import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {salaryEndpoint} from '../endpoints/salaries.endpoint';
-
 
 
 @Injectable({

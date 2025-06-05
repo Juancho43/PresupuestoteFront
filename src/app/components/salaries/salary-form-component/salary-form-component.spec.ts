@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SalaryFormComponent } from './salary-form-component';
+import {SalaryFormComponent} from './salary-form-component';
 
 describe('SalaryFormComponent', () => {
   let component: SalaryFormComponent;

@@ -1,6 +1,6 @@
-import { HttpContext, HttpContextToken, HttpInterceptorFn } from '@angular/common/http';
-import { AuthService } from '../services/utils/auth-service';
-import { inject } from '@angular/core';
+import {HttpContext, HttpContextToken, HttpInterceptorFn} from '@angular/common/http';
+import {AuthService} from '../services/utils/auth-service';
+import {inject} from '@angular/core';
 
 const CHECK_TOKEN = new HttpContextToken<boolean>(() => true);
 

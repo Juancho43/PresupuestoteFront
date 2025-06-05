@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MaterialSearchComponent } from './material-search-component';
+import {MaterialSearchComponent} from './material-search-component';
 
 describe('MaterialSearchComponent', () => {
   let component: MaterialSearchComponent;

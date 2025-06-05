@@ -1,13 +1,12 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
 import {Measure} from '../../interfaces/Entities/measure';
-import {Observable } from 'rxjs';
-import {ApiResponse } from '../../interfaces/ApiResponse';
-import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
+import {Observable} from 'rxjs';
+import {ApiResponse} from '../../interfaces/ApiResponse';
+import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {measureEndpoint} from '../endpoints/measures.endpoint';
-
 
 
 @Injectable({

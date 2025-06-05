@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MeasureDetailComponent } from './measure-detail-component';
+import {MeasureDetailComponent} from './measure-detail-component';
 
 describe('MeasureDetailComponent', () => {
   let component: MeasureDetailComponent;

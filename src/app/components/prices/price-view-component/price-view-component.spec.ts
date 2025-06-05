@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PriceViewComponent } from './price-view-component';
+import {PriceViewComponent} from './price-view-component';
 
 describe('PriceViewComponent', () => {
   let component: PriceViewComponent;

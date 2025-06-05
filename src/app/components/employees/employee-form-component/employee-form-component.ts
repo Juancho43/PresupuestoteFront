@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmployeeService} from '../../../core/services/http/employee-service';
+
 @Component({
     selector: 'app-employee-form-component',
     imports: [

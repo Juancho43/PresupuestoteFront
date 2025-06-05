@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import { Payment } from '../../../core/interfaces/Entities/payment';
+import {Payment} from '../../../core/interfaces/Entities/payment';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 

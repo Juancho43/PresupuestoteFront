@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SubcategoryService } from './subcategory-service';
+import {SubcategoryService} from './subcategory-service';
 
 describe('SubcategoryService', () => {
   let service: SubcategoryService;

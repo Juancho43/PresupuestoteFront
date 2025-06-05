@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MeasureFormComponent } from './measure-form-component';
+import {MeasureFormComponent} from './measure-form-component';
 
 describe('MeasureFormComponent', () => {
   let component: MeasureFormComponent;

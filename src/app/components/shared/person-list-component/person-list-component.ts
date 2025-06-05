@@ -1,4 +1,4 @@
-import {Component, effect, input, OnInit, signal} from '@angular/core';
+import {Component, input, OnInit, signal} from '@angular/core';
 import {IPerson} from '../../../core/interfaces/Entities/IPerson';
 import {IPersonCardComponent} from '../person-card-component/i-person-card.component';
 import {SearcherComponent} from '../searcher-component/searcher-component';

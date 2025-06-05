@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OwnableListComponent } from './ownable-list-component';
+import {OwnableListComponent} from './ownable-list-component';
 
 describe('OwnableListComponent', () => {
   let component: OwnableListComponent;

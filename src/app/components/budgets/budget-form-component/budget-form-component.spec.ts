@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BudgetFormComponent } from './budget-form-component';
+import {BudgetFormComponent} from './budget-form-component';
 
 describe('BudgetFormComponent', () => {
   let component: BudgetFormComponent;

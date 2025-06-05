@@ -9,3 +9,8 @@ main{
   display: flex;
   flex-direction: column;
 }
+img{
+  &:hover {
+    filter: invert(1);
+  }
+}

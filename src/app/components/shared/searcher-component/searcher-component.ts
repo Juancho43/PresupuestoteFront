@@ -1,5 +1,5 @@
 import {Component, inject, input, output, signal} from '@angular/core';
-import {FormControl, FormsModule, NgModel, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {PeopleService} from '../../../core/services/http/people-service';
 import {IPerson} from '../../../core/interfaces/Entities/IPerson';
 import {rxResource} from '@angular/core/rxjs-interop';

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClientJoinComponent } from './client-join-component';
+import {ClientJoinComponent} from './client-join-component';
 
 describe('ClientJoinComponent', () => {
   let component: ClientJoinComponent;

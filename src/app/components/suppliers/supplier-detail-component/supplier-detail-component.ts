@@ -1,7 +1,6 @@
 import {Component, inject, input} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {SupplierService} from '../../../core/services/http/supplier-service';
-import {EmployeeComponent} from '../../employees/employee/employee.component';
 import {OwnableListComponent} from '../../shared/ownable-list-component/ownable-list-component';
 import {PaymentsTableComponent} from '../../shared/payments-table-component/payments-table-component';
 import {SupplierComponent} from '../supplier/supplier-component';
