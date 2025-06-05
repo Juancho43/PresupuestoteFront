@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {PersonListComponent} from '../../shared/person-list-component/person-list-component';
 import {ClientService} from '../../../core/services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
@@ -15,6 +15,8 @@ import {ClientFormComponent} from '../client-form-component/client-form-componen
 })
 export class ClientViewComponent {
   private service = inject(ClientService);
+  readonly id = input(0);
+
   clientsResource = rxResource({
     stream :() => {
       return this.service.getAll();

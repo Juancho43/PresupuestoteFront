@@ -6,7 +6,7 @@ import {ApiResponse } from '../../interfaces/ApiResponse';
 import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
-import {categoryEndpoint} from '../endpoints/categorys.endpoint';
+import {categoryEndpoint} from '../endpoints/categories.endpoint';
 
 
 

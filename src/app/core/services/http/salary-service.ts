@@ -6,7 +6,7 @@ import {ApiResponse } from '../../interfaces/ApiResponse';
 import {ApiResponseCollection } from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
-import {salaryEndpoint} from '../endpoints/salarys.endpoint';
+import {salaryEndpoint} from '../endpoints/salaries.endpoint';
 
 
 

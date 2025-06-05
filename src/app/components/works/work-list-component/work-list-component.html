@@ -1,7 +1,12 @@
 @let data = this.works();
 <div class="List">
   <h3 class="List-title">Listado de trabajos</h3>
-
+  <button
+    class="Boton1"
+    [routerLink]="`/work/new/${budgetId()}`"
+  >
+    Agregar trabajo
+  </button>
   @for (work of data ; track work.id; let idx = $index) {
     <app-work-card
       [work]="work"

@@ -1,15 +1,17 @@
 import {Component, input} from '@angular/core';
 import {CardButtonComponent} from "../card-button-component/card-button-component";
-import {CurrencyPipe} from "@angular/common";
+import {CommonModule, CurrencyPipe} from "@angular/common";
 import {IOwnable} from '../../../core/interfaces/Entities/IOwnable';
 
 @Component({
   selector: 'app-ownable-card-component',
   imports: [
+    CommonModule,
     CardButtonComponent,
     CurrencyPipe
   ],
   templateUrl: './ownable-card-component.html',
+  standalone: true,
   styleUrl: './ownable-card-component.scss'
 })
 export class OwnableCardComponent {

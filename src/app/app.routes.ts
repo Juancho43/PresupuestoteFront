@@ -21,6 +21,7 @@ import {EmployeeDetailComponent} from './components/employees/employee-detail-co
 import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
 import {ClientFormComponent} from './components/clients/client-form-component/client-form-component';
 import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
+import {BudgetFormComponent} from './components/budgets/budget-form-component/budget-form-component';
 
 export const routes: Routes = [
 
@@ -37,14 +38,13 @@ export const routes: Routes = [
   //ClientRoutes
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
   {path: 'client/detail/:id', component: ClientDetailComponent},
-  {path: 'client/edit/:id', component: ClientFormComponent},
+  {path: 'client/edit/:id', component: ClientViewComponent},
   // //BudgetRoutes
   {path: 'budget', component: BudgetViewComponent},
-  {path: 'budget/:clientId', component: BudgetViewComponent},
   {path: 'budget/detail/:id', component: BudgetDetailComponent},
   {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
   {path: 'budget/new/:clientId', component: BudgetViewComponent},
-  {path: 'budget/edit/:id', component: BudgetViewComponent},
+  {path: 'budget/edit/:id', component: BudgetFormComponent},
   // //WorkRoute
   {path: 'work/new/:budgetId', component: WorkFormComponent},
   {path: 'work/edit/:budgetId/:id', component: WorkFormComponent},

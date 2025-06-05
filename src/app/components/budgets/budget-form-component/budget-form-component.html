@@ -1,4 +1,5 @@
-
+@let edit = this.isEdit();
+@let client = this.clientResource.value()?.data!;
 <form [formGroup]="BudgetForm" (ngSubmit)="onSubmit()" >
   <fieldset>
 
@@ -18,12 +19,14 @@
         }
       </div>
     }
-    <legend class="List-title"> {{ isEdit ? 'Actualizar un presupuesto' : 'Crear un presupuesto' }}</legend>
-    @if (!isEdit) {
-      <app-client-join-component/>
+    <legend class="List-title"> {{ edit ? 'Actualizar un presupuesto' : 'Crear un presupuesto' }}</legend>
+
+    @if (client.id! > 0) {
       <label for="client">Cliente:</label>
-      <input type="text" id="client" (click)="openClientForm()" placeholder="Seleccionar cliente" readonly formControlName="client">
-<!--      <input type="hidden" [value]="this.currentClient.clientId" name="idClient" formControlName="idClient">-->
+      <input type="text" id="client" name="client" [value]="client.person.last_name + ' ' + client.person.name" readonly>
+      <input type="hidden" [value]="client.id" name="idClient" formControlName="clientId">
+    }@else{
+      <label>Seleccione un cliente por favor</label>
     }
     <label for="createdDate">Fecha elaboración:</label>
     <div class="dateHandler">
@@ -51,7 +54,7 @@
     <button type="reset" (click)="resetForm($event)">Limpiar</button>
 
     <button type="submit" [disabled]="!BudgetForm.valid" [class.disactive]="!BudgetForm.valid">
-      @if (isEdit) {
+      @if (edit) {
         Actualizar
       }@else {
         Guardar

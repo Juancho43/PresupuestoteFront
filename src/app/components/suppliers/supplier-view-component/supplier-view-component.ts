@@ -6,11 +6,12 @@ import {SupplierService} from '../../../core/services/http/supplier-service';
 
 @Component({
   selector: 'app-supplier-view-component',
-    imports: [
-        SupplierFormComponent,
-        PersonListComponent
-    ],
+  imports: [
+    SupplierFormComponent,
+    PersonListComponent
+  ],
   templateUrl: './supplier-view-component.html',
+  standalone: true,
   styleUrl: './supplier-view-component.scss'
 })
 export class SupplierViewComponent {

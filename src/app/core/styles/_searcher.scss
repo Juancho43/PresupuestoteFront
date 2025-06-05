@@ -4,54 +4,44 @@
   background-color: core.$nogal;
   padding: 1em;
   color: core.$blanquecino;
-
-  select{
-    color: core.$blanquecino;
-    background: core.$nogal;
-    border: none;
-    border-radius: 5px;
-    height: 2em;
-    width: 10em;
-  }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid core.$negro;
 
   input[type="text"] {
     background: none;
     border: none;
-    width: 50%;
+    width: 90%;
     padding: 4px;
     color: core.$blanquecino;
-    text-decoration: underline;
-    :focus {
+    font-size: 1.2em;
+    text-decoration: none;
+    &:focus {
+      border: none;
       border-bottom: 1px solid core.$blanquecino;
       outline: none;
-      width: 50%;
       padding: 4px;
       color: core.$blanquecino;
-      text-decoration: underline;
+    }
+    &::placeholder {
+      color: core.$blanquecino;
+      opacity: 0.7;
     }
   }
 
-  .Interior{
-    display: flex;
-    justify-content: space-evenly;
-
-    border-bottom: 1px solid core.$negro;
-    &:hover{
-      border-bottom: 1px solid core.$blanquecino;
+  img{
+    &:hover {
+      filter: invert(1);
     }
   }
+
+
+
+
+
+
 }
-
-
-.Searcher-button {
-  background-color: core.$blanquecino;
-  border: none;
-  border-radius: 5px;
-  :hover {
-    background-color: core.$blanquecino;
-    color: core.$nogal;
-  }
-}
-
 
 

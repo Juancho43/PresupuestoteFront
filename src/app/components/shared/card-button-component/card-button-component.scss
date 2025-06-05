@@ -17,4 +17,11 @@ button{
     cursor: pointer;
   }
 
+  img{
+    &:hover {
+      filter: invert(1);
+    }
+  }
 }
+
+

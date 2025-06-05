@@ -1,20 +1,36 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BudgetService} from '../../../core/services/http/budget-service';
 import {ClientService} from '../../../core/services/http/client-service';
 import {ClientJoinComponent} from '../../clients/client-join-component/client-join-component';
+import {rxResource} from '@angular/core/rxjs-interop';
+import {of} from 'rxjs';
+import {Client} from '../../../core/interfaces/Entities/client';
+import {ApiResponse} from '../../../core/interfaces/ApiResponse';
+import {Person} from '../../../core/interfaces/Entities/person';
 
 @Component({
   selector: 'app-budget-form-component',
   imports: [
     ReactiveFormsModule,
-    ClientJoinComponent
   ],
   templateUrl: './budget-form-component.html',
   styleUrl: './budget-form-component.scss'
 })
 export class BudgetFormComponent {
+  private budgetService = inject(BudgetService);
+  private clientService = inject(ClientService);
+
+  clientId = input<number>(0);
+  isEdit= signal(false);
+  clientResource = rxResource({
+    params : () => { return {id: this.clientId()}},
+    stream : ({params}) => {
+      if(params.id > 0)  return this.clientService.getById(params.id);
+      return  of({data: {client: {id: 0}}} as unknown as ApiResponse<Client>);
+    }
+  });
 //Utils
 //   private readonly _adapter =
 //     inject<DateAdapter<unknown, unknown>>(DateAdapter);
@@ -22,15 +38,12 @@ export class BudgetFormComponent {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   // private modalService = inject(ModalService);
-  private budgetService = inject(BudgetService);
-  private clientService = inject(ClientService);
   // private clientController = inject(ClientControllerService);
   // private budgetController = inject(BudgetControllerService);
   //Properties
   // currentBudget: any = this.budgetController.getEmptyBudgetRequest();
   // currentClient: Client = this.clientController.getEmptyClient();
   budgetId: number = 0;
-  isEdit: boolean = false;
   // estados: string[] = this.budgetService.getEstados();
   //Form
   BudgetForm: FormGroup = new FormGroup({
@@ -63,7 +76,7 @@ export class BudgetFormComponent {
 
   setUp() {
     this.BudgetForm.reset();
-    this.isEdit = false;
+    this.isEdit.set(false);
     // this.currentBudget = this.budgetController.getEmptyBudgetRequest();
   }
 

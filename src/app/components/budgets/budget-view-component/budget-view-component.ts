@@ -11,18 +11,26 @@ import {BudgetService} from '../../../core/services/http/budget-service';
   selector: 'app-budget-view-component',
   imports: [
     OwnableListComponent,
-    BudgetFormComponent
+    BudgetFormComponent,
+    PersonListComponent
   ],
   templateUrl: './budget-view-component.html',
   styleUrl: './budget-view-component.scss'
 })
 export class BudgetViewComponent {
   private service = inject(BudgetService);
+  private clientService = inject(ClientService);
   readonly clientId = input<number>(0);
 
   budgetsResource = rxResource({
     stream :() => {
       return this.service.getAll();
+    }
+  })
+
+  clientsResource = rxResource({
+    stream :() => {
+      return this.clientService.getAll();
     }
   })
 

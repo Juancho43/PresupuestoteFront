@@ -5,25 +5,21 @@ import {Client} from '../../../core/interfaces/Entities/client';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '../../../core/interfaces/ApiResponse';
-import {Router} from '@angular/router';
+import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-client-form-component',
+  selector: 'app-client-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './client-form-component.html',
   styleUrl: './client-form-component.scss'
 })
 export class ClientFormComponent implements OnInit {
-//Utils
-  private router = inject(Router);
   private clientService = inject(ClientService);
+  readonly id = input<number>(0)
   submitted = output<boolean>();
-  // private clientController = inject(ClientControllerService);
-  // private modalService = inject(ModalService);
 
   //Properties
-  readonly id = input<number>(0)
   clientResource = rxResource({
     params:() => ({id: this.id()}),
     stream: ({params}) => {
@@ -31,7 +27,6 @@ export class ClientFormComponent implements OnInit {
       return of({} as ApiResponse<Client>);
     }
   })
-  currentClient= signal<Client>({} as Client) ;
   isEdit = signal(false);
 
   //Form
@@ -65,7 +60,6 @@ export class ClientFormComponent implements OnInit {
     this.closeModal();
     this.clientForm.reset();
     this.isEdit.set(false);
-    this.currentClient.set({} as Client);
   }
 
   get canSubmit() {
@@ -83,7 +77,6 @@ export class ClientFormComponent implements OnInit {
 
   resetForm($Event: Event) {
     this.setUp();
-    this.router.navigate(['/client']);
     $Event.preventDefault();
   }
 
@@ -104,9 +97,7 @@ export class ClientFormComponent implements OnInit {
       client.id = this.clientResource.value()?.data?.id;
       client.person.id = this.clientResource.value()?.data?.person?.id;
       this.clientService.update(client).subscribe()
-      this.router.navigateByUrl('client');
     }
-
     this.setUp();
   }
 

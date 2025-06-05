@@ -1,22 +1,19 @@
-@let thing = this.thing();
-@let id = this.thing()?.id!;
-
 <div class="Card">
   <div class="Card-Details">
     <h3>{{entity()}}</h3>
-    <p>{{thing.description}}</p>
-    <p>{{thing.total | currency}}</p>
+    <p>{{thing().description}}</p>
+    <p>{{thing().total | currency}}</p>
   </div>
   <div class="Card-Options">
     <app-card-button-component
       [text]="'Ver detalles'"
       [icon]="'info'"
-      [link]="`/${route()}/detail/${id}`"
+      [link]="`/${route()}/detail/${thing().id!}`"
     />
     <app-card-button-component
       [text]="'Editar'"
       [icon]="'edit'"
-      [link]="`/${route()}/edit/${id}`"
+      [link]="`/${route()}/edit/${thing().id}`"
     />
     <app-card-button-component
       [text]="'Eliminar'"

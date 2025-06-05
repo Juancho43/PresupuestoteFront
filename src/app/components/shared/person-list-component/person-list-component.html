@@ -1,29 +1,22 @@
-@let personData = this.data;
+@let personData = personList();
 
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
-  <app-searcher-component/>
+  <app-searcher-component
+    [entity]="entity()"
+    [route]="route()"
+    (results)="handleResults($event)"
+  />
 
-<!--  @for (client of clients | paginate: { itemsPerPage: pageSize, currentPage:page }; track $index) {-->
-    @for (data of personData(); track data.id) {
-      <app-person-card-component
-        [person]="data"
-        [entity]="entity()"
-        [route]="route()"
-      />
-    }
-    @empty {
-<!--      <app-text-card [message]="'No hay clientes que mostrar.'"/>-->
-    }
+  @for (person of personData; track person.id) {
+    <app-person-card-component
+      [person]="person"
+      [entity]="entity()"
+      [route]="route()"
+      [action]="action()"
+    />
+  }
 
 
-<!--  <pagination-controls-->
-<!--    previousLabel="Anterior"-->
-<!--    nextLabel="Siguiente"-->
-<!--    (pageChange)="pageChange($event)"-->
-<!--  />-->
-
-<!--  @if(options){-->
-<!--    <button class="Boton1" (click)="addClientHandler()">Agregar cliente</button>-->
-<!--  }-->
 </div>
+

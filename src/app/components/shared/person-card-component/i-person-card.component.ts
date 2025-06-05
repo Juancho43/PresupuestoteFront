@@ -17,4 +17,5 @@ export class IPersonCardComponent {
   readonly person = input<IPerson>();
   readonly entity = input.required<string>();
   readonly route = input.required<string>();
+  readonly action = input.required<string>();
 }

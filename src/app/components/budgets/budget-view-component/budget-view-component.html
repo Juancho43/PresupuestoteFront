@@ -1,5 +1,5 @@
 @let data = this.budgetsResource.value()?.data!;
-
+@let clients = this.clientsResource.value()?.data!;
 <section>
   @if(!this.budgetsResource.isLoading() && !this.budgetsResource.error()){
 
@@ -8,7 +8,16 @@
       entity="presupuesto"
       route="budget"
     />
-    <app-budget-form-component/>
+    <app-person-list-component
+      [data] = clients
+      entity="cliente"
+      route="client"
+      action="budget"
+    />
+
+    <app-budget-form-component
+      [clientId]="clientId()"
+    />
 
 
   }

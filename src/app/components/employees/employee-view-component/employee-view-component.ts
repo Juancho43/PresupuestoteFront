@@ -11,6 +11,7 @@ import {EmployeeFormComponent} from '../employee-form-component/employee-form-co
     PersonListComponent
   ],
   templateUrl: './employee-view-component.html',
+  standalone: true,
   styleUrl: './employee-view-component.scss'
 })
 export class EmployeeViewComponent {

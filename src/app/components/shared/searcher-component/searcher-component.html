@@ -1,18 +1,16 @@
-
 <div class="Searcher">
-  <div class="Interior">
-   <img
-     src="./icons/search.svg"
-     alt="search icon"
-     width="20"
-     height="20"
-   >
-    <input type="text" (keyup)="search()" [formControl]="busqueda">
-    <select [formControl]="filtro" (change)="sort()">
-      <option [selected]="true">Ordenar</option>
-      <option value="alfabeticamente">Ordenar alfabeticamente</option>
-      <option value="alfabeticamente">Ordenar trabajos activos</option>
-    </select>
-  </div>
-
+     <input
+       type="text"
+      (keyup)="search()"
+      [(ngModel)]="query"
+      (keydown.enter)="complete()"
+      [placeholder]="`Buscar ${entity()}`"
+    >
+    <img
+      src="./icons/search.svg"
+      alt="search icon"
+      width="20"
+      height="20"
+      (click)="complete()"
+    >
 </div>

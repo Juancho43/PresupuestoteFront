@@ -56,9 +56,20 @@
     <input type="text" name="cuit" id="cuit" placeholder="CUIT..." formControlName="cuit">
   </fieldset>
   <fieldset class="Botones">
-    <button type="reset" (click)="resetForm($event)">Limpiar</button>
+    <button
+      type="reset"
+      [routerLink]="['/client']"
+      (click)="resetForm($event)"
+    >
+      Limpiar
+    </button>
 
-    <button type="submit" [disabled]="!canSubmit" [class.disactive]="!canSubmit">
+    <button
+      type="submit"
+      [disabled]="!canSubmit"
+      [class.disactive]="!canSubmit"
+      [routerLink]="['/client']"
+    >
       @if (isEdit()) {
         Actualizar
       }@else {

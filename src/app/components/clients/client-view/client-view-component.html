@@ -7,8 +7,10 @@
       [data] = data
       entity="cliente"
       route="client"
+      action="budget"
     />
-    <app-client-form-component
+    <app-client-form
+      [id] = this.id()
       (submitted)="onFormSubmitted()"
     />
   }

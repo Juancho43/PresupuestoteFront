@@ -3,12 +3,13 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmployeeService} from '../../../core/services/http/employee-service';
 @Component({
-  selector: 'app-employee-form-component',
-  imports: [
-    ReactiveFormsModule
-  ],
-  templateUrl: './employee-form-component.html',
-  styleUrl: './employee-form-component.scss'
+    selector: 'app-employee-form-component',
+    imports: [
+        ReactiveFormsModule
+    ],
+    templateUrl: './employee-form-component.html',
+    standalone: true,
+    styleUrl: './employee-form-component.scss'
 })
 export class EmployeeFormComponent {
   private router = inject(Router);
