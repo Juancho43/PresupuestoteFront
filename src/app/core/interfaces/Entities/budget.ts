@@ -6,7 +6,6 @@ export interface Budget extends IOwnable{
   description: string;
   cost: number;
   profit: number;
-  price: number;
   made_date: Date;
   dead_line: Date;
   state: string;
