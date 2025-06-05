@@ -1,5 +1,6 @@
 @let edit = this.isEdit();
 @let client = this.clientResource.value()?.data!;
+@let states = this.statesResource.value()?.data!.state;
 <form [formGroup]="BudgetForm" (ngSubmit)="onSubmit()" >
   <fieldset>
 
@@ -28,27 +29,27 @@
     }@else{
       <label>Seleccione un cliente por favor</label>
     }
-    <label for="createdDate">Fecha elaboración:</label>
-    <div class="dateHandler">
-<!--      <input matInput [matDatepicker]="picker" name="createdDate" id="createdDate" formControlName="createdDate" >-->
-<!--      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--      <mat-datepicker #picker></mat-datepicker>-->
-    </div>
-    <label for="deadLine">Fecha limite:</label>
-    <div class="dateHandler">
-<!--      <input matInput [matDatepicker]="picker2" name="deadLine" id="deadLine" formControlName="deadLine">-->
-<!--      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>-->
-<!--      <mat-datepicker #picker2></mat-datepicker>-->
-    </div>
-
     <label for="description">Descripción:</label>
     <textarea name="description" id="description" formControlName="description"></textarea>
-    <label for="cost">Estado:</label>
-    <select formControlName="estado">
-<!--      @for (option of estados; track $index) {-->
-<!--        <option [value]="option">{{option | uppercase}}</option>-->
-<!--      }-->
-    </select>
+    <label for="profit">Ganancia:</label>
+    <input type="number" name="profit" id="profit" formControlName="profit" min="0" step="any">
+    <label for="createdDate">Fecha elaboración:</label>
+    <input type="date" name="createdDate" id="createdDate" formControlName="createdDate">
+    <label for="deadLine">Fecha limite:</label>
+    <input type="date" name="createdDate" id="createdDate" formControlName="deadLine">
+
+    @if (edit){
+      <label for="state">Estado:</label>
+
+      <select formControlName="state">
+              @for (option of states; track $index) {
+
+                <option [value]="option">{{option}}</option>
+              }
+      </select>
+    }
+
+
   </fieldset>
   <fieldset class="Botones">
     <button type="reset" (click)="resetForm($event)">Limpiar</button>

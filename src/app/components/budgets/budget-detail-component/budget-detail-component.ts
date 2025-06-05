@@ -27,11 +27,13 @@ export class BudgetDetailComponent {
   private service = inject(BudgetService);
   private workService = inject(WorkService);
   readonly id = input<number>(0);
-  readonly workId = input<number>(0)
+  readonly workId = input<number>(0);
+
   budgetResource = rxResource({
     params : () => ({id: this.id() || 0}),
     stream : ({params}) => this.service.getById(params.id),
   })
+
   currentWorkResource = rxResource({
     params: () => ({workId: this.workId() || 0}),
     stream: ({params}) => {

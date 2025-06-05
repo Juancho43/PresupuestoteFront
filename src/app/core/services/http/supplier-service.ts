@@ -27,7 +27,7 @@ export class SupplierService implements ICrudeable<Supplier> {
     return this.http.post<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.create, entity);
   }
   update(entity: Supplier): Observable<ApiResponse<Supplier>> {
-    return this.http.post<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Supplier>> {
     return this.http.get<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));

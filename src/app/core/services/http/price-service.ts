@@ -25,7 +25,7 @@ export class PriceService implements ICrudeable<Price> {
     return this.http.post<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.create, entity);
   }
   update(entity: Price): Observable<ApiResponse<Price>> {
-    return this.http.post<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Price>> {
     return this.http.get<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.delete.replace(':id', id.toString()));

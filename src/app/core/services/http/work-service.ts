@@ -25,7 +25,7 @@ export class WorkService implements ICrudeable<Work> {
     return this.http.post<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.create, entity);
   }
   update(entity: Work): Observable<ApiResponse<Work>> {
-    return this.http.post<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Work>> {
     return this.http.get<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.delete.replace(':id', id.toString()));

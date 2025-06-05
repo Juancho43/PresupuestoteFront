@@ -25,7 +25,7 @@ export class StockService implements ICrudeable<Stock> {
     return this.http.post<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.create, entity);
   }
   update(entity: Stock): Observable<ApiResponse<Stock>> {
-    return this.http.post<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Stock>> {
     return this.http.get<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.delete.replace(':id', id.toString()));

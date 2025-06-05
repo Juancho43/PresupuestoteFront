@@ -6,4 +6,5 @@ export const budgetEndpoint = {
   delete: '/budgets/:id',
   updatePrice : '/budgets/updatePrice/:id',
   updateState: '/budgets/states/:id/:state',
+  getStates: '/budgets/states/get',
 };

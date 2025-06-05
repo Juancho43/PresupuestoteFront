@@ -25,7 +25,7 @@ export class SalaryService implements ICrudeable<Salary> {
     return this.http.post<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.create, entity);
   }
   update(entity: Salary): Observable<ApiResponse<Salary>> {
-    return this.http.post<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Salary>> {
     return this.http.get<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.delete.replace(':id', id.toString()));

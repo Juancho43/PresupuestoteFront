@@ -25,7 +25,7 @@ export class InvoiceService implements ICrudeable<Invoice> {
     return this.http.post<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.create, entity);
   }
   update(entity: Invoice): Observable<ApiResponse<Invoice>> {
-    return this.http.post<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Invoice>> {
     return this.http.get<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.delete.replace(':id', id.toString()));

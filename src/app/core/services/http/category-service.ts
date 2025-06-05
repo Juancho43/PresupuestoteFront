@@ -25,7 +25,7 @@ export class CategoryService implements ICrudeable<Category> {
     return this.http.post<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.create, entity);
   }
   update(entity: Category): Observable<ApiResponse<Category>> {
-    return this.http.post<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Category>> {
     return this.http.get<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.delete.replace(':id', id.toString()));

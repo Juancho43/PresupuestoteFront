@@ -20,6 +20,7 @@ export class BudgetViewComponent {
   private service = inject(BudgetService);
   private clientService = inject(ClientService);
   readonly clientId = input<number>(0);
+  readonly id = input(0);
 
   budgetsResource = rxResource({
     stream :() => {

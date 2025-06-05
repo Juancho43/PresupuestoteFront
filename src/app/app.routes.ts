@@ -43,7 +43,7 @@ export const routes: Routes = [
   {path: 'budget/detail/:id', component: BudgetDetailComponent},
   {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
   {path: 'budget/new/:clientId', component: BudgetViewComponent},
-  {path: 'budget/edit/:id', component: BudgetFormComponent},
+  {path: 'budget/edit/:id/:clientId', component: BudgetViewComponent},
   // //WorkRoute
   {path: 'work/new/:budgetId', component: WorkFormComponent},
   {path: 'work/edit/:budgetId/:id', component: WorkFormComponent},

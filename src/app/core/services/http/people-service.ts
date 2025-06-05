@@ -26,7 +26,7 @@ export class PeopleService implements ICrudeable<Person> {
     return this.http.post<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.create, entity);
   }
   update(entity: Person): Observable<ApiResponse<Person>> {
-    return this.http.post<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Person>> {
     return this.http.get<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.delete.replace(':id', id.toString()));

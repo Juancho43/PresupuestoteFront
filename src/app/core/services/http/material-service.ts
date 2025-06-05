@@ -25,7 +25,7 @@ export class MaterialService implements ICrudeable<Material> {
     return this.http.post<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.create, entity);
   }
   update(entity: Material): Observable<ApiResponse<Material>> {
-    return this.http.post<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Material>> {
     return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.delete.replace(':id', id.toString()));

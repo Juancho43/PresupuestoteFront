@@ -36,7 +36,6 @@ export class SearcherComponent {
     this.searchResource.reload();
   }
   complete() {
-    console.log('complete');
     this.results.emit(this.searchResource.value()!.data! || []);
   }
 }
