@@ -1,1 +1,26 @@
-<p>material-list-component works!</p>
+@let meterialList = materialList();
+
+<div class="List">
+  <h3 class="List-title">Listado de materiales</h3>
+  <app-material-searcher
+    [entity]="material"
+    [route]="material"
+    (results)="handleResults($event)"
+  />
+
+  @for (material of meterialList; track material.id) {
+    <app-material-card
+      [material]="material"
+    />
+  }
+
+  @if(option()){
+    <button
+      class="Boton1"
+      [routerLink]="`/material/new`"
+    >
+      Agregar material
+    </button>
+  }
+</div>
+

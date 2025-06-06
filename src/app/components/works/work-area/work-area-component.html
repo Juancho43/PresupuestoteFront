@@ -1,0 +1,20 @@
+@let budget = this.budgetResource.value()!.data!;
+@let work = this.workResource.value()!.data!;
+
+<section>
+    <article>
+      <app-budget
+        [budget]="budget"
+        [routerLink]="`/budget/detail/${budget.id}`"
+      />
+    </article>
+
+  <article>
+    <app-work-form
+      [budgetId]="budget.id!"
+    />
+  </article>
+  <article>
+<!--    <app-work-detail [work]="work"/>-->
+  </article>
+</section>

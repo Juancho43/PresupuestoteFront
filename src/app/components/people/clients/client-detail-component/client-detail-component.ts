@@ -3,7 +3,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {ClientService} from '@services/http/client-service';
 import {ClientComponent} from '../client/client-component';
 import {PaymentsTableComponent} from '@shared/payments-table-component/payments-table-component';
-import {OwnableListComponent} from '@components/ownable/ownable-list-component/ownable-list-component';
+import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 
 @Component({
   selector: 'app-client-detail-component',

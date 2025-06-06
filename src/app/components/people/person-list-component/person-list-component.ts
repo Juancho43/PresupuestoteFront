@@ -3,6 +3,7 @@ import {IPerson} from '@models/IPerson';
 import {IPersonCardComponent} from '@components/people/person-card-component/i-person-card.component';
 import {SearcherComponent} from '@components/people/searcher-component/searcher-component';
 import {CommonModule} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-person-list-component',
@@ -10,6 +11,7 @@ import {CommonModule} from '@angular/common';
     IPersonCardComponent,
     SearcherComponent,
     CommonModule,
+    RouterLink,
   ],
   templateUrl: './person-list-component.html',
   standalone: true,
@@ -20,6 +22,7 @@ export class PersonListComponent implements OnInit {
   readonly entity = input.required<string>();
   readonly route = input.required<string>();
   readonly action = input.required<string>();
+  readonly option = input.required<boolean>();
   personList = signal<IPerson[]>([]);
 
   ngOnInit() {

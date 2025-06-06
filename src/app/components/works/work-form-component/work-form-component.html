@@ -1,1 +1,55 @@
-<p>work-form-component works!</p>
+@let edit = this.isEdit();
+<form [formGroup]="WorkForm" (ngSubmit)="onSubmit()" >
+  <fieldset>
+    @if(WorkForm.invalid && WorkForm.dirty){
+      <div class="invalid">
+
+        @if (WorkForm.get('order')?.invalid){
+          <p>Debe seleccionar una fecha de confección.</p>
+        }
+        @if (WorkForm.get('hours')?.invalid){
+          <p>Debe indicar las horas estimadas de trabajo. <br> No pueden ser negativas.</p>
+        }
+        @if (WorkForm.get('deadLine')?.invalid){
+          <p>Debe seleccionar una fecha de finalización.</p>
+        }
+        @if (WorkForm.get('notes')?.invalid){
+          <p>Debe redactar una breve descripción del trabajo.</p>
+        }
+        @if (WorkForm.get('estado')?.invalid){
+          <p>Debe seleccionar un estado.</p>
+        }
+      </div>
+    }
+    <legend class="List-title"> {{ edit ? 'Actualizar un trabajo' : 'Crear un trabajo' }}</legend>
+    <label for="name">Nombre:</label>
+    <input type="text" name="name" id="name" formControlName="name">
+    <label for="order">Orden:</label>
+    <input type="number" name="order" id="order" formControlName="order">
+    <label for="hours">Horas estimadas:</label>
+    <input type="number" name="hours" id="hours" formControlName="hours">
+    <label for="deadLine">Fecha limite:</label>
+    <input type="date" name="deadLine" id="deadLine" formControlName="deadLine" >
+    <label for="notes">Notas:</label>
+    <textarea name="notes" id="notes" formControlName="notes"></textarea>
+
+    <label for="status">Estado:</label>
+    <select formControlName="estado">
+<!--      @for (option of estados; track $index) {-->
+<!--        <option [value]="option">{{option | uppercase}}</option>-->
+<!--      }-->
+    </select>
+  </fieldset>
+  <fieldset class="Botones">
+    <button type="reset" (click)="resetForm($event)">Limpiar</button>
+
+    <button type="submit" [disabled]="!WorkForm.valid" [class.disactive]="!WorkForm.valid">
+      @if (edit) {
+        Actualizar
+      }@else {
+        Guardar
+      }
+    </button>
+  </fieldset>
+</form>
+

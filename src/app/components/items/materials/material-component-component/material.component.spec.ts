@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {MaterialSearchComponent} from './material-search-component';
+import {MaterialComponent} from './material.component';
 
-describe('MaterialSearchComponent', () => {
-  let component: MaterialSearchComponent;
-  let fixture: ComponentFixture<MaterialSearchComponent>;
+describe('MaterialComponentComponent', () => {
+  let component: MaterialComponent;
+  let fixture: ComponentFixture<MaterialComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MaterialSearchComponent]
+      imports: [MaterialComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MaterialSearchComponent);
+    fixture = TestBed.createComponent(MaterialComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

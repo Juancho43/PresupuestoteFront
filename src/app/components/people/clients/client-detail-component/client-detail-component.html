@@ -5,9 +5,11 @@
     <app-client [client]="client"/>
     <app-payments-table-component [payments]="payments"/>
   </article>
-  <app-ownable-list-component
+  <app-ownable-list
     [data]="client.budgets!"
     entity="presupuesto"
     route="budget"
+    [option]="true"
+    [personId]="client.id!"
   />
 </section>

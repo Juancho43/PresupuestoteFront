@@ -23,7 +23,9 @@ import {
   EmployeeDetailComponent
 } from '@components/people/employees/employee-detail-component/employee-detail-component';
 import {EmployeeFormComponent} from '@components/people/employees/employee-form-component/employee-form-component';
-import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
+import {WorkAreaComponent} from '@components/works/work-area/work-area-component';
+import {MaterialAreaComponent} from '@components/items/materials/material-area-component/material-area-component';
+
 
 export const routes: Routes = [
 
@@ -48,11 +50,15 @@ export const routes: Routes = [
   {path: 'budget/new/:clientId', component: BudgetViewComponent},
   {path: 'budget/edit/:id/:clientId', component: BudgetViewComponent},
   // //WorkRoute
-  {path: 'work/new/:budgetId', component: WorkFormComponent},
-  {path: 'work/edit/:budgetId/:id', component: WorkFormComponent},
+  {path: 'work/new/:budgetId', component: WorkAreaComponent},
+  {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},
   // //MaterialRoute
   {path: 'material', component: MaterialViewComponent},
+  {path: 'material/new', component: MaterialAreaComponent},
+  {path: 'material/edit/:entity/:id', component: MaterialAreaComponent},
   {path: 'material/detail/:id', component: MaterialDetailComponent},
+
+
   // //SupplierRoutes
   {path: 'supplier', component: SupplierViewComponent},
   {path: 'supplier/detail/:id', component: SupplierDetailComponent},

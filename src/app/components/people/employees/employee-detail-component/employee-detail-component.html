@@ -5,9 +5,10 @@
     <app-employee [employee]="employee"/>
     <app-payments-table-component [payments]="payments"/>
   </article>
-  <app-ownable-list-component
+  <app-ownable-list
     [data]="employee.salaries"
     entity="salario"
     route="salary"
+    [option]="true"
   />
 </section>

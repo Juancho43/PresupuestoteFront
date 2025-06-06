@@ -2,7 +2,7 @@ import {Component, inject, input} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {EmployeeService} from '@services/http/employee-service';
 import {PaymentsTableComponent} from '@shared/payments-table-component/payments-table-component';
-import {OwnableListComponent} from '@components/ownable/ownable-list-component/ownable-list-component';
+import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {EmployeeComponent} from '../employee/employee.component';
 
 @Component({

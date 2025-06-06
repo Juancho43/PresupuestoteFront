@@ -3,10 +3,11 @@
 
 <section>
   @if (budgetsResource.hasValue()) {
-    <app-ownable-list-component
+    <app-ownable-list
       [data] = data
       entity="presupuesto"
       route="budget"
+      [option]="false"
     />
   }
   @if (clientsResource.hasValue()){
@@ -15,6 +16,7 @@
       entity="cliente"
       route="client"
       action="budget"
+      [option]="true"
     />
 
   }

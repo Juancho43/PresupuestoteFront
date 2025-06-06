@@ -12,7 +12,7 @@ export interface Budget extends IOwnable{
   state: string;
 
   works: Work[];
-  client?: Client;
+
 }
 
 export interface BudgetRequest{

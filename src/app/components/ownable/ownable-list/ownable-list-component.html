@@ -1,3 +1,4 @@
+@let dataList = ownableList();
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
 
@@ -6,11 +7,20 @@
     [route]="route()"
     (results)="handleResults($event)"
   />
-  @for (data of ownableList(); track data.id) {
+  @for (data of dataList; track data.id) {
     <app-ownable-card
       [thing]="data"
       [entity]="entity()"
       [route]="route()"
     />
+  }
+
+  @if(option()){
+    <button
+      class="Boton1"
+      [routerLink]="`/${route()}/new/${personId()}`"
+    >
+      Agregar {{ entity() }}
+    </button>
   }
 </div>

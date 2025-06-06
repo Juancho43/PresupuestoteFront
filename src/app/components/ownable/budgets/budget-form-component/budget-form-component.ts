@@ -85,7 +85,7 @@ export class BudgetFormComponent implements OnInit {
       createdDate: data.made_date,
       profit: data.profit,
       state: data.state,
-      clientId: data.client!.id
+      clientId: data.owner!.id
     });
   }
   setUp() {

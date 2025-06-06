@@ -4,8 +4,8 @@
   <article>
     <app-budget [budget]="budget" />
     <app-client
-      [client]="budget.client!"
-      routerLink="/client/detail/{{ budget.client?.id }}"
+      [client]="budget.owner!"
+      routerLink="/client/detail/{{ budget.owner?.id }}"
     />
   </article>
   <app-work-list

@@ -17,6 +17,13 @@
     />
   }
 
-
+  @if(option()){
+    <button
+      class="Boton1"
+      [routerLink]="`/${route()}`"
+    >
+      Agregar {{ entity() }}
+    </button>
+  }
 </div>
 

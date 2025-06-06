@@ -1,6 +1,6 @@
 import {Component, inject, input} from '@angular/core';
 import {PersonListComponent} from "@components/people/person-list-component/person-list-component";
-import {OwnableListComponent} from '@components/ownable/ownable-list-component/ownable-list-component';
+import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {BudgetFormComponent} from '../budget-form-component/budget-form-component';
 import {ClientService} from '@services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
