@@ -14,15 +14,15 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "baseUrl": "./",
+    "baseUrl": "src/",
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@components/*": ["src/app/components/*"],
-      "@shared/*": ["src/app/components/shared/*"],
-      "@core/*": ["src/app/core/*"],
-      "@environments/*": ["src/app/environments/*"],
-      "@models/*": ["src/app/core/interfaces/entities/*"],
-      "@services/*": ["src/app/core/services/*"],
+      "@app/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@shared/*": ["app/components/shared/*"],
+      "@core/*": ["app/core/*"],
+      "@environments/*": ["app/environments/*"],
+      "@models/*": ["app/core/interfaces/entities/*"],
+      "@services/*": ["app/core/services/*"],
 
     }
   },

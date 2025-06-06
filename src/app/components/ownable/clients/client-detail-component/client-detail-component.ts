@@ -1,26 +1,25 @@
 import {Component, inject, input} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {EmployeeService} from '../../../core/services/http/employee-service';
-import {PaymentsTableComponent} from '../../shared/payments-table-component/payments-table-component';
+import {ClientService} from '@services/http/client-service';
+import {ClientComponent} from '../client/client-component';
+import {PaymentsTableComponent} from '@shared/payments-table-component/payments-table-component';
 import {OwnableListComponent} from '@components/ownable/ownable-list-component/ownable-list-component';
-import {EmployeeComponent} from '../employee/employee.component';
 
 @Component({
-  selector: 'app-employee-detail-component',
+  selector: 'app-client-detail-component',
   imports: [
+    ClientComponent,
     PaymentsTableComponent,
-    OwnableListComponent,
-    EmployeeComponent
+    OwnableListComponent
   ],
-  standalone: true,
-  templateUrl: './employee-detail-component.html',
-  styleUrl: './employee-detail-component.scss'
+  templateUrl: './client-detail-component.html',
+  styleUrl: './client-detail-component.scss'
 })
-export class EmployeeDetailComponent {
-  private service = inject(EmployeeService);
+export class ClientDetailComponent {
+  private service = inject(ClientService);
   readonly id = input.required<number>();
 
-  employeeResource = rxResource({
+  clientResource = rxResource({
     params : () => ({id: this.id() || 0}),
     stream : (params) => this.service.getById(params.params.id),
   })
