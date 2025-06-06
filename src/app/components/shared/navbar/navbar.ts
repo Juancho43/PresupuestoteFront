@@ -1,6 +1,7 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject, signal} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {AuthService} from '../../../core/services/utils/auth-service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,18 +10,28 @@ import {AuthService} from '../../../core/services/utils/auth-service';
   standalone: true,
   styleUrl: './navbar.scss'
 })
-export class Navbar implements OnInit {
+export class Navbar{
   private authService = inject(AuthService);
-  hide : boolean = true;
-  session : boolean = false;
+  hide = signal(true);
+  session = signal(false);
+  private readonly SMALL_WIDTH_THRESHOLD = 767; // Define the small width threshold
 
-  ngOnInit() {
-    this.authService.login$.subscribe((res) =>{
-      this.session = res;
-    });
+  constructor() {
+
+    this.session.set(this.authService.isLoggedIn());
+    this.checkScreenWidth(); // Initial check on component creation
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth(): void {
+    this.hide.set(window.innerWidth >= this.SMALL_WIDTH_THRESHOLD);
   }
   toggleMenu(){
-    this.hide = !this.hide;
+    this.hide.set(!this.hide());
   }
 
 }

@@ -1,18 +1,16 @@
 <nav >
   <ul>
-    @if(!hide){
-      @if(this.session){
+    @if(hide()){
+      <li class="oculto" (click)="toggleMenu()">Abrir menú...</li>
+      @if(session()){
       <li routerLink="/home" routerLinkActive="active">Menú</li>
       <li routerLink="/budget" routerLinkActive="active">Presupuestos</li>
-      <li routerLink="/work" routerLinkActive="active">Trabajos</li>
       <li routerLink="/client" routerLinkActive="active">Clientes</li>
-      <li routerLink="/material" routerLinkActive="active">Materiales</li>
         <li routerLink="/user" routerLinkActive="active">Usuario</li>
         <li routerLink="/logout" routerLinkActive="active">Cerrar sesión</li>
       } @else {
         <li routerLink="/login" routerLinkActive="active">Iniciar sesión</li>
       }
-      <li class="oculto" (click)="toggleMenu()">Cerrar menú...</li>
     }@else{
       <li (click)="toggleMenu()">Abrir menú...</li>
     }

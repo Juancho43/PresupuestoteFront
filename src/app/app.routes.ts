@@ -20,7 +20,6 @@ import {EmployeeViewComponent} from './components/employees/employee-view-compon
 import {EmployeeDetailComponent} from './components/employees/employee-detail-component/employee-detail-component';
 import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
 import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
-import {BudgetFormComponent} from './components/budgets/budget-form-component/budget-form-component';
 
 export const routes: Routes = [
 

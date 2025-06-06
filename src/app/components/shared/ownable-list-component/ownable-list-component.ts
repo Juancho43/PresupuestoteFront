@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {IOwnable} from '../../../core/interfaces/Entities/IOwnable';
+import {IOwnable} from '../../../core/interfaces/entities/IOwnable';
 import {OwnableCardComponent} from '../ownable-card-component/ownable-card-component';
 
 @Component({

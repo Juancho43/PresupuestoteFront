@@ -8,7 +8,7 @@ import {WorkService} from '../../../core/services/http/work-service';
 import {WorkDetailComponent} from '../../works/work-detail-component/work-detail-component';
 import {RouterLink} from '@angular/router';
 import {ApiResponse} from '../../../core/interfaces/ApiResponse';
-import {Work} from '../../../core/interfaces/Entities/work';
+import {Work} from '../../../core/interfaces/entities/work';
 import {of} from 'rxjs';
 
 @Component({

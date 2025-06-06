@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Budget, BudgetRequest, BudgetState} from '../../interfaces/Entities/budget';
+import {Budget, BudgetRequest, BudgetState} from '../../interfaces/entities/budget';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';

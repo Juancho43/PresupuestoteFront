@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
 import {CurrencyPipe, DatePipe} from '@angular/common';
-import {Work} from '../../../core/interfaces/Entities/work';
+import {Work} from '../../../core/interfaces/entities/work';
 
 @Component({
   selector: 'app-work',

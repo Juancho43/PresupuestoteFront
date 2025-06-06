@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Supplier} from '../../../core/interfaces/Entities/supplier';
+import {Supplier} from '../../../core/interfaces/entities/supplier';
 
 @Component({
   selector: 'app-supplier',

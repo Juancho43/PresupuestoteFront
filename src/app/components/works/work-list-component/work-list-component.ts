@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Work} from '../../../core/interfaces/Entities/work';
+import {Work} from '../../../core/interfaces/entities/work';
 import {WorkCardComponent} from '../work-card-component/work-card-component';
 import {RouterLink} from '@angular/router';
 

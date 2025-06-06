@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {IPerson} from '../../../core/interfaces/Entities/IPerson';
+import {IPerson} from '../../../core/interfaces/entities/IPerson';
 import {TitleCasePipe} from '@angular/common';
 import {CardButtonComponent} from '../card-button-component/card-button-component';
 

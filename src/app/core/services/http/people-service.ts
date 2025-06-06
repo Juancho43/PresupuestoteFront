@@ -1,13 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Person} from '../../interfaces/Entities/person';
+import {Person} from '../../interfaces/entities/person';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {peopleEndpoint} from '../endpoints/people.endpoint';
-import {IPerson} from '../../interfaces/Entities/IPerson';
+import {IPerson} from '../../interfaces/entities/IPerson';
 
 
 @Injectable({

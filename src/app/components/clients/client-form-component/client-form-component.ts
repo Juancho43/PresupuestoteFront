@@ -1,7 +1,7 @@
 import {Component, effect, inject, input, OnInit, output, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ClientService} from '../../../core/services/http/client-service';
-import {Client} from '../../../core/interfaces/Entities/client';
+import {Client} from '../../../core/interfaces/entities/client';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '../../../core/interfaces/ApiResponse';

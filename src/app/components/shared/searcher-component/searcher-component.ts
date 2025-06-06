@@ -1,7 +1,7 @@
 import {Component, inject, input, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {PeopleService} from '../../../core/services/http/people-service';
-import {IPerson} from '../../../core/interfaces/Entities/IPerson';
+import {IPerson} from '../../../core/interfaces/entities/IPerson';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {ApiResponseCollection} from '../../../core/interfaces/ApiResponseCollection';
 import {of} from 'rxjs';

@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Work} from '../../../core/interfaces/Entities/work';
+import {Work} from '../../../core/interfaces/entities/work';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 import {CardButtonComponent} from '../../shared/card-button-component/card-button-component';
 

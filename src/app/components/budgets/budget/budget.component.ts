@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {Budget} from '../../../core/interfaces/Entities/budget';
+import {Budget} from '../../../core/interfaces/entities/budget';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 
 @Component({
