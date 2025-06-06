@@ -7,4 +7,5 @@ export const budgetEndpoint = {
   updatePrice : '/budgets/updatePrice/:id',
   updateState: '/budgets/states/:id/:state',
   getStates: '/budgets/states/get',
+  search: '/ownable/search/:entity/:query',
 };

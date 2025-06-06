@@ -1,15 +1,15 @@
 import {Component, effect, inject, input, OnInit, output, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {BudgetService} from '../../../../core/services/http/budget-service';
-import {ClientService} from '../../../../core/services/http/client-service';
+import {BudgetService} from '@services/http/budget-service';
+import {ClientService} from '@services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
-import {Client} from '../../../../core/interfaces/entities/client'
+import {Client} from '@models/client'
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Budget, BudgetRequest, BudgetState} from '@models/budget';
 
 @Component({
-  selector: 'app-budget-form-component',
+  selector: 'app-budget-form',
   imports: [
     ReactiveFormsModule,
   ],

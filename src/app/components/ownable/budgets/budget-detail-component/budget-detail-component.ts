@@ -1,5 +1,5 @@
 import {Component, inject, input} from '@angular/core';
-import {ClientComponent} from '@components/ownable/clients/client/client-component';
+import {ClientComponent} from '@components/people/clients/client/client-component';
 import {BudgetService} from '@services/http/budget-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {BudgetComponent} from '../budget/budget.component';

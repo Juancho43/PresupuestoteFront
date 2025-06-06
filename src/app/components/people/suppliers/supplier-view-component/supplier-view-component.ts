@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {SupplierFormComponent} from '../supplier-form-component/supplier-form-component';
-import {PersonListComponent} from "@shared/person-list-component/person-list-component";
+import {PersonListComponent} from "@components/people/person-list-component/person-list-component";
 import {rxResource} from '@angular/core/rxjs-interop';
 import {SupplierService} from '@services/http/supplier-service';
 

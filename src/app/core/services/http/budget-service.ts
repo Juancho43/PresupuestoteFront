@@ -7,6 +7,7 @@ import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {budgetEndpoint} from '../endpoints/budgets.endpoint';
+import {IOwnable} from '@models/IOwnable';
 
 
 @Injectable({
@@ -33,6 +34,13 @@ export class BudgetService implements ICrudeable<Budget,BudgetRequest> {
 
   getStates(): Observable<ApiResponse<BudgetState>> {
     return this.http.get<ApiResponse<BudgetState>>(environment.apiUrlV1 + budgetEndpoint.getStates);
+  }
+
+  search(entity: string, query: string): Observable<ApiResponseCollection<IOwnable>> {
+    const url = budgetEndpoint.search
+      .replace(':entity', entity)
+      .replace(':query', query);
+    return this.http.post<ApiResponseCollection<IOwnable>>(environment.apiUrlV1 + url, {});
   }
 
 }

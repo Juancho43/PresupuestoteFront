@@ -1,9 +1,13 @@
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
 
-
-  @for (data of data(); track data.id) {
-    <app-ownable-card-component
+  <app-ownable-searcher
+    [entity]="entity()"
+    [route]="route()"
+    (results)="handleResults($event)"
+  />
+  @for (data of ownableList(); track data.id) {
+    <app-ownable-card
       [thing]="data"
       [entity]="entity()"
       [route]="route()"

@@ -1,0 +1,16 @@
+<div class="Searcher">
+  <input
+    type="text"
+    (keyup)="search()"
+    [(ngModel)]="query"
+    (keydown.enter)="complete()"
+    [placeholder]="`Buscar ${entity()}`"
+  >
+  <img
+    src="./icons/search.svg"
+    alt="search icon"
+    width="20"
+    height="20"
+    (click)="complete()"
+  >
+</div>

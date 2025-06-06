@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {ClientViewComponent} from '@components/ownable/clients/client-view/client-view-component';
+import {ClientViewComponent} from '@components/people/clients/client-view/client-view-component';
 import {LoginFormComponent} from './components/auth/login-form-component/login-form-component';
 import {LogoutFormComponent} from './components/auth/logout-form-component/logout-form-component';
 import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
@@ -7,18 +7,22 @@ import {AuthorizeFormComponent} from './components/auth/authorize-form-component
 import {authGuard} from './core/guards/auth.guard';
 import {AboutComponent} from './components/sections/about-component/about-component';
 import {HomeComponent} from './components/sections/home-component/home-component';
-import {ClientDetailComponent} from '@components/ownable/clients/client-detail-component/client-detail-component';
+import {ClientDetailComponent} from '@components/people/clients/client-detail-component/client-detail-component';
 import {BudgetViewComponent} from '@components/ownable/budgets/budget-view-component/budget-view-component';
 import {BudgetDetailComponent} from '@components/ownable/budgets/budget-detail-component/budget-detail-component';
-import {MaterialViewComponent} from './components/materials/material-view-component/material-view-component';
-import {MaterialDetailComponent} from './components/materials/material-detail-component/material-detail-component';
-import {SupplierDetailComponent} from '@components/people/suppliers/supplier-detail-component/supplier-detail-component';
+import {MaterialViewComponent} from '@components/items/materials/material-view-component/material-view-component';
+import {MaterialDetailComponent} from '@components/items/materials/material-detail-component/material-detail-component';
+import {
+  SupplierDetailComponent
+} from '@components/people/suppliers/supplier-detail-component/supplier-detail-component';
 import {SupplierViewComponent} from '@components/people/suppliers/supplier-view-component/supplier-view-component';
 import {InvoiceDetailComponent} from '@components/ownable/invoices/invoice-detail-component/invoice-detail-component';
 import {InvoiceViewComponent} from '@components/ownable/invoices/invoice-view-component/invoice-view-component';
-import {EmployeeViewComponent} from './components/employees/employee-view-component/employee-view-component';
-import {EmployeeDetailComponent} from './components/employees/employee-detail-component/employee-detail-component';
-import {EmployeeFormComponent} from './components/employees/employee-form-component/employee-form-component';
+import {EmployeeViewComponent} from '@components/people/employees/employee-view-component/employee-view-component';
+import {
+  EmployeeDetailComponent
+} from '@components/people/employees/employee-detail-component/employee-detail-component';
+import {EmployeeFormComponent} from '@components/people/employees/employee-form-component/employee-form-component';
 import {WorkFormComponent} from './components/works/work-form-component/work-form-component';
 
 export const routes: Routes = [

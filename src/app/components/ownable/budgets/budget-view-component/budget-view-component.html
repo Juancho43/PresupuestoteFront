@@ -2,11 +2,13 @@
 @let data2 = this.clientsResource.value()?.data!;
 
 <section>
-  <app-ownable-list-component
-    [data] = data
-    entity="presupuesto"
-    route="budget"
-  />
+  @if (budgetsResource.hasValue()) {
+    <app-ownable-list-component
+      [data] = data
+      entity="presupuesto"
+      route="budget"
+    />
+  }
   @if (clientsResource.hasValue()){
     <app-person-list-component
       [data] = data2
@@ -17,7 +19,7 @@
 
   }
 
-  <app-budget-form-component
+  <app-budget-form
     [budgetId]="id()"
     [clientId]="clientId()"
     (submitted)="budgetsResource.reload()"
