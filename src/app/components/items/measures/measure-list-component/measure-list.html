@@ -1,0 +1,21 @@
+@let measureData = measureList();
+
+<div class="List">
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-measure-searcher
+    (results)="handleResults($event)"
+  />
+
+  @for (measure of measureData; track measure.id) {
+    <app-measure-card
+     [measure]="measure"
+      [route]="route()"
+    />
+  }
+
+  @if(option()){
+    <button class="Boton1" [routerLink]="'/{{route()}}'">
+      Agregar {{ entity() }}
+    </button>
+  }
+</div>

@@ -1,10 +1,16 @@
-@let data = measure();
+@let data = material();
 <div class="Card">
   <div class="Card-Details">
     <p>{{data.name}}</p>
-    <p>{{data.abbreviation}}</p>
+    <p>{{data.brand}}</p>
+    <p>{{data.unit}} de {{data.measure.abbreviation}}</p>
   </div>
   <div class="Card-Options">
+    <app-card-button-component
+      [text]="'Ver detalles'"
+      [icon]="'info'"
+      [link]="`/${route()}/detail/${data.id!}`"
+    />
     <app-card-button-component
       [text]="'Editar'"
       [icon]="'edit'"

@@ -1,0 +1,21 @@
+@let categoryData = categoryList();
+
+<div class="List">
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-category-searcher
+    (results)="handleResults($event)"
+  />
+
+  @for (category of categoryData; track category.id) {
+    <app-category-card
+      [category]="category"
+      [route]="route()"
+    />
+  }
+
+  @if(option()){
+    <button class="Boton1" [routerLink]="'/{{route()}}'">
+      Agregar {{ entity() }}
+    </button>
+  }
+</div>

@@ -4,9 +4,9 @@ import {LoginFormComponent} from './components/auth/login-form-component/login-f
 import {LogoutFormComponent} from './components/auth/logout-form-component/logout-form-component';
 import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
 import {AuthorizeFormComponent} from './components/auth/authorize-form-component/authorize-form.component';
-import {authGuard} from './core/guards/auth.guard';
-import {AboutComponent} from './components/sections/about-component/about-component';
-import {HomeComponent} from './components/sections/home-component/home-component';
+import {authGuard} from '@core/guards/auth.guard';
+import {AboutComponent} from '@components/sections/about-component/about-component';
+import {HomeComponent} from '@components/sections/home-component/home-component';
 import {ClientDetailComponent} from '@components/people/clients/client-detail-component/client-detail-component';
 import {BudgetViewComponent} from '@components/ownable/budgets/budget-view-component/budget-view-component';
 import {BudgetDetailComponent} from '@components/ownable/budgets/budget-detail-component/budget-detail-component';
@@ -25,6 +25,7 @@ import {
 import {EmployeeFormComponent} from '@components/people/employees/employee-form-component/employee-form-component';
 import {WorkAreaComponent} from '@components/works/work-area/work-area-component';
 import {MaterialAreaComponent} from '@components/items/materials/material-area-component/material-area-component';
+import {UserViewComponent} from '@components/user/user-view-component/user-view-component';
 
 
 export const routes: Routes = [
@@ -38,6 +39,7 @@ export const routes: Routes = [
   { path : 'logout', component: LogoutFormComponent, canActivate: [authGuard]},
   { path : 'register', component: RegisterFormComponent},
   { path : 'authorize', component: AuthorizeFormComponent, canActivate: [authGuard] },
+  { path : 'user', component: UserViewComponent, canActivate: [authGuard] },
 
   //ClientRoutes
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
@@ -54,10 +56,9 @@ export const routes: Routes = [
   {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},
   // //MaterialRoute
   {path: 'material', component: MaterialViewComponent},
+  {path: 'material/detail/:id', component: MaterialDetailComponent},
   {path: 'material/new', component: MaterialAreaComponent},
   {path: 'material/edit/:entity/:id', component: MaterialAreaComponent},
-  {path: 'material/detail/:id', component: MaterialDetailComponent},
-
 
   // //SupplierRoutes
   {path: 'supplier', component: SupplierViewComponent},
@@ -66,6 +67,7 @@ export const routes: Routes = [
   // //InvoiceRoute
   {path: 'invoice', component: InvoiceViewComponent},
   {path: 'invoice/detail/:id', component: InvoiceDetailComponent},
+  {path: 'invoice/new/:supplierId', component: InvoiceDetailComponent},
   // //FixedCostRoute
   // {path: 'cost', component: CostViewComponent},
   // {path: 'cost/edit/:costId', component: CostViewComponent},

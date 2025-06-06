@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
-import {CardButtonComponent} from "../../shared/card-button-component/card-button-component";
+import {CardButtonComponent} from "@shared/card-button-component/card-button-component";
 import {CommonModule, CurrencyPipe} from "@angular/common";
-import {IOwnable} from '../../../core/interfaces/entities/IOwnable';
+import {IOwnable} from '@models/IOwnable';
 
 @Component({
   selector: 'app-ownable-card',

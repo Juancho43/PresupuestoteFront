@@ -1,0 +1,23 @@
+@let materialData = materialList();
+
+<div class="List">
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-material-searcher
+    (results)="handleResults($event)"
+  />
+
+  @for (material of materialData; track material.id) {
+    <app-material-card
+        [material]="material"
+        [entity]="entity()"
+        [route]="route()"
+
+    />
+  }
+
+  @if(option()){
+    <button class="Boton1" [routerLink]="'/{{route()}}'">
+      Agregar {{ entity() }}
+    </button>
+  }
+</div>

@@ -1,14 +1,18 @@
+@let materialList = this.materialResource.value()!.data!;
+@let subcategoryList = this.subcategoryResource.value()!.data!;
+@let categoryList = this.categoryResource.value()!.data!;
+@let measureList = this.measureResource.value()!.data!;
 <section>
-  <article>
-    <app-material/>
-    <button
-      [routerLink]="['/material/new']"
-      class="Boton1"
-    >
-      Cargar material / Rubro / Sub-Rubro
-    </button>
-  </article>
-  <app-material-list/>
-<!--  <app-category-list/>-->
-<!--  <app-subcategory-list/>-->
+  <app-material-list
+    [data]="materialList"
+  />
+  <app-subcategory-list
+    [data] = "subcategoryList"
+  />
+  <app-category-list
+    [data]="categoryList"
+  />
+  <app-measure-list
+    [data]="measureList"
+  />
 </section>

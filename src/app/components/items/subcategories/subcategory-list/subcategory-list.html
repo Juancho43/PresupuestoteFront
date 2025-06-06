@@ -1,0 +1,21 @@
+@let subcategoryData = subcategoryList();
+
+<div class="List">
+  <h3 class="List-title">Listado de {{ entity() }}s</h3>
+  <app-subcategory-searcher
+    (results)="handleResults($event)"
+  />
+
+  @for (subcategory of subcategoryData; track subcategory.id) {
+    <app-subcategory-card
+      [subcategory]="subcategory"
+      [route]="route()"
+    />
+  }
+
+  @if(option()){
+    <button class="Boton1" [routerLink]="'/{{route()}}'">
+      Agregar {{ entity() }}
+    </button>
+  }
+</div>
