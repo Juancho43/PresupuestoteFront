@@ -7,6 +7,8 @@ import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {measureEndpoint} from '../endpoints/measures.endpoint';
+import {IPerson} from '@models/IPerson';
+import {peopleEndpoint} from '@services/endpoints/people.endpoint';
 
 
 @Injectable({
@@ -29,6 +31,12 @@ export class MeasureService implements ICrudeable<Measure> {
   }
   delete(id: number): Observable<ApiResponse<Measure>> {
     return this.http.get<ApiResponse<Measure>>(environment.apiUrlV1 + measureEndpoint.delete.replace(':id', id.toString()));
+  }
+
+  search(query: string): Observable<ApiResponseCollection<Measure>> {
+    const url = measureEndpoint.search
+      .replace(':query', query);
+    return this.http.post<ApiResponseCollection<Measure>>(environment.apiUrlV1 + url,{});
   }
 
 }

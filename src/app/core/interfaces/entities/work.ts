@@ -21,3 +21,12 @@ export interface WorkRequest {
   budget_id: number;
   state?: string;
 }
+export interface AddMaterialsToWorkRequest{
+  work_id: number;
+  materials: {
+    id: number;
+    quantity: number;
+  }[];
+};
+
+

@@ -4,4 +4,5 @@ export const categoryEndpoint = {
   create: '/categories',
   update: '/categories/:id',
   delete: '/categories/:id',
+  search: '/categories/search/:query',
 };

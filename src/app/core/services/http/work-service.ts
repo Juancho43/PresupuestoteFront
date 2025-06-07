@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Work, WorkRequest} from '../../interfaces/entities/work';
+import {AddMaterialsToWorkRequest, Work, WorkRequest} from '../../interfaces/entities/work';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -30,5 +30,7 @@ export class WorkService implements ICrudeable<Work, WorkRequest> {
   delete(id: number): Observable<ApiResponse<Work>> {
     return this.http.get<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.delete.replace(':id', id.toString()));
   }
-
+  addMaterial(request : AddMaterialsToWorkRequest): Observable<ApiResponse<Work>> {
+    return this.http.post<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.addMaterial, request);
+  }
 }

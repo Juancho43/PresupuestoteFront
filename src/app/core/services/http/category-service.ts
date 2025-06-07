@@ -30,5 +30,9 @@ export class CategoryService implements ICrudeable<Category> {
   delete(id: number): Observable<ApiResponse<Category>> {
     return this.http.get<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.delete.replace(':id', id.toString()));
   }
-
+  search(query: string): Observable<ApiResponseCollection<Category>> {
+    const url = categoryEndpoint.search
+      .replace(':query', query);
+    return this.http.post<ApiResponseCollection<Category>>(environment.apiUrlV1 + url,{});
+  }
 }

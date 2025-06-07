@@ -23,10 +23,9 @@ export class CategorySearcherComponent {
   searchResource = rxResource({
     params: () => ({
       query: this.query(),
-      entity: this.route()
     }),
     stream: ({params}) => {
-      // if (params.query.length > 2) return this.service.search(params.entity, params.query);
+      if (params.query.length > 2) return this.service.search(params.query);
       return of({} as ApiResponseCollection<Category>);
     },
   });

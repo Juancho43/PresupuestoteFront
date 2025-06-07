@@ -23,10 +23,9 @@ export class MaterialSearcherComponent {
   searchResource = rxResource({
     params: () => ({
       query: this.query(),
-      entity: this.route()
     }),
     stream: ({params}) => {
-     // if (params.query.length > 2) return this.service.search(params.entity, params.query);
+     if (params.query.length > 2) return this.service.search(params.query);
       return of({} as ApiResponseCollection<Material>);
     },
   });
@@ -36,6 +35,6 @@ export class MaterialSearcherComponent {
   }
 
   complete() {
-   // this.results.emit(this.searchResource.value()?.data || []);
+   this.results.emit(this.searchResource.value()?.data || []);
   }
 }

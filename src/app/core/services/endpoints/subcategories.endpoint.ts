@@ -4,4 +4,5 @@ export const subcategoryEndpoint = {
   create: '/subcategories',
   update: '/subcategories/:id',
   delete: '/subcategories/:id',
+  search: '/subcategories/search/:query',
 };

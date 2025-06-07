@@ -4,4 +4,5 @@ export const measureEndpoint = {
   create: '/measures',
   update: '/measures/:id',
   delete: '/measures/:id',
+  search: '/measures/search/:query',
 };

@@ -4,4 +4,5 @@ export const materialEndpoint = {
   create: '/materials',
   update: '/materials/:id',
   delete: '/materials/:id',
+  search: '/materials/search/:query',
 };

@@ -15,9 +15,6 @@ import {MeasureListComponent} from '@components/items/measures/measure-list-comp
   selector: 'app-material-view',
   standalone : true,
   imports: [
-    RouterLink,
-
-    MaterialComponent,
     MaterialListComponent,
     CategoryListComponent,
     SubcategoryListComponent,

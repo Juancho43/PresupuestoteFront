@@ -1,5 +1,6 @@
+@let material = this.materialResource.value()!.data!;
 <section>
-  <app-material [material]=""/>
+  <app-material [material]="material"/>
   <app-stock-list-component/>
   <app-price-list-component/>
 </section>
