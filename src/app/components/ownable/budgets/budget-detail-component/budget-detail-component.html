@@ -1,8 +1,18 @@
 @let budget = this.budgetResource.value()!.data!;
 @let currentWork = this.currentWorkResource.value()!.data!;
+@if (budget){
+
 <section>
   <article>
-    <app-budget [budget]="budget" />
+    <app-budget
+      [budget]="budget"
+    />
+    @if (currentWork) {
+      <app-work
+        [work]="currentWork"
+      />
+    }
+
     <app-client
       [client]="budget.owner!"
       routerLink="/client/detail/{{ budget.owner?.id }}"
@@ -13,8 +23,9 @@
     [budgetId]="budget.id!"
   />
   @if(currentWork){
-    <app-work-detail
-      [work]="currentWork"
+    <app-item-list
+      [items]="currentWork.materials"
+
     />
   }@else{
     <p>Seleccione un trabajo por favor</p>
@@ -22,3 +33,4 @@
 
 
 </section>
+}

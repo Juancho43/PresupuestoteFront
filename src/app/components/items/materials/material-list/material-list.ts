@@ -1,4 +1,4 @@
-import {Component, input, OnInit, signal} from '@angular/core';
+import {Component, input, OnInit, output, signal} from '@angular/core';
 import {Material} from '@models/material';
 import {MaterialCardComponent} from '@components/items/materials/material-card/material-card';
 import {MaterialSearcherComponent} from '@components/items/materials/material-searcher/material-searcher';
@@ -13,13 +13,14 @@ import {RouterLink} from '@angular/router';
   styleUrl: './material-list.scss'
 })
 export class MaterialListComponent implements OnInit {
+
   readonly data = input<Material[]>([]);
   readonly entity = signal<string>('materiale');
   readonly route = signal<string>('material');
   readonly action = signal<string>('material');
   readonly option = input<boolean>(false);
   materialList = signal<Material[]>([]);
-
+  selectedMaterial = output<Material>();
   ngOnInit() {
     this.materialList.set(this.data());
   }
@@ -27,5 +28,9 @@ export class MaterialListComponent implements OnInit {
   handleResults(results: Material[]) {
     if(results.length > 0) this.materialList.set(results);
     if(results.length === 0) this.materialList.set(this.data());
+  }
+
+  selectMaterial(material: Material) {
+    this.selectedMaterial.emit(material);
   }
 }

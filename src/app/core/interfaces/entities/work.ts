@@ -1,5 +1,6 @@
 import {Entity} from './entity';
-import {Item} from './item';
+import {Material} from '@models/material';
+import {Budget} from '@models/budget';
 
 export interface Work extends Entity{
   order: number;
@@ -9,7 +10,8 @@ export interface Work extends Entity{
   state: string;
   estimated_time: number;
   dead_line: Date;
-  materials: Item[];
+  materials: Material[];
+  budget?:Budget;
 }
 export interface WorkRequest {
   id?:number;
@@ -27,6 +29,6 @@ export interface AddMaterialsToWorkRequest{
     id: number;
     quantity: number;
   }[];
-};
+}
 
 

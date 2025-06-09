@@ -15,7 +15,7 @@ import {RouterLink} from '@angular/router';
 export class SubcategoryListComponent implements OnInit {
   readonly data = input<Subcategory[]>([]);
   readonly entity = signal<string>('sub-rubro');
-  readonly route = signal<string>('subcategory');
+  readonly route = signal<string>('material');
   readonly action = signal<string>('subcategory');
   readonly option = input<boolean>(false);
   subcategoryList = signal<Subcategory[]>([]);

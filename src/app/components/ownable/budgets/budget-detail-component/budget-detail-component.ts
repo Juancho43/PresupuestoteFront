@@ -5,11 +5,12 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {BudgetComponent} from '../budget/budget.component';
 import {WorkListComponent} from '../../../works/work-list-component/work-list-component';
 import {WorkService} from '@services/http/work-service';
-import {WorkDetailComponent} from '../../../works/work-detail-component/work-detail-component';
 import {RouterLink} from '@angular/router';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Work} from '@models/work';
 import {of} from 'rxjs';
+import {WorkComponent} from '@components/works/work/work.component';
+import {ItemListComponent} from '@components/items/item-list-component/item-list-component';
 
 @Component({
   selector: 'app-budget-detail-component',
@@ -17,8 +18,9 @@ import {of} from 'rxjs';
     ClientComponent,
     BudgetComponent,
     WorkListComponent,
-    WorkDetailComponent,
-    RouterLink
+    RouterLink,
+    WorkComponent,
+    ItemListComponent
   ],
   templateUrl: './budget-detail-component.html',
   styleUrl: './budget-detail-component.scss'

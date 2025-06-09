@@ -1,27 +1,31 @@
 @let edit = this.isEdit();
-<form [formGroup]="WorkForm" (ngSubmit)="onSubmit()" >
-  <fieldset>
-    @if(WorkForm.invalid && WorkForm.dirty){
-      <div class="invalid">
+@let materials = this.materialList();
 
-        @if (WorkForm.get('order')?.invalid){
-          <p>Debe seleccionar una fecha de confección.</p>
-        }
-        @if (WorkForm.get('hours')?.invalid){
-          <p>Debe indicar las horas estimadas de trabajo. <br> No pueden ser negativas.</p>
-        }
-        @if (WorkForm.get('deadLine')?.invalid){
-          <p>Debe seleccionar una fecha de finalización.</p>
-        }
-        @if (WorkForm.get('notes')?.invalid){
-          <p>Debe redactar una breve descripción del trabajo.</p>
-        }
-        @if (WorkForm.get('estado')?.invalid){
-          <p>Debe seleccionar un estado.</p>
-        }
-      </div>
-    }
-    <legend class="List-title"> {{ edit ? 'Actualizar un trabajo' : 'Crear un trabajo' }}</legend>
+<form [formGroup]="WorkForm" (ngSubmit)="onSubmit()">
+  <legend class="List-title"> {{ edit ? 'Actualizar un trabajo' : 'Crear un trabajo' }}</legend>
+  <fieldset class="Form-data">
+      @if(WorkForm.invalid && WorkForm.dirty){
+        <div class="invalid">
+
+          @if (WorkForm.get('order')?.invalid){
+            <p>Debe seleccionar una fecha de confección.</p>
+          }
+          @if (WorkForm.get('hours')?.invalid){
+            <p>Debe indicar las horas estimadas de trabajo. <br> No pueden ser negativas.</p>
+          }
+          @if (WorkForm.get('deadLine')?.invalid){
+            <p>Debe seleccionar una fecha de finalización.</p>
+          }
+          @if (WorkForm.get('notes')?.invalid){
+            <p>Debe redactar una breve descripción del trabajo.</p>
+          }
+          @if (WorkForm.get('estado')?.invalid){
+            <p>Debe seleccionar un estado.</p>
+          }
+        </div>
+      }
+
+    <legend> Datos </legend>
     <label for="name">Nombre:</label>
     <input type="text" name="name" id="name" formControlName="name">
     <label for="order">Orden:</label>
@@ -39,8 +43,18 @@
 <!--        <option [value]="option">{{option | uppercase}}</option>-->
 <!--      }-->
     </select>
+  </fieldset >
+  <fieldset class="Material-list">
+    <legend class="List-title">Materiales</legend>
+
+    @for(item of materials; track $index){
+      <pre (click)="this.selectedItem.emit(item)" (dblclick)="deleteItem(item)" >
+        {{item.name }} - {{item.quantity}}
+      </pre>
+    }
+
   </fieldset>
-  <fieldset class="Botones">
+  <fieldset class="Form-actions">
     <button type="reset" (click)="resetForm($event)">Limpiar</button>
 
     <button type="submit" [disabled]="!WorkForm.valid" [class.disactive]="!WorkForm.valid">
@@ -52,4 +66,5 @@
     </button>
   </fieldset>
 </form>
+
 

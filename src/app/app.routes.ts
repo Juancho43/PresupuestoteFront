@@ -1,9 +1,9 @@
 import {Routes} from '@angular/router';
 import {ClientViewComponent} from '@components/people/clients/client-view/client-view-component';
-import {LoginFormComponent} from './components/auth/login-form-component/login-form-component';
-import {LogoutFormComponent} from './components/auth/logout-form-component/logout-form-component';
-import {RegisterFormComponent} from './components/auth/register-form-component/register-form-component';
-import {AuthorizeFormComponent} from './components/auth/authorize-form-component/authorize-form.component';
+import {LoginFormComponent} from '@components/auth/login-form-component/login-form-component';
+import {LogoutFormComponent} from '@components/auth/logout-form-component/logout-form-component';
+import {RegisterFormComponent} from '@components/auth/register-form-component/register-form-component';
+import {AuthorizeFormComponent} from '@components/auth/authorize-form-component/authorize-form.component';
 import {authGuard} from '@core/guards/auth.guard';
 import {AboutComponent} from '@components/sections/about-component/about-component';
 import {HomeComponent} from '@components/sections/home-component/home-component';
@@ -47,10 +47,10 @@ export const routes: Routes = [
   {path: 'client/edit/:id', component: ClientViewComponent},
   // //BudgetRoutes
   {path: 'budget', component: BudgetViewComponent},
-  {path: 'budget/detail/:id', component: BudgetDetailComponent},
-  {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
   {path: 'budget/new/:clientId', component: BudgetViewComponent},
   {path: 'budget/edit/:id/:clientId', component: BudgetViewComponent},
+  {path: 'budget/detail/:id', component: BudgetDetailComponent},
+  {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
   // //WorkRoute
   {path: 'work/new/:budgetId', component: WorkAreaComponent},
   {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},

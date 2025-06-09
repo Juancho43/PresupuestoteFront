@@ -1,1 +1,24 @@
-<!--@let materialList = this.materialResource.value()?.data!;-->
+@let materials = this.materialResource.value()?.data!;
+
+<app-item-form
+  [initialItem]="selectedItem()"
+  (finalItem)="toMaterial($event)"
+/>
+<div class="Buttons">
+  <button type="button" (click)="toggleShow()">
+    @if (showList()) {
+      Ocultar lista de materiales
+    } @else {
+      Mostrar lista de materiales
+    }
+  </button>
+  <button type="reset" (click)="reset()">Limpiar enlaces</button>
+</div>
+@if(showList()){
+  <app-material-list
+    [data]="materials"
+    [option]="true"
+    (selectedMaterial)="selectMaterial($event)"
+  />
+}
+

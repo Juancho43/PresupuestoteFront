@@ -15,7 +15,7 @@ import {RouterLink} from '@angular/router';
 export class CategoryListComponent implements OnInit {
   readonly data = input<Category[]>([]);
   readonly entity = signal<string>('rubro');
-  readonly route = signal<string>('category');
+  readonly route = signal<string>('material');
   readonly action = signal<string>('category');
   readonly option = input<boolean>(false);
   categoryList = signal<Category[]>([]);

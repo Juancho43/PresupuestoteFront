@@ -14,8 +14,8 @@
   }
 
   @if(option()){
-    <button class="Boton1" [routerLink]="'/{{route()}}'">
-      Agregar {{ entity() }}
+    <button class="Boton1" [routerLink]= "`/${route()}/new`">
+      Agregar {{ entity() }}s
     </button>
   }
 </div>

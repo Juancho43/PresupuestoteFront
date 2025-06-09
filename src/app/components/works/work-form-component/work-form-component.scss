@@ -1,2 +1,8 @@
 @use "../../../core/styles/form";
 @use "../../../core/styles/buttons";
+@use "../../../core/styles/advancedForm";
+
+.Material-list{
+  grid-column: 2/-1;
+  grid-row: 3/4;
+}

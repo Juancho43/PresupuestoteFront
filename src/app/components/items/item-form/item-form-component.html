@@ -1,0 +1,9 @@
+<form [formGroup]="itemForm">
+  <fieldset class="Material-join">
+    <label for="material">Material:</label>
+    <input type="text" name="material" id="material" formControlName="materialName" readonly>
+    <label for="quantity">Cantidad:</label>
+    <input type="number" id="quantity" name="quantity" formControlName="quantity" required>
+    <button type="button" (click)="submitItem()">Añadir</button>
+  </fieldset>
+</form>

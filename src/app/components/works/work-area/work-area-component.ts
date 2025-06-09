@@ -1,45 +1,59 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {WorkService} from '@services/http/work-service';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {BudgetService} from '@services/http/budget-service';
-import {BudgetComponent} from '@components/ownable/budgets/budget/budget.component';
 import {WorkFormComponent} from '@components/works/work-form-component/work-form-component';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Work} from '@models/work';
+import {MaterialJoinComponent} from '@components/items/materials/material-join/material-join.component';
+import {Item} from '@models/item';
+import {Material} from '@models/material';
 import {RouterLink} from '@angular/router';
 
 @Component({
   standalone:true,
   selector: 'app-work-area',
   imports: [
-    BudgetComponent,
     WorkFormComponent,
-    RouterLink
+    MaterialJoinComponent,
+    RouterLink,
   ],
   templateUrl: './work-area-component.html',
   styleUrl: './work-area-component.scss'
 })
 export class WorkAreaComponent {
   private service = inject(WorkService);
-  private budgetService = inject(BudgetService);
   readonly budgetId = input.required<number>();
   readonly id = input.required<number>();
 
-  budgetResource = rxResource({
-    params: () => ({id:this.budgetId()}),
-    stream:({params}) =>{
-      return this.budgetService.getById(params.id);
-
-    }
-  })
 
   workResource = rxResource({
     params: () => ({id:this.id()}),
     stream: ({params}) => {
-      if(params.id >0 ) return this.service.getById(params.id);
+      if(params.id > 0 ) return this.service.getById(params.id);
       return of({ } as ApiResponse<Work>);
     }
   });
+
+
+  item = signal<Item>({} as Item);
+
+  material = signal<Material>({} as Material);
+
+  onEditMaterial($event: Material) {
+    this.item.set({
+      material : $event,
+      quantity: $event.quantity!,
+      price: $event.latestPrice!,
+      stock: $event.latestStock!
+    })
+  }
+
+  onEditedMaterial($event: Material) {
+    this.material.set(
+      $event
+    )
+  }
+
 
 }

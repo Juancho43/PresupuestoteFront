@@ -40,7 +40,7 @@
     <label for="Descripcion">Descripcion:</label>
     <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion..." formControlName="Descripcion"></textarea>
   </fieldset>
-  <fieldset class="Botones">
+  <fieldset class="Form-actions">
     <button type="reset" (click)="resetForm($event)">Limpiar</button>
 
     <button type="submit" [disabled]="!canSubmit" [class.disactive]="!canSubmit">

@@ -1,0 +1,32 @@
+@use '../../../styles.scss' as core;
+
+form{
+  display: grid;
+  width:  auto;
+  grid-template-columns: repeat(2, 26vw);
+  grid-template-rows: 30px auto 70vh 60px;
+
+}
+
+.List-title{
+  grid-column: 1 / -1;
+  grid-row: 1 / 1;
+  text-align: center;
+  font-family: core.$fontTitulo;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+
+.Form-data{
+  grid-column: 1/2;
+  grid-row: 3/4;
+}
+
+.Form-actions{
+  grid-column: 1 / -1;
+  grid-row: 4/5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

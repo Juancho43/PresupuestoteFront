@@ -12,6 +12,9 @@ export interface Material extends Entity{
   color: string;
   price: Price;
   stock: Stock;
+  latestStock: Stock;
+  latestPrice: Price;
   subcategory: Subcategory;
   measure: Measure;
+  quantity?: number;
 }

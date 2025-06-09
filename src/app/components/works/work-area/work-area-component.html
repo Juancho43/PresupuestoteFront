@@ -1,20 +1,27 @@
-@let budget = this.budgetResource.value()!.data!;
-<!--@let work = this.workResource.value()!.data!;-->
+@if(!workResource.isLoading() && !workResource.error()) {
+  @let work = this.workResource.value()!.data!;
 
-<section>
-    <article>
-      <app-budget
-        [budget]="budget"
-        [routerLink]="`/budget/detail/${budget.id}`"
-      />
-    </article>
+  <section>
 
-  <article>
+    <p [routerLink]="`/budget/detail/${work.budget!.id!}/${work.id!}`" style="color:red">
+      ir al presupuesto
+    </p>
+
     <app-work-form
-      [budgetId]="budget.id!"
+      [budgetId]="work.budget!.id!"
+      [item]="material()"
+      [work]="work"
+      (selectedItem)="onEditMaterial($event)"
     />
-  </article>
-  <article>
-<!--    <app-work-detail [work]="work"/>-->
-  </article>
-</section>
+
+    <app-material-join
+      [item]="item()"
+      (finalItem)="onEditedMaterial($event)"
+    />
+
+  </section>
+
+
+}
+
+

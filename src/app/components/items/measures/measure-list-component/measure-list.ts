@@ -1,8 +1,6 @@
 import {Component, input, OnInit, signal} from '@angular/core';
 import {Measure} from '@models/measure';
-import {SubcategoryCardComponent} from '@components/items/subcategories/subcategory-card/subcategory-card';
-import {SubcategorySearcherComponent} from '@components/items/subcategories/subcategory-searcher/subcategory-searcher';
-import {Category} from '@models/category';
+
 import {MeasureCardComponent} from '@components/items/measures/measure-card-component/measure-card-component';
 import {RouterLink} from '@angular/router';
 import {MeasureSearchComponent} from '@components/items/measures/measure-search-component/measure-search-component';
@@ -21,7 +19,7 @@ import {MeasureSearchComponent} from '@components/items/measures/measure-search-
 export class MeasureListComponent implements OnInit {
   readonly data = input<Measure[]>([]);
   readonly entity = signal<string>('medida');
-  readonly route = signal<string>('measure');
+  readonly route = signal<string>('material');
   readonly action = signal<string>('measure');
   readonly option = input<boolean>(false);
   measureList = signal<Measure[]>([]);
