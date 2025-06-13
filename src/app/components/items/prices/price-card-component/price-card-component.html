@@ -1,1 +1,10 @@
-<p>price-card-component works!</p>
+@let data = price();
+<div class="Card">
+  <div class="Card-Details">
+    <p>{{data.date | date}}</p>
+    <p>{{data.price | currency}}</p>
+    <p>Creado: {{data.created_at | date}}</p>
+    <p>Modificado: {{data.updated_at | date}}</p>
+  </div>
+</div>
+

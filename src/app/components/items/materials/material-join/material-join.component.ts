@@ -61,8 +61,6 @@ export class MaterialJoinComponent {
       id: $event.material.id!,
       name: $event.material.name,
       quantity: $event.quantity,
-      price: $event.price,
-      stock: $event.stock,
       description: $event.material.description,
       brand: $event.material.brand,
       color: $event.material.color,
@@ -70,7 +68,6 @@ export class MaterialJoinComponent {
       latestPrice: $event.material.latestPrice,
       subcategory: $event.material.subcategory,
       measure: $event.material.measure,
-      unit: 0
     })
   }
 }

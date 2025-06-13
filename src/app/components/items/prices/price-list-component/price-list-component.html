@@ -1,1 +1,9 @@
-<p>price-list-component works!</p>
+@let priceData = priceList();
+<div class="List">
+  <h3 class="List-title">Listado de precios</h3>
+  @for (price of priceData; track price.id) {
+    <app-price-card
+      [price]="price"
+    />
+  }
+</div>

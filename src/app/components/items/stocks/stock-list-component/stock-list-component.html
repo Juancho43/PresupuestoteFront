@@ -1,1 +1,9 @@
-<p>stock-list-component works!</p>
+@let stockData = stockList();
+<div class="List">
+  <h3 class="List-title">Listado de stock</h3>
+  @for (stock of stockData; track stock.id) {
+    <app-stock-card
+      [stock]="stock"
+    />
+  }
+</div>

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Material} from '../../interfaces/entities/material';
+import {Material} from '@models/material';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -35,6 +35,16 @@ export class MaterialService implements ICrudeable<Material> {
       .replace(':query', query);
     return this.http.post<ApiResponseCollection<Material>>(environment.apiUrlV1 + url,{});
   }
-
-
+  getByIdWithWorks(id: number): Observable<ApiResponse<Material>> {
+    return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.works.replace(':id', id.toString()));
+  }
+  getByIdWithInvoices(id: number): Observable<ApiResponse<Material>> {
+    return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.invoices.replace(':id', id.toString()));
+  }
+  getByIdWithStocks(id: number): Observable<ApiResponse<Material>> {
+    return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.stocks.replace(':id', id.toString()));
+  }
+  getByIdWithPrices(id: number): Observable<ApiResponse<Material>> {
+    return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.prices.replace(':id', id.toString()));
+  }
 }

@@ -1,1 +1,10 @@
-<p>stock-card-component works!</p>
+@let data = stock();
+<div class="Card">
+  <div class="Card-Details">
+    <p>{{data.date | date}}</p>
+    <p>{{data.stock | currency}}</p>
+    <p>Creado: {{data.created_at | date}}</p>
+    <p>Modificado: {{data.updated_at | date}}</p>
+  </div>
+</div>
+

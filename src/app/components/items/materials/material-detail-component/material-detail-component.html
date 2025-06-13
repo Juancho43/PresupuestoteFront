@@ -1,6 +1,19 @@
-@let material = this.materialResource.value()!.data!;
-<section>
-  <app-material [material]="material"/>
-  <app-stock-list-component/>
-  <app-price-list-component/>
-</section>
+@let works = this.workResource.value()!.data!.works!;
+@let invoices = this.invoiceResource.value()!.data!.invoices!;
+@let prices = this.priceResource.value()!.data!.prices!;
+@let stocks = this.stockResource.value()!.data!.stocks!;
+@if ( works || invoices || prices || stocks) {
+  <section>
+<!--    <app-material [material]="material"/>-->
+    <app-stock-list [stockList]="stocks"/>
+    <app-price-list [priceList]="prices"/>
+    <app-work-list [works]="works" [budgetId]="0"/>
+    <app-ownable-list
+      [data]="invoices"
+      [title]="'boletas'"
+      [entity]="'invoice'"
+      [option]="true"
+      [route]="'/'"
+    />
+  </section>
+}
