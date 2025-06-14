@@ -1,5 +1,5 @@
 @let categoryData = categoryList();
-
+@let pagination = paginationData();
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
   <app-category-searcher
@@ -18,4 +18,8 @@
       Agregar {{ entity() }}s
     </button>
   }
+  <app-pagination-buttons
+    [pagination]="pagination"
+    (pageChange)="this.pageChange.emit($event)"
+  />
 </div>

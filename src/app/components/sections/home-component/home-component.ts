@@ -4,7 +4,7 @@ import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-home-component',
-  imports: [RouterLink, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   templateUrl: './home-component.html',
   standalone: true,
   styleUrl: './home-component.scss'

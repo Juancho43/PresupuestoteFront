@@ -1,4 +1,4 @@
-import {Component, input, OnInit, output, signal} from '@angular/core';
+import {Component, effect, input, OnInit, output, signal} from '@angular/core';
 import {Material} from '@models/material';
 import {MaterialCardComponent} from '@components/items/materials/material-card/material-card';
 import {MaterialSearcherComponent} from '@components/items/materials/material-searcher/material-searcher';
@@ -18,14 +18,24 @@ export class MaterialListComponent implements OnInit {
 
   readonly data = input<Material[]>([]);
   readonly pagination = input<Pagination>({} as Pagination);
+  readonly option = input<boolean>(false);
+
   readonly entity = signal<string>('materiale');
   readonly route = signal<string>('material');
   readonly action = signal<string>('material');
-  readonly option = input<boolean>(false);
+
   paginationData = signal<Pagination>({} as Pagination);
   materialList = signal<Material[]>([]);
+
   selectedMaterial = output<Material>();
   pageChange = output<number>();
+
+  constructor() {
+    effect(() => {
+      this.materialList();
+      console.log('Material list updated:', this.materialList());
+    })
+  }
   ngOnInit() {
     this.paginationData.set(this.pagination());
     this.materialList.set(this.data());

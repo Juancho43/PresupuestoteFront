@@ -5,7 +5,7 @@
     (click)="onPreviousPage()">
     Previous
   </button>
-
+  <p>{{pagination().current_page}}</p>
   <button
     class="pagination-button"
     [disabled]="!pagination().has_more_pages"

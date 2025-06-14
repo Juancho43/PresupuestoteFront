@@ -1,3 +1,4 @@
+@if(!this.materialResource.isLoading() && !this.subcategoryResource.isLoading() && !this.categoryResource.isLoading() && !this.measureResource.isLoading()) {
 @let materialList = this.materialResource.value()!.data!.results;
 @let materialPagination = this.materialResource.value()!.data!.pagination;
 @let subcategoryList = this.subcategoryResource.value()!.data!.results;
@@ -6,23 +7,32 @@
 @let categoryPagination = this.categoryResource.value()!.data!.pagination;
 @let measureList = this.measureResource.value()!.data!.results;
 @let measurePagination = this.measureResource.value()!.data!.pagination;
-<section>
-  <app-material-list
-    [data]="materialList"
-    [option]="true"
-    [pagination]="materialPagination"
-    (pageChange)="this.materialPage.set($event)"
-  />
-  <app-subcategory-list
-    [data] = "subcategoryList"
-    [option]="true"
-  />
-  <app-category-list
-    [data]="categoryList"
-    [option]="true"
-  />
-  <app-measure-list
-    [data]="measureList"
-    [option]="true"
-  />
-</section>
+
+  <section>
+    <app-material-list
+      [data]="materialList"
+      [option]="true"
+      [pagination]="materialPagination"
+      (pageChange)="this.materialPage.set($event)"
+    />
+    <app-subcategory-list
+      [data] = "subcategoryList"
+      [option]="true"
+      [pagination]="subcategoryPagination"
+      (pageChange)="this.subcategoryPage.set($event)"
+    />
+    <app-category-list
+      [data]="categoryList"
+      [option]="true"
+      [pagination]="categoryPagination"
+      (pageChange)="this.categoryPage.set($event)"
+    />
+    <app-measure-list
+      [data]="measureList"
+      [option]="true"
+      [pagination]="measurePagination"
+      (pageChange)="this.measurePage.set($event)"
+    />
+  </section>
+
+}
