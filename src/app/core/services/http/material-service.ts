@@ -7,6 +7,8 @@ import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {materialEndpoint} from '../endpoints/materials.endpoint';
+import {Budget} from '@models/budget';
+import {budgetEndpoint} from '@services/endpoints/budgets.endpoint';
 
 
 @Injectable({
@@ -15,8 +17,10 @@ import {materialEndpoint} from '../endpoints/materials.endpoint';
 export class MaterialService implements ICrudeable<Material> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Material>> {
-    return this.http.get<ApiResponseCollection<Material>>(environment.apiUrlV1 + materialEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Material>> {
+    return this.http.get<ApiResponseCollection<Material>>(
+      `${environment.apiUrlV1}${materialEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Material>> {
     return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.getById.replace(':id', id.toString()));

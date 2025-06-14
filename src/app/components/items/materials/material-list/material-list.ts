@@ -4,10 +4,12 @@ import {MaterialCardComponent} from '@components/items/materials/material-card/m
 import {MaterialSearcherComponent} from '@components/items/materials/material-searcher/material-searcher';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {PaginationButtons} from '@shared/pagination-buttons/pagination-buttons';
+import {Pagination} from '@core/interfaces/ApiResponseCollection';
 
 @Component({
   selector: 'app-material-list',
-  imports: [MaterialCardComponent, MaterialSearcherComponent, CommonModule, RouterLink],
+  imports: [MaterialCardComponent, MaterialSearcherComponent, CommonModule, RouterLink, PaginationButtons],
   templateUrl: './material-list.html',
   standalone: true,
   styleUrl: './material-list.scss'
@@ -15,13 +17,17 @@ import {RouterLink} from '@angular/router';
 export class MaterialListComponent implements OnInit {
 
   readonly data = input<Material[]>([]);
+  readonly pagination = input<Pagination>({} as Pagination);
   readonly entity = signal<string>('materiale');
   readonly route = signal<string>('material');
   readonly action = signal<string>('material');
   readonly option = input<boolean>(false);
+  paginationData = signal<Pagination>({} as Pagination);
   materialList = signal<Material[]>([]);
   selectedMaterial = output<Material>();
+  pageChange = output<number>();
   ngOnInit() {
+    this.paginationData.set(this.pagination());
     this.materialList.set(this.data());
   }
 

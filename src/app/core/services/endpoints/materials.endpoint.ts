@@ -9,4 +9,5 @@ export const materialEndpoint = {
   stocks: '/materials/stocks/:id',
   works: '/materials/works/:id',
   invoices: '/materials/invoices/:id',
+  paginate: '/materials/paginate/',
 };

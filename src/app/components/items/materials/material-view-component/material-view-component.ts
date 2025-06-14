@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MaterialComponent} from '@components/items/materials/material/material.component';
 import {MaterialListComponent} from '@components/items/materials/material-list/material-list';
@@ -30,17 +30,26 @@ export class MaterialViewComponent {
   private categoryService = inject(CategoryService);
   private measureService = inject(MeasureService);
 
-  materialResource = rxResource({
-    stream : () => this.service.getAll(),
-  })
+  materialPage = signal(1);
+  subcategoryPage = signal(1);
+  categoryPage = signal(1);
+  measurePage = signal(1);
 
+
+  materialResource = rxResource({
+    params : () => {return{ page: this.materialPage()}},
+    stream : ({params}) => this.service.getAll(params.page),
+  })
   subcategoryResource = rxResource({
-    stream : () => this.subcategoryService.getAll(),
+    params : () => {return{ page: this.subcategoryPage()}},
+    stream : ({params}) => this.subcategoryService.getAll(params.page),
   })
   categoryResource = rxResource({
-    stream : () => this.categoryService.getAll(),
+    params : () => {return{ page: this.categoryPage()}},
+    stream : ({params}) => this.categoryService.getAll(params.page),
   })
   measureResource = rxResource({
-    stream : () => this.measureService.getAll(),
+    params : () => {return{ page: this.measurePage()}},
+    stream : ({params}) => this.measureService.getAll(params.page),
   })
 }

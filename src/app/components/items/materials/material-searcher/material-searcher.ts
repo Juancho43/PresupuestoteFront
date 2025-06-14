@@ -35,6 +35,6 @@ export class MaterialSearcherComponent {
   }
 
   complete() {
-   this.results.emit(this.searchResource.value()?.data!.results || []);
+   this.results.emit(this.searchResource.value()?.data!.results! || []);
   }
 }

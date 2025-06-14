@@ -1,11 +1,17 @@
 @let materialList = this.materialResource.value()!.data!.results;
+@let materialPagination = this.materialResource.value()!.data!.pagination;
 @let subcategoryList = this.subcategoryResource.value()!.data!.results;
+@let subcategoryPagination = this.subcategoryResource.value()!.data!.pagination;
 @let categoryList = this.categoryResource.value()!.data!.results;
+@let categoryPagination = this.categoryResource.value()!.data!.pagination;
 @let measureList = this.measureResource.value()!.data!.results;
+@let measurePagination = this.measureResource.value()!.data!.pagination;
 <section>
   <app-material-list
     [data]="materialList"
     [option]="true"
+    [pagination]="materialPagination"
+    (pageChange)="this.materialPage.set($event)"
   />
   <app-subcategory-list
     [data] = "subcategoryList"

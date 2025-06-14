@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Measure} from '../../interfaces/entities/measure';
+import {Measure} from '@models/measure';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -9,6 +9,8 @@ import {environment} from '../../../../environments/environment.development';
 import {measureEndpoint} from '../endpoints/measures.endpoint';
 import {IPerson} from '@models/IPerson';
 import {peopleEndpoint} from '@services/endpoints/people.endpoint';
+import {Subcategory} from '@models/subcategory';
+import {subcategoryEndpoint} from '@services/endpoints/subcategories.endpoint';
 
 
 @Injectable({
@@ -17,8 +19,10 @@ import {peopleEndpoint} from '@services/endpoints/people.endpoint';
 export class MeasureService implements ICrudeable<Measure> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Measure>> {
-    return this.http.get<ApiResponseCollection<Measure>>(environment.apiUrlV1 + measureEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Measure>> {
+    return this.http.get<ApiResponseCollection<Measure>>(
+      `${environment.apiUrlV1}${measureEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Measure>> {
     return this.http.get<ApiResponse<Measure>>(environment.apiUrlV1 + measureEndpoint.getById.replace(':id', id.toString()));

@@ -5,4 +5,5 @@ export const measureEndpoint = {
   update: '/measures/:id',
   delete: '/measures/:id',
   search: '/measures/search/:query',
+  paginate: '/measures/paginate/',
 };

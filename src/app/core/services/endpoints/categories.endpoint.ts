@@ -5,4 +5,5 @@ export const categoryEndpoint = {
   update: '/categories/:id',
   delete: '/categories/:id',
   search: '/categories/search/:query',
+  paginate: '/categories/paginate/',
 };

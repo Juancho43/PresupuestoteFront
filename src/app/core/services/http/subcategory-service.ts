@@ -1,12 +1,14 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Subcategory} from '../../interfaces/entities/subcategory';
+import {Subcategory} from '@models/subcategory';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {subcategoryEndpoint} from '../endpoints/subcategories.endpoint';
+import {Material} from '@models/material';
+import {materialEndpoint} from '@services/endpoints/materials.endpoint';
 
 
 @Injectable({
@@ -15,8 +17,10 @@ import {subcategoryEndpoint} from '../endpoints/subcategories.endpoint';
 export class SubcategoryService implements ICrudeable<Subcategory> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Subcategory>> {
-    return this.http.get<ApiResponseCollection<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Subcategory>> {
+    return this.http.get<ApiResponseCollection<Subcategory>>(
+      `${environment.apiUrlV1}${subcategoryEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Subcategory>> {
     return this.http.get<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.getById.replace(':id', id.toString()));

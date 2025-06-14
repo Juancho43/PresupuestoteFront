@@ -1,12 +1,14 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Category} from '../../interfaces/entities/category';
+import {Category} from '@models/category';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {categoryEndpoint} from '../endpoints/categories.endpoint';
+import {Subcategory} from '@models/subcategory';
+import {subcategoryEndpoint} from '@services/endpoints/subcategories.endpoint';
 
 
 @Injectable({
@@ -15,8 +17,10 @@ import {categoryEndpoint} from '../endpoints/categories.endpoint';
 export class CategoryService implements ICrudeable<Category> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Category>> {
-    return this.http.get<ApiResponseCollection<Category>>(environment.apiUrlV1 + categoryEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Category>> {
+    return this.http.get<ApiResponseCollection<Category>>(
+      `${environment.apiUrlV1}${categoryEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Category>> {
     return this.http.get<ApiResponse<Category>>(environment.apiUrlV1 + categoryEndpoint.getById.replace(':id', id.toString()));
