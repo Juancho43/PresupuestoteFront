@@ -4,4 +4,5 @@ export const clientEndpoint = {
   create: '/clients',
   update: '/clients/:id',
   delete: '/clients/:id',
+  paginate: '/clients/paginate/',
 };

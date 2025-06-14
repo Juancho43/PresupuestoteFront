@@ -1,5 +1,5 @@
 @let employee = employeeResource.value()?.data!;
-@let payments = paymentsResource.value()?.data!;
+@let payments = paymentsResource.value()?.data!.results;;
 <section>
   <article>
     <app-employee [employee]="employee"/>

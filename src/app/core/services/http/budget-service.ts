@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Budget, BudgetRequest, BudgetState} from '../../interfaces/entities/budget';
+import {Budget, BudgetRequest, BudgetState} from '@models/budget';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -16,8 +16,10 @@ import {IOwnable} from '@models/IOwnable';
 export class BudgetService implements ICrudeable<Budget,BudgetRequest> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Budget>> {
-    return this.http.get<ApiResponseCollection<Budget>>(environment.apiUrlV1 + budgetEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Budget>> {
+    return this.http.get<ApiResponseCollection<Budget>>(
+      `${environment.apiUrlV1}${budgetEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Budget>> {
     return this.http.get<ApiResponse<Budget>>(environment.apiUrlV1 + budgetEndpoint.getById.replace(':id', id.toString()));

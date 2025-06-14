@@ -1,5 +1,5 @@
 @let client = clientResource.value()?.data!;
-@let payments = paymentsResource.value()?.data!;
+@let payments = paymentsResource.value()?.data!.results;;
 <section>
   <article>
     <app-client [client]="client"/>
@@ -11,5 +11,6 @@
     route="budget"
     [option]="true"
     [personId]="client.id!"
+
   />
 </section>

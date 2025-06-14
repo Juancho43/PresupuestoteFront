@@ -42,6 +42,7 @@ export const routes: Routes = [
   { path : 'user', component: UserViewComponent, canActivate: [authGuard] },
 
   //ClientRoutes
+
   {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
   {path: 'client/detail/:id', component: ClientDetailComponent},
   {path: 'client/edit/:id', component: ClientViewComponent},

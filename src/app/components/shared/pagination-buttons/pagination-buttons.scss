@@ -1,0 +1,11 @@
+@use '../../../core/styles/buttons' as button;
+
+.pagination-button{
+  @include button.button;
+}
+
+div{
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}

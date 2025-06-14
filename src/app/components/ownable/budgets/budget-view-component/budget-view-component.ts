@@ -1,4 +1,4 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {PersonListComponent} from "@components/people/person-list-component/person-list-component";
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {BudgetFormComponent} from '../budget-form-component/budget-form-component';
@@ -21,16 +21,21 @@ export class BudgetViewComponent {
   private clientService = inject(ClientService);
   readonly clientId = input<number>(0);
   readonly id = input(0);
-
+  clientPage = signal(1);
+  budgetPage = signal(1);
   budgetsResource = rxResource({
-    stream :() => {
-      return this.service.getAll();
+    params: ()=>{
+      return{ page: this.budgetPage()}
+    },
+    stream :({params}) => {
+      return this.service.getAll(params.page);
     }
   })
 
   clientsResource = rxResource({
-    stream :() => {
-      return this.clientService.getAll();
+    params: () =>{return{page : this.clientPage()}},
+    stream :({params}) => {
+      return this.clientService.getAll(params.page);
     }
   })
 

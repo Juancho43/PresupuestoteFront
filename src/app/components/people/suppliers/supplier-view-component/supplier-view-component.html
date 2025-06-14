@@ -1,4 +1,5 @@
-@let data = this.supplierResource.value()?.data!;
+@let data = this.supplierResource.value()?.data!.results;
+@let pagination = this.supplierResource.value()?.data!.pagination;
 
 <section>
   @if(!this.supplierResource.isLoading() && !this.supplierResource.error()){
@@ -9,6 +10,7 @@
       route="supplier"
       action="invoice"
       [option]="false"
+      [pagination]="pagination"
     />
     <app-supplier-form-component/>
   }

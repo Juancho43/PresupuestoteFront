@@ -2,9 +2,7 @@
 button {
   border: none;
 }
-
-.Form-actions button,
-.Boton1 {
+@mixin button {
   background-color: core.$cerezo;
   color: core.$blanquecino;
   border-radius: 10px;
@@ -12,18 +10,29 @@ button {
   width: 30%;
   font-family: core.$fontOtro;
 }
+button{
+  &:disabled{
+    color: core.$gris;
+    background-color: core.$nogal;
+  }
+}
+
+.Form-actions button,
+.Boton1 {
+  @include button;
+}
 
 .Boton1 {
   margin: 5px 0;
   width: 100%;
 }
 
-//.Botones button:hover,
-//.Boton1:hover {
-//  box-shadow: 5px 5px 5px core.$nogal;
-//}
+.Botones button:hover,
+.Boton1:hover {
+  box-shadow: 5px 5px 5px core.$nogal;
+}
 
-//.Botones button:active,
-//.Boton1:active {
-//  box-shadow: inset 2px 2px 2px core.$blanquecino;
-//}
+.Botones button:active,
+.Boton1:active {
+  box-shadow: inset 2px 2px 2px core.$blanquecino;
+}

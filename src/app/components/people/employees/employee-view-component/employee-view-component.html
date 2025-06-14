@@ -1,4 +1,5 @@
-@let data = this.employeeResource.value()?.data!;
+@let data = this.employeeResource.value()?.data!.results;
+@let pagination = this.employeeResource.value()?.data!.pagination;
 
 <section>
   @if(!this.employeeResource.isLoading() && !this.employeeResource.error()){
@@ -9,6 +10,7 @@
       route="employee"
       action="salary"
       [option]="false"
+      [pagination]="pagination"
     />
     <app-employee-form-component/>
   }

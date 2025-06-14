@@ -1,4 +1,5 @@
-@let data = this.clientsResource.value()?.data!;
+@let data = this.clientsResource.value()?.data!.results;
+@let pagination = this.clientsResource.value()?.data!.pagination;
 
 <section>
   @if(!this.clientsResource.isLoading() && !this.clientsResource.error()){
@@ -8,7 +9,9 @@
       entity="cliente"
       route="client"
       action="budget"
+      [pagination]="pagination"
       [option]="false"
+      (changePage)="this.page.set($event)"
     />
     <app-client-form
       [id] = this.id()

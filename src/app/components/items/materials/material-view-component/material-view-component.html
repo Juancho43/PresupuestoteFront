@@ -1,7 +1,7 @@
-@let materialList = this.materialResource.value()!.data!;
-@let subcategoryList = this.subcategoryResource.value()!.data!;
-@let categoryList = this.categoryResource.value()!.data!;
-@let measureList = this.measureResource.value()!.data!;
+@let materialList = this.materialResource.value()!.data!.results;
+@let subcategoryList = this.subcategoryResource.value()!.data!.results;
+@let categoryList = this.categoryResource.value()!.data!.results;
+@let measureList = this.measureResource.value()!.data!.results;
 <section>
   <app-material-list
     [data]="materialList"

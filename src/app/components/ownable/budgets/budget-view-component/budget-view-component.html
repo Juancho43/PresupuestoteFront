@@ -1,6 +1,7 @@
-@let data = this.budgetsResource.value()?.data!;
-@let data2 = this.clientsResource.value()?.data!;
-
+@let data = this.budgetsResource.value()?.data!.results;
+@let pagination = this.budgetsResource.value()?.data!.pagination;
+@let data2 = this.clientsResource.value()?.data!.results;
+@let pagination2 = this.clientsResource.value()?.data!.pagination;
 <section>
   @if (budgetsResource.hasValue()) {
     <app-ownable-list
@@ -8,6 +9,8 @@
       entity="presupuesto"
       route="budget"
       [option]="false"
+      [pagination]="pagination"
+      (changePage)="this.budgetPage.set($event)"
     />
   }
   @if (clientsResource.hasValue()){
@@ -17,6 +20,8 @@
       route="client"
       action="budget"
       [option]="true"
+      [pagination]="pagination2"
+      (changePage)="this.clientPage.set($event)"
     />
 
   }

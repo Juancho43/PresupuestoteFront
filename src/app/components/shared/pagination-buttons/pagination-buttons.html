@@ -1,0 +1,15 @@
+<div>
+  <button
+    class="pagination-button"
+    [disabled]="pagination().current_page === 1"
+    (click)="onPreviousPage()">
+    Previous
+  </button>
+
+  <button
+    class="pagination-button"
+    [disabled]="!pagination().has_more_pages"
+    (click)="onNextPage()">
+    Next
+  </button>
+</div>

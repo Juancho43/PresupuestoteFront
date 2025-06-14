@@ -1,13 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Client} from '../../interfaces/entities/client';
+import {Client} from '@core/interfaces/entities/client';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {clientEndpoint} from '../endpoints/clients.endpoint';
-import {Payment} from '../../interfaces/entities/payment';
+import {Payment} from '@models/payment';
 import {paymentEndpoint} from '../endpoints/payments.endpoint';
 
 
@@ -17,8 +17,10 @@ import {paymentEndpoint} from '../endpoints/payments.endpoint';
 export class ClientService implements ICrudeable<Client> {
     private http = inject(HttpClient);
 
-    getAll(): Observable<ApiResponseCollection<Client>> {
-       return this.http.get<ApiResponseCollection<Client>>(environment.apiUrlV1 + clientEndpoint.getAll);
+    getAll(page: number = 1): Observable<ApiResponseCollection<Client>> {
+      return this.http.get<ApiResponseCollection<Client>>(
+        `${environment.apiUrlV1}${clientEndpoint.paginate}${page}`
+      );
     }
     getById(id: number): Observable<ApiResponse<Client>> {
         return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString()));

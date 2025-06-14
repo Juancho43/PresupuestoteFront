@@ -1,5 +1,5 @@
 @let supplier = supplierResource.value()?.data!;
-@let payments = paymentsResource.value()?.data!;
+@let payments = paymentsResource.value()?.data!.results;
 <section>
   <article>
     <app-supplier [supplier]="supplier"/>
@@ -10,5 +10,5 @@
     entity="factura"
     route="invoice"
     [option]="true"
-  />
+    [pagination]=""/>
 </section>

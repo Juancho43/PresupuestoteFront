@@ -8,4 +8,5 @@ export const budgetEndpoint = {
   updateState: '/budgets/states/:id/:state',
   getStates: '/budgets/states/get',
   search: '/ownable/search/:entity/:query',
+  paginate: '/budgets/paginate/',
 };

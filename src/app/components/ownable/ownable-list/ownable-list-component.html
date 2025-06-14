@@ -23,4 +23,7 @@
       Agregar {{ entity() }}
     </button>
   }
+  <app-pagination-buttons
+    [pagination]="paginationData()"
+    (pageChange)="this.changePage.emit($event)"/>
 </div>

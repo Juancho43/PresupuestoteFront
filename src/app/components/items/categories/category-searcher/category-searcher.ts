@@ -35,6 +35,6 @@ export class CategorySearcherComponent {
   }
 
   complete() {
-    // this.results.emit(this.searchResource.value()?.data || []);
+    this.results.emit(this.searchResource.value()?.data!.results || []);
   }
 }

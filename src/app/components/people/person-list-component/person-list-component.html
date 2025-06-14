@@ -1,5 +1,5 @@
 @let personData = personList();
-
+@let pagination = paginationData();
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
   <app-searcher-component
@@ -25,5 +25,9 @@
       Agregar {{ entity() }}
     </button>
   }
+  <app-pagination-buttons
+    [pagination]="pagination"
+    (pageChange)="this.changePage.emit($event)"
+  />
 </div>
 

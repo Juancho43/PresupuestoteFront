@@ -7,13 +7,15 @@
 body{
   background-color: black;
 }
-main{
-
+@mixin flex-comlumn {
   display: flex;
   flex-direction: column;
 }
-img{
-  &:hover {
-    filter: invert(1);
-  }
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
 }
+main{
+  @include flex-comlumn;
+}
+

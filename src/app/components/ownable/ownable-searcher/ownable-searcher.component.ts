@@ -36,6 +36,6 @@ export class OwnableSearcherComponent {
     this.searchResource.reload();
   }
   complete() {
-    this.results.emit(this.searchResource.value()!.data! || []);
+    this.results.emit(this.searchResource.value()!.data!.results || []);
   }
 }

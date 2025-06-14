@@ -31,7 +31,7 @@ export class MaterialJoinComponent {
   materialResource = rxResource({
     stream : () => {return this.service.getAll();},
   })
-  material = signal<Material>(this.materialResource.value()?.data?.[0] || {} as Material);
+  material = signal<Material>(this.materialResource.value()?.data?.results[0] || {} as Material);
 
 
 
