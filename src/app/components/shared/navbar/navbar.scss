@@ -3,14 +3,19 @@
 
 nav{
   background-color: core.$nogal;
-  width: 100vw;
+  width: 20dvw;
+  z-index: 300;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
 }
 ul{
+  @include core.flex-comlumn;
   list-style: none;
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: space-between;
+  height: auto;
+  overflow-y: auto ;
+  gap: 5px;
 }
 li{
   cursor: pointer;
@@ -18,7 +23,7 @@ li{
   padding: .3em;
   border-radius: 5px;
   background-color: core.$abedul;
-  width: 15%;
+  width: 90%;
   text-align: center;
   color: black;
   text-decoration: none;
