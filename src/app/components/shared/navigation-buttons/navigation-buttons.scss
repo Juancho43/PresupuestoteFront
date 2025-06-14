@@ -1,0 +1,13 @@
+@use '../../../core/styles/buttons';
+
+button{
+  @include buttons.button;
+  margin: 1em;
+
+}
+
+.container{
+  width: 100dvw;
+  justify-content: center;
+
+}

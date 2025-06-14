@@ -1,11 +1,12 @@
 import {Component, HostListener, inject, signal} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
-import {AuthService} from '../../../core/services/utils/auth-service';
+import {AuthService} from '@services/utils/auth-service';
+import {NavigationButtons} from '@shared/navigation-buttons/navigation-buttons';
 
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterModule],
+  imports: [RouterLink, RouterModule, NavigationButtons],
   templateUrl: './navbar.html',
   standalone: true,
   styleUrl: './navbar.scss'

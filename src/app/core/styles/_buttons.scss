@@ -16,7 +16,10 @@ button{
     background-color: core.$nogal;
   }
 }
-
+.container{
+  @include core.flex-row;
+  width: 100%;
+}
 .Form-actions button,
 .Boton1 {
   @include button;

@@ -17,7 +17,12 @@ button{
     box-shadow: 2px 5px 5px styles.$cerezo;
     cursor: pointer;
   }
-
+  img{
+    &:hover {
+      cursor: pointer;
+      filter: invert(1);
+    }
+  }
 }
 
 

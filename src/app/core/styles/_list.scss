@@ -12,26 +12,26 @@
   height: 75vh;
   max-width: 50vw;
   min-width: 20vw;
+
+
+  .CardContainer{
+    overflow: hidden;
+    overflow-y: visible;
+  }
+  .List-title {
+    text-decoration: underline;
+    font-family: core.$fontTitulo;
+    margin-bottom: 6px;
+  }
+  .Message{
+    background-color: core.$cerezo;
+    border-radius: 10px 10px 0 30px;
+    padding: 10px;
+    color: core.$blanquecino;
+    font-family: core.$fontOtro;
+  }
 }
 
-.List .CardContainer {
-  overflow: hidden;
-  overflow-y: visible;
-}
-
-.List-title {
-  text-decoration: underline;
-  font-family: core.$fontTitulo;
-  margin-bottom: 6px;
-}
-
-.List .Message{
-  background-color: core.$cerezo;
-  border-radius: 10px 10px 0 30px;
-  padding: 10px;
-  color: core.$blanquecino;
-  font-family: core.$fontOtro;
-}
 
 @media only screen and (max-width: 950px) {
   .List{

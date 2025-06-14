@@ -34,7 +34,12 @@
   }
 
 
-
+  img{
+    &:hover {
+      cursor: pointer;
+      filter: invert(1);
+    }
+  }
 
 
 

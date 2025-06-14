@@ -1,0 +1,16 @@
+<div class="container">
+  <button
+    (click)="goBack()"
+    [disabled] ="!canGoBack()"
+  >
+    <-
+  </button>
+
+  <button
+    [disabled] ="!canGoForward()"
+    (click)="goForward()"
+  >
+    ->
+  </button>
+
+</div>
