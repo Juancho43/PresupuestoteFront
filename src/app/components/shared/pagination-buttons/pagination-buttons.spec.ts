@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PaginationButtons } from './pagination-buttons';
+import {PaginationButtons} from './pagination-buttons';
 
 describe('PaginationButtons', () => {
   let component: PaginationButtons;

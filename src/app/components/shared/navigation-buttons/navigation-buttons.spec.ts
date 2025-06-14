@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NavigationButtons } from './navigation-buttons';
+import {NavigationButtons} from './navigation-buttons';
 
 describe('NavigationButtons', () => {
   let component: NavigationButtons;

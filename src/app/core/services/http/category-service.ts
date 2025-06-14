@@ -7,8 +7,6 @@ import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {categoryEndpoint} from '../endpoints/categories.endpoint';
-import {Subcategory} from '@models/subcategory';
-import {subcategoryEndpoint} from '@services/endpoints/subcategories.endpoint';
 
 
 @Injectable({

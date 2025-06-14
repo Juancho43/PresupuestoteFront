@@ -5,7 +5,6 @@ import {MeasureCardComponent} from '@components/items/measures/measure-card-comp
 import {RouterLink} from '@angular/router';
 import {MeasureSearchComponent} from '@components/items/measures/measure-search-component/measure-search-component';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
-import {Subcategory} from '@models/subcategory';
 import {PaginationButtons} from '@shared/pagination-buttons/pagination-buttons';
 
 @Component({

@@ -5,7 +5,6 @@ import {CategorySearcherComponent} from '@components/items/categories/category-s
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
-import {Subcategory} from '@models/subcategory';
 import {PaginationButtons} from '@shared/pagination-buttons/pagination-buttons';
 
 @Component({

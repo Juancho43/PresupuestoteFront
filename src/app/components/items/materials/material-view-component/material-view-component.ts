@@ -1,6 +1,4 @@
 import {Component, inject, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {MaterialComponent} from '@components/items/materials/material/material.component';
 import {MaterialListComponent} from '@components/items/materials/material-list/material-list';
 import {CategoryListComponent} from '@components/items/categories/category-list/category-list';
 import {SubcategoryListComponent} from '@components/items/subcategories/subcategory-list/subcategory-list';

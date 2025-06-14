@@ -1,6 +1,5 @@
 import {IOwnable} from './IOwnable';
 import {Work} from './work';
-import {Client} from './client';
 
 
 export interface Budget extends IOwnable{

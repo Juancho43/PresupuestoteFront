@@ -1,0 +1,57 @@
+@let edit  = false;
+  <form [formGroup]="MaterialForm" (ngSubmit)="onSubmit()" >
+    <fieldset>
+      <legend class="List-title"> {{ edit ? 'Actualizar un material' : 'Crear un material' }}</legend>
+      @if(MaterialForm.invalid && MaterialForm.dirty){
+        <div class="invalid">
+          @if (MaterialForm.get('name')?.invalid){
+            <p>Debe escribir el nombre.</p>
+          }
+          @if (MaterialForm.get('description')?.invalid){
+            <p>Debe escribir una Descripción.</p>
+          }
+          @if (MaterialForm.get('measure')?.invalid){
+            <p>Debe escribir una medida.</p>
+          }
+          @if (MaterialForm.get('unitMeasure')?.invalid){
+            <p>Debe escribir una unidad de medida.</p>
+          }
+        </div>
+      }
+
+      <label for="name">Nombre:</label>
+      <input type="text" name="name" id="name" formControlName="name">
+      <label for="description">Descripción:</label>
+      <textarea name="description" id="description" formControlName="description"></textarea>
+      <label for="brand">Marca:</label>
+      <input type="text" name="brand" id="brand" formControlName="brand">
+      <label for="color">Color:</label>
+      <input type="text" name="color" id="color" formControlName="color">
+      <label for="measure">Medida:</label>
+      <input type="text" name="measure" id="measure" formControlName="measure">
+      <label for="unitMeasure">Unidad de medida:</label>
+      <input type="text" name="unitMeasure" id="unitMeasure" formControlName="unitMeasure">
+      <label for="subCategory">Sub rubro</label>
+      <select name="subCategory" id="subCategory" formControlName="subCategory">
+        @for (item of subCategories; track $index) {
+          <option value="{{item.subCategoryMaterialId}}"  >{{item.subCategoryName}}</option>
+        }
+      </select>
+
+    </fieldset>
+    <fieldset class="Botones">
+      <button type="reset" (click)="resetForm($event)">Limpiar</button>
+
+      <button type="submit" [disabled]="!MaterialForm.valid" [class.disactive]="!MaterialForm.valid">
+        @if (edit) {
+          Actualizar
+        }@else {
+          Guardar
+        }
+      </button>
+    </fieldset>
+  </form>
+
+
+
+

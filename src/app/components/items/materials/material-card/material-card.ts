@@ -1,7 +1,6 @@
 import {Component, input} from '@angular/core';
 import {Material} from '@models/material';
 import {CommonModule} from '@angular/common';
-import {IOwnable} from '@models/IOwnable';
 import {CardButtonComponent} from '@shared/card-button-component/card-button-component';
 
 @Component({

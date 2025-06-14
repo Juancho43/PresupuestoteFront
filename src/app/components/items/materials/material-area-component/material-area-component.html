@@ -1,8 +1,52 @@
+@let showMaterialForm = this.showMaterialForm();
+@let showCategoryForm = this.showCategoryForm();
+@let showSubcategoryForm = this.showSubcategoryForm();
+@let showMeasureForm = this.showMeasureForm();
 <section>
-  <app-material-form-component/>
   <article>
-    <app-category-form-component/>
-    <app-subcategory-form-component/>
-    <app-measure-form-component/>
+    <ul>
+      <li (click)="this.openForm.set('material')">
+        @if (showMaterialForm) {
+          Cerrar formulario de Materiales
+        }@else{
+          Abrir formulario de Materiales
+        }
+      </li>
+      <li (click)="this.openForm.set('category')">
+        @if (showCategoryForm) {
+          Cerrar formulario de Rubros
+        }@else{
+          Abrir formulario de Rubros
+        }
+      </li>
+      <li (click)="this.openForm.set('subcategory')">
+        @if (showSubcategoryForm) {
+          Cerrar formulario de Sub-Rubros
+        }@else{
+          Abrir formulario de Sub-Rubros
+        }
+      </li>
+      <li (click)="this.openForm.set('measure')">
+        @if (showMeasureForm) {
+          Cerrar formulario de Medidas
+        }@else{
+          Abrir formulario de Medidas
+        }
+      </li>
+    </ul>
+  </article>
+  <article>
+    @if (showMaterialForm) {
+      <app-material-form/>
+    }
+    @if (showCategoryForm) {
+      <app-category-form/>
+    }
+    @if (showSubcategoryForm) {
+      <app-subcategory-form/>
+    }
+    @if (showMeasureForm) {
+      <app-measure-form/>
+    }
   </article>
 </section>

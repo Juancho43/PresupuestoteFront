@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MaterialJoinComponent } from './material-join.component';
+import {MaterialJoinComponent} from './material-join.component';
 
 describe('MaterialJoin', () => {
   let component: MaterialJoinComponent;

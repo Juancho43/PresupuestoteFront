@@ -1,7 +1,5 @@
 import {Component, inject, output, signal} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialService} from '@services/http/material-service';
-import {Material} from '@models/material';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponseCollection} from '@core/interfaces/ApiResponseCollection';

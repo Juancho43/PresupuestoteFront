@@ -1,4 +1,4 @@
-import {Component, Input, input, OnInit, output, signal} from '@angular/core';
+import {Component, input, OnInit, output, signal} from '@angular/core';
 import {IOwnable} from '@models/IOwnable';
 import {OwnableCardComponent} from '@components/ownable/ownable-card/ownable-card-component';
 import {OwnableSearcherComponent} from '@components/ownable/ownable-searcher/ownable-searcher.component';

@@ -1,5 +1,4 @@
 import {Component, inject, input} from '@angular/core';
-import {MaterialComponent} from '@components/items/materials/material/material.component';
 import {StockListComponent} from '@components/items/stocks/stock-list-component/stock-list-component';
 import {PriceListComponent} from '@components/items/prices/price-list-component/price-list-component';
 import {MaterialService} from '@services/http/material-service';
@@ -10,7 +9,6 @@ import {WorkListComponent} from '@components/works/work-list-component/work-list
 @Component({
   selector: 'app-material-detail-component',
   imports: [
-    MaterialComponent,
     StockListComponent,
     PriceListComponent,
     OwnableListComponent,

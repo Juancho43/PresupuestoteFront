@@ -1,6 +1,6 @@
-import { Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Pagination } from '@core/interfaces/ApiResponseCollection';
+import {Component, input, output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Pagination} from '@core/interfaces/ApiResponseCollection';
 
 @Component({
   selector: 'app-pagination-buttons',

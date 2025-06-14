@@ -1,6 +1,5 @@
 import {Component, input} from '@angular/core';
 import {Price} from '@models/price';
-import {CardButtonComponent} from '@shared/card-button-component/card-button-component';
 import {CurrencyPipe, DatePipe} from '@angular/common';
 
 @Component({

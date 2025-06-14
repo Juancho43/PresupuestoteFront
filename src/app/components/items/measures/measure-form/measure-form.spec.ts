@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {MaterialFormComponent} from './material-form-component';
+import {MeasureForm} from './measure-form';
 
-describe('MaterialFormComponent', () => {
-  let component: MaterialFormComponent;
-  let fixture: ComponentFixture<MaterialFormComponent>;
+describe('MeasureForm', () => {
+  let component: MeasureForm;
+  let fixture: ComponentFixture<MeasureForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MaterialFormComponent]
+      imports: [MeasureForm]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MaterialFormComponent);
+    fixture = TestBed.createComponent(MeasureForm);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
