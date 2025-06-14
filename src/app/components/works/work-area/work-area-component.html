@@ -1,14 +1,9 @@
 @if(!workResource.isLoading() && !workResource.error()) {
   @let work = this.workResource.value()!.data!;
-
+  @let budgetId=this.budgetId();
   <section>
-
-    <p [routerLink]="`/budget/detail/${work.budget!.id!}/${work.id!}`" style="color:red">
-      ir al presupuesto
-    </p>
-
     <app-work-form
-      [budgetId]="work.budget!.id!"
+      [budgetId]="budgetId"
       [item]="material()"
       [work]="work"
       (selectedItem)="onEditMaterial($event)"

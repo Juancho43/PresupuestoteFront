@@ -1,0 +1,10 @@
+.JoinContainer{
+  display: grid;
+  grid-template-columns: repeat(2, 20dvw);
+
+  .Buttons{
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+}
+

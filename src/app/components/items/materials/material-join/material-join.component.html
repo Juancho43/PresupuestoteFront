@@ -1,4 +1,7 @@
-@let materials = this.materialResource.value()?.data!.results;;
+
+@let materials = this.materialResource.value()?.data!.results;
+@let materialsPagination = this.materialResource.value()?.data!.pagination;
+<div class="JoinContainer">
 
 <app-item-form
   [initialItem]="selectedItem()"
@@ -15,10 +18,16 @@
   <button type="reset" (click)="reset()">Limpiar enlaces</button>
 </div>
 @if(showList()){
-  <app-material-list
-    [data]="materials"
-    [option]="true"
-    (selectedMaterial)="selectMaterial($event)"
-  />
+  @if (!this.materialResource.isLoading()) {
+    <app-material-list
+      [data]="materials"
+      [option]="true"
+      (selectedMaterial)="selectMaterial($event)"
+      [pagination]="materialsPagination"
+      (pageChange)="this.materialPage.set($event)"
+
+    />
+  }
 }
 
+</div>

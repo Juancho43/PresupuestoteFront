@@ -24,13 +24,12 @@ export class ItemFormComponent {
 
   constructor() {
     effect(() => {
-      this.initialItem();
       if(this.initialItem()) this.setForm(this.initialItem());
     });
   }
 
   setForm(item : Item) {
-    if(item.material.id === undefined) return;
+    if(!item.material || !item.material.id ) return;
     this.itemForm.patchValue({
       materialId: item.material.id!,
       materialName: item.material.name,

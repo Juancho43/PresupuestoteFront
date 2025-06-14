@@ -28,8 +28,10 @@ export class MaterialJoinComponent {
 
 
   showList = signal<boolean>(false);
+  materialPage=signal(1);
   materialResource = rxResource({
-    stream : () => {return this.service.getAll();},
+    params : () => {return{page: this.materialPage()}},
+    stream : ({params}) => {return this.service.getAll(params.page);},
   })
   material = signal<Material>(this.materialResource.value()?.data?.results[0] || {} as Material);
 
@@ -38,7 +40,6 @@ export class MaterialJoinComponent {
 
   constructor() {
     effect(() => {
-      this.item();
       if(this.item()) this.selectedItem.set(this.item());
 
     });

@@ -8,7 +8,7 @@ import {Work} from '@models/work';
 import {MaterialJoinComponent} from '@components/items/materials/material-join/material-join.component';
 import {Item} from '@models/item';
 import {Material} from '@models/material';
-import {RouterLink} from '@angular/router';
+
 
 @Component({
   standalone:true,
@@ -16,7 +16,6 @@ import {RouterLink} from '@angular/router';
   imports: [
     WorkFormComponent,
     MaterialJoinComponent,
-    RouterLink,
   ],
   templateUrl: './work-area-component.html',
   styleUrl: './work-area-component.scss'

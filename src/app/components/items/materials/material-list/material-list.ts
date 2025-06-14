@@ -42,6 +42,7 @@ export class MaterialListComponent implements OnInit {
   }
 
   handleResults(results: Material[]) {
+    this.pageChange.emit(1);
     if(results.length > 0) this.materialList.set(results);
     if(results.length === 0) this.materialList.set(this.data());
   }

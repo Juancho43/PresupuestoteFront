@@ -22,7 +22,7 @@ export class WorkFormComponent implements OnInit {
 
   budgetId = input.required<number>();
   isEdit = signal<boolean>(false);
-  work = input<Work>({} as Work);
+  work = input<Work>({order : 0} as Work);
 
   WorkForm: FormGroup = new FormGroup({
     budgetId: new FormControl(0, Validators.required),
@@ -62,9 +62,8 @@ export class WorkFormComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      // Only react to work changes
       const currentWork = this.work();
-      if (currentWork.order > 0) this.onEdit();
+      if (currentWork && currentWork.order > 0) this.onEdit();
     });
 
     effect(() => {
