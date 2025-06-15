@@ -26,6 +26,7 @@ import {EmployeeFormComponent} from '@components/people/employees/employee-form-
 import {WorkAreaComponent} from '@components/works/work-area/work-area-component';
 import {MaterialAreaComponent} from '@components/items/materials/material-area-component/material-area-component';
 import {UserViewComponent} from '@components/user/user-view-component/user-view-component';
+import {WorkViewComponent} from '@components/works/work-view-component/work-view-component';
 
 
 export const routes: Routes = [
@@ -56,6 +57,7 @@ export const routes: Routes = [
       {path: 'budget/detail/:id', component: BudgetDetailComponent},
       {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
       // //WorkRoute
+      {path: 'work', component: WorkViewComponent},
       {path: 'work/new/:budgetId', component: WorkAreaComponent},
       {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},
       // //MaterialRoute

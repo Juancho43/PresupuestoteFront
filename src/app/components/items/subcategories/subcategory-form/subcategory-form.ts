@@ -2,7 +2,7 @@ import {Component, effect, inject, input, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Category} from '@models/category';
 import {SubcategoryService} from '@services/http/subcategory-service';
-import {Subcategory, SubCategoryRequest} from '@models/subcategory';
+import {SubCategoryRequest} from '@models/subcategory';
 
 @Component({
   selector: 'app-subcategory-form',

@@ -1,4 +1,4 @@
-import {Component, effect, input, OnInit, output, signal} from '@angular/core';
+import {Component, input, OnInit, output, signal} from '@angular/core';
 import {Material} from '@models/material';
 import {MaterialCardComponent} from '@components/items/materials/material-card/material-card';
 import {MaterialSearcherComponent} from '@components/items/materials/material-searcher/material-searcher';

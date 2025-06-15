@@ -1,4 +1,4 @@
-import {Component, HostListener, inject, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {RouterLink, RouterModule} from '@angular/router';
 import {AuthService} from '@services/utils/auth-service';
 import {NgClass} from '@angular/common';

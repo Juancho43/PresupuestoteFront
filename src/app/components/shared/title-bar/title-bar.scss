@@ -1,0 +1,19 @@
+@use '../../../../styles' as core;
+
+div{
+  background-color: core.$nogal;
+  @include core.flex-row;
+  width: 100dvw;
+  justify-content: space-between;
+  align-items: center;
+  height: 5dvh;
+}
+h2{
+  color: core.$blanquecino;
+  font-family: core.$fontTitulo;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+.navigation-buttons{
+  width: 20%;
+}
