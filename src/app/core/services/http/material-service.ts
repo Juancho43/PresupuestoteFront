@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Material} from '@models/material';
+import {Material, MaterialRequest} from '@models/material';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -12,7 +12,7 @@ import {materialEndpoint} from '../endpoints/materials.endpoint';
 @Injectable({
   providedIn: 'root'
 })
-export class MaterialService implements ICrudeable<Material> {
+export class MaterialService implements ICrudeable<Material, MaterialRequest> {
   private http = inject(HttpClient);
 
   getAll(page: number = 1): Observable<ApiResponseCollection<Material>> {
@@ -23,10 +23,10 @@ export class MaterialService implements ICrudeable<Material> {
   getById(id: number): Observable<ApiResponse<Material>> {
     return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.getById.replace(':id', id.toString()));
   }
-  create(entity: Material): Observable<ApiResponse<Material>> {
+  create(entity: MaterialRequest): Observable<ApiResponse<Material>> {
     return this.http.post<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.create, entity);
   }
-  update(entity: Material): Observable<ApiResponse<Material>> {
+  update(entity: MaterialRequest): Observable<ApiResponse<Material>> {
     return this.http.put<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Material>> {

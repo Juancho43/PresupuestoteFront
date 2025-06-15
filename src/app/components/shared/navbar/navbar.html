@@ -1,26 +1,58 @@
-<nav >
+<nav [ngClass]="{'hide': !hide()}">
   <ul>
     @if(hide()){
-
       @if(session()){
-
-        <li routerLink="/home">Menú</li>
-        <li routerLinkActive="active" routerLink="/budget">Presupuestar</li>
-        <li routerLinkActive="active" routerLink="/client">Clientes</li>
-        <li routerLinkActive="active" routerLink="/work">Ver trabajos</li>
-        <li routerLinkActive="active" routerLink="/material">Ver materiales</li>
-        <li routerLinkActive="active" routerLink="/supplier">Ver proveedores</li>
-        <li routerLinkActive="active" routerLink="/employee">Ver empleados</li>
-        <li routerLinkActive="active" routerLink="/user" >Usuario</li>
-        <li routerLinkActive="active" routerLink="/logout" >Cerrar sesión</li>
-        <li (click)="toggleMenu()">Cerrar menú...</li>
+        <li routerLink="/home">
+          <img src="./icons/menu_icon.svg" alt="Inicio" width="20px" height="20px">
+          Menú
+        </li>
+        <li routerLinkActive="active" routerLink="/budget">
+          <img src="./icons/budget_icon.svg" alt="Presupuestar" width="20px" height="20px">
+          Presupuestar
+        </li>
+        <li routerLinkActive="active" routerLink="/client">
+          <img src="./icons/client_icon.svg" alt="Clientes" width="20px" height="20px">
+          Clientes
+        </li>
+        <li routerLinkActive="active" routerLink="/work">
+          <img src="./icons/work_icon.svg" alt="Trabajos" width="20px" height="20px">
+          Ver trabajos
+        </li>
+        <li routerLinkActive="active" routerLink="/material">
+          <img src="./icons/material_icon.svg" alt="Materiales" width="20px" height="20px">
+          Ver materiales
+        </li>
+        <li routerLinkActive="active" routerLink="/supplier">
+          <img src="./icons/supplier_icon.svg" alt="Proveedores" width="20px" height="20px">
+          Ver proveedores
+        </li>
+        <li routerLinkActive="active" routerLink="/employee">
+          <img src="./icons/employee_icon.svg" alt="Empleados" width="20px" height="20px">
+          Ver empleados
+        </li>
+        <li routerLinkActive="active" routerLink="/user" >
+          <img src="./icons/user_icon.svg" alt="Usuario" width="20px" height="20px">
+          Usuario
+        </li>
+        <li routerLinkActive="active" routerLink="/logout" >
+          <img src="./icons/logout_icon.svg" alt="Cerrar sesión" width="20px" height="20px">
+          Cerrar sesión
+        </li>
+        <li (click)="toggleMenu()">
+          <img src="./icons/menu_icon.svg" alt="Cerrar menú" width="20px" height="20px">
+          Cerrar menú...
+        </li>
       } @else {
-        <li routerLinkActive="active" routerLink="/login" >Iniciar sesión</li>
+        <li routerLinkActive="active" routerLink="/login" >
+          <img src="./icons/login_icon.svg" alt="Iniciar sesión" width="20px" height="20px">
+          Iniciar sesión
+        </li>
       }
     }@else{
-      <li (click)="toggleMenu()">Abrir menú...</li>
+      <li (click)="toggleMenu()">
+        <img src="./icons/menu_icon.svg" alt="Abrir menú" width="20px" height="20px">
+      </li>
     }
   </ul>
-  <app-navigation-buttons/>
 </nav>
 

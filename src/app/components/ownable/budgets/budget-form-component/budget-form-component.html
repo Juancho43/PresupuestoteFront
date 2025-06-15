@@ -26,8 +26,7 @@
 
     @if (clientId !== undefined){
       <label for="client">Cliente:</label>
-      <input type="text" id="client" name="client" [value]="client?.person ? client!.person.last_name + ' ' + client!.person.name : ''" readonly>
-      <input type="hidden" [value]="clientId" name="idClient" formControlName="clientId">
+      <input type="text" id="client" name="client" [value]="client!.person.last_name + ' ' + client!.person.name " readonly>
     }@else{
       <label>Seleccione un cliente por favor</label>
     }

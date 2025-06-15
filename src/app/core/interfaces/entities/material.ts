@@ -23,3 +23,15 @@ export interface Material extends Entity{
 
 
 }
+
+
+export interface MaterialRequest{
+  id?: number;
+  name: string;
+  description: string;
+  brand: string;
+  color: string;
+  sub_category_id: number;
+  measure_id: number;
+  unit_measure: number;
+}

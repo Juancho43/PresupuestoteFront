@@ -13,11 +13,7 @@
       <label for="name">Nombre</label>
       <input type="text" name="name" id="name" formControlName="name">
       <label for="category">Rubro:</label>
-      <select name="category" id="category" formControlName="category">
-        @for (item of categories ; track $index ) {
-          <option value="{{item.categoryId}}">{{item.categoryName}}</option>
-        }
-      </select>
+      <input type="text" name="category" id="category" readonly [value]="this.selectedCategory()!.name">
     </fieldset>
     <fieldset class="Botones">
       <button type="reset" (click)="resetForm($event)">Limpiar</button>

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Subcategory} from '@models/subcategory';
+import {Subcategory, SubCategoryRequest} from '@models/subcategory';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -12,7 +12,7 @@ import {subcategoryEndpoint} from '../endpoints/subcategories.endpoint';
 @Injectable({
   providedIn: 'root'
 })
-export class SubcategoryService implements ICrudeable<Subcategory> {
+export class SubcategoryService implements ICrudeable<Subcategory,SubCategoryRequest> {
   private http = inject(HttpClient);
 
   getAll(page: number = 1): Observable<ApiResponseCollection<Subcategory>> {
@@ -23,10 +23,10 @@ export class SubcategoryService implements ICrudeable<Subcategory> {
   getById(id: number): Observable<ApiResponse<Subcategory>> {
     return this.http.get<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.getById.replace(':id', id.toString()));
   }
-  create(entity: Subcategory): Observable<ApiResponse<Subcategory>> {
+  create(entity: SubCategoryRequest): Observable<ApiResponse<Subcategory>> {
     return this.http.post<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.create, entity);
   }
-  update(entity: Subcategory): Observable<ApiResponse<Subcategory>> {
+  update(entity: SubCategoryRequest): Observable<ApiResponse<Subcategory>> {
     return this.http.put<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Subcategory>> {

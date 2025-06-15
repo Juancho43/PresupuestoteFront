@@ -42,40 +42,46 @@ export const routes: Routes = [
   { path : 'user', component: UserViewComponent, canActivate: [authGuard] },
 
   //ClientRoutes
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      {path: 'client', component: ClientViewComponent},
+      {path: 'client/detail/:id', component: ClientDetailComponent},
+      {path: 'client/edit/:id', component: ClientViewComponent},
+      // //BudgetRoutes
+      {path: 'budget', component: BudgetViewComponent},
+      {path: 'budget/new/:clientId', component: BudgetViewComponent},
+      {path: 'budget/edit/:id/:clientId', component: BudgetViewComponent},
+      {path: 'budget/detail/:id', component: BudgetDetailComponent},
+      {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
+      // //WorkRoute
+      {path: 'work/new/:budgetId', component: WorkAreaComponent},
+      {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},
+      // //MaterialRoute
+      {path: 'material', component: MaterialViewComponent},
+      {path: 'material/detail/:id', component: MaterialDetailComponent},
+      {path: 'material/new', component: MaterialAreaComponent},
+      {path: 'material/edit/:entity/:id', component: MaterialAreaComponent},
 
-  {path: 'client', component: ClientViewComponent, canActivate: [authGuard],},
-  {path: 'client/detail/:id', component: ClientDetailComponent},
-  {path: 'client/edit/:id', component: ClientViewComponent},
-  // //BudgetRoutes
-  {path: 'budget', component: BudgetViewComponent},
-  {path: 'budget/new/:clientId', component: BudgetViewComponent},
-  {path: 'budget/edit/:id/:clientId', component: BudgetViewComponent},
-  {path: 'budget/detail/:id', component: BudgetDetailComponent},
-  {path: 'budget/detail/:id/:workId', component: BudgetDetailComponent},
-  // //WorkRoute
-  {path: 'work/new/:budgetId', component: WorkAreaComponent},
-  {path: 'work/edit/:budgetId/:id', component: WorkAreaComponent},
-  // //MaterialRoute
-  {path: 'material', component: MaterialViewComponent},
-  {path: 'material/detail/:id', component: MaterialDetailComponent},
-  {path: 'material/new', component: MaterialAreaComponent},
-  {path: 'material/edit/:entity/:id', component: MaterialAreaComponent},
+      // //SupplierRoutes
+      {path: 'supplier', component: SupplierViewComponent},
+      {path: 'supplier/detail/:id', component: SupplierDetailComponent},
+      {path: 'supplier/edit/:id', component: SupplierViewComponent},
+      // //InvoiceRoute
+      {path: 'invoice', component: InvoiceViewComponent},
+      {path: 'invoice/detail/:id', component: InvoiceDetailComponent},
+      {path: 'invoice/new/:supplierId', component: InvoiceDetailComponent},
+      // //FixedCostRoute
+      // {path: 'cost', component: CostViewComponent},
+      // {path: 'cost/edit/:costId', component: CostViewComponent},
+      // //EmployeeRoutes
+      {path: 'employee', component: EmployeeViewComponent},
+      {path: 'employee/detail/:id', component: EmployeeDetailComponent},
+      {path: 'employee/edit/:id', component: EmployeeFormComponent},
+    ]
+  },
 
-  // //SupplierRoutes
-  {path: 'supplier', component: SupplierViewComponent},
-  {path: 'supplier/detail/:id', component: SupplierDetailComponent},
-  {path: 'supplier/edit/:id', component: SupplierViewComponent},
-  // //InvoiceRoute
-  {path: 'invoice', component: InvoiceViewComponent},
-  {path: 'invoice/detail/:id', component: InvoiceDetailComponent},
-  {path: 'invoice/new/:supplierId', component: InvoiceDetailComponent},
-  // //FixedCostRoute
-  // {path: 'cost', component: CostViewComponent},
-  // {path: 'cost/edit/:costId', component: CostViewComponent},
-  // //EmployeeRoutes
-  {path: 'employee', component: EmployeeViewComponent},
-  {path: 'employee/detail/:id', component: EmployeeDetailComponent},
-  {path: 'employee/edit/:id', component: EmployeeFormComponent},
   //RedirectionRoutes
   {path: '', redirectTo: 'home' , pathMatch: 'full'},
   {path: '**' , component : HomeComponent},

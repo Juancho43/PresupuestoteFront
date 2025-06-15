@@ -30,12 +30,6 @@ export class MaterialListComponent implements OnInit {
   selectedMaterial = output<Material>();
   pageChange = output<number>();
 
-  constructor() {
-    effect(() => {
-      this.materialList();
-      console.log('Material list updated:', this.materialList());
-    })
-  }
   ngOnInit() {
     this.paginationData.set(this.pagination());
     this.materialList.set(this.data());

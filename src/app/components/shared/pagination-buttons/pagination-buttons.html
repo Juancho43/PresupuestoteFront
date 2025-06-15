@@ -3,13 +3,13 @@
     class="pagination-button"
     [disabled]="pagination().current_page === 1"
     (click)="onPreviousPage()">
-    Previous
+    <img src="./icons/back_icon.svg" height="15px" width="15px" alt="Atrás">
   </button>
   <p>{{pagination().current_page}}</p>
   <button
     class="pagination-button"
     [disabled]="!pagination().has_more_pages"
     (click)="onNextPage()">
-    Next
+    <img src="./icons/forward_icon.svg" height="15px" width="15px" alt="Adelante">
   </button>
 </div>

@@ -2,6 +2,13 @@
 @let showCategoryForm = this.showCategoryForm();
 @let showSubcategoryForm = this.showSubcategoryForm();
 @let showMeasureForm = this.showMeasureForm();
+@if(!this.subcategoryResource.isLoading() && !this.categoryResource.isLoading() && !this.measureResource.isLoading()) {
+  @let subcategoryList = this.subcategoryResource.value()!.data!.results;
+  @let subcategoryPagination = this.subcategoryResource.value()!.data!.pagination;
+  @let categoryList = this.categoryResource.value()!.data!.results;
+  @let categoryPagination = this.categoryResource.value()!.data!.pagination;
+  @let measureList = this.measureResource.value()!.data!.results;
+  @let measurePagination = this.measureResource.value()!.data!.pagination;
 <section>
   <article>
     <ul>
@@ -37,16 +44,52 @@
   </article>
   <article>
     @if (showMaterialForm) {
-      <app-material-form/>
+      <div>
+        <app-material-form
+          [selectedMeasure]="this.selectedMeasure()!"
+          [selectedSubcategory]="this.selectedSubcategory()!"
+        />
+        <app-subcategory-list
+          [data]="subcategoryList"
+          [option]="true"
+          [pagination]="subcategoryPagination"
+          (pageChange)="this.subcategoryPage.set($event)"
+          (selectedSubcategory)="this.selectedSubcategory.set($event)"
+        />
+        <app-measure-list
+          [data]="measureList"
+          [option]="true"
+          [pagination]="measurePagination"
+          (pageChange)="this.measurePage.set($event)"
+          (selectedMeasure)="this.selectedMeasure.set($event)"
+        />
+      </div>
     }
-    @if (showCategoryForm) {
-      <app-category-form/>
+    @if (showCategoryForm)
+    {
+      <div>
+        <app-category-form/>
+      </div>
     }
     @if (showSubcategoryForm) {
-      <app-subcategory-form/>
+      <div>
+        <app-subcategory-form
+          [selectedCategory]="this.selectedCategory()"
+        />
+        <app-category-list
+          [data]="categoryList"
+          [option]="true"
+          [pagination]="categoryPagination"
+          (pageChange)="this.categoryPage.set($event)"
+          (selectedCategory)="this.selectedCategory.set($event)"
+        />
+      </div>
     }
     @if (showMeasureForm) {
-      <app-measure-form/>
+      <div>
+        <app-measure-form/>
+      </div>
     }
   </article>
 </section>
+}

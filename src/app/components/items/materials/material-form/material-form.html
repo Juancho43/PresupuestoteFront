@@ -1,4 +1,4 @@
-@let edit  = false;
+@let edit  = isEditing();
   <form [formGroup]="MaterialForm" (ngSubmit)="onSubmit()" >
     <fieldset>
       <legend class="List-title"> {{ edit ? 'Actualizar un material' : 'Crear un material' }}</legend>
@@ -13,9 +13,6 @@
           @if (MaterialForm.get('measure')?.invalid){
             <p>Debe escribir una medida.</p>
           }
-          @if (MaterialForm.get('unitMeasure')?.invalid){
-            <p>Debe escribir una unidad de medida.</p>
-          }
         </div>
       }
 
@@ -28,16 +25,11 @@
       <label for="color">Color:</label>
       <input type="text" name="color" id="color" formControlName="color">
       <label for="measure">Medida:</label>
-      <input type="text" name="measure" id="measure" formControlName="measure">
+      <input type="text" name="measure" id="measure" formControlName="unitMeasure">
       <label for="unitMeasure">Unidad de medida:</label>
-      <input type="text" name="unitMeasure" id="unitMeasure" formControlName="unitMeasure">
+      <input type="text" name="unitMeasure" id="unitMeasure" readonly [value]="this.selectedMeasure()!.name">
       <label for="subCategory">Sub rubro</label>
-      <select name="subCategory" id="subCategory" formControlName="subCategory">
-        @for (item of subCategories; track $index) {
-          <option value="{{item.subCategoryMaterialId}}"  >{{item.subCategoryName}}</option>
-        }
-      </select>
-
+      <input type="text" name="subCategory" id="subCategory" readonly [value]="this.selectedSubcategory()!.name">
     </fieldset>
     <fieldset class="Botones">
       <button type="reset" (click)="resetForm($event)">Limpiar</button>

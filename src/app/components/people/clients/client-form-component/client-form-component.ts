@@ -59,7 +59,6 @@ export class ClientFormComponent implements OnInit {
   }
 
   setUp() {
-    this.closeModal();
     this.clientForm.reset();
     this.isEdit.set(false);
   }
@@ -103,11 +102,7 @@ export class ClientFormComponent implements OnInit {
     this.setUp();
   }
 
-  closeModal() {
-    // if (this.router.url == '/budget/new/' + this.clientId) {
-    //   // this.modalService.closeModal();
-    // }
-  }
+
 
   setForm(data: Client) {
     this.clientForm.patchValue({

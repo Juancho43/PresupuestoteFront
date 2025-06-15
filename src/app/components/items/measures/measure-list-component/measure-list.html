@@ -8,7 +8,8 @@
 
   @for (measure of measureData; track measure.id) {
     <app-measure-card
-     [measure]="measure"
+      (click)="this.selectedMeasure.emit(measure)"
+      [measure]="measure"
       [route]="route()"
     />
   }

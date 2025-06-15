@@ -1,1 +1,7 @@
 @use '../.././../../core/styles/layout';
+div{
+  @include layout.flex-row;
+  gap:18px;
+  width: 80dvw;
+  overflow-x: auto;
+}

@@ -1,14 +1,23 @@
 @use '../../../../styles.scss' as core;
 @use '../../../core/styles/buttons';
-
 nav{
-  background-color: core.$nogal;
+  backdrop-filter: blur(10px) saturate(180%);
+  background-color: rgba(core.$nogal, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(core.$nogal, 0.2);
   width: 20dvw;
   z-index: 300;
   position: fixed;
   bottom: 0;
   right: 0;
 
+}
+.hide{
+  width: 5dvw;
+  li{
+    width: auto;
+    justify-content: center;
+  }
 }
 ul{
   @include core.flex-comlumn;
@@ -18,6 +27,9 @@ ul{
   gap: 5px;
 }
 li{
+  @include core.flex-row;
+  align-items: center;
+  gap: 1rem;
   cursor: pointer;
   margin: 1em;
   padding: .3em;
@@ -42,8 +54,10 @@ li:hover{
 }
 
 .oculto{
+
   display: none;
 }
+
 @media only screen and (max-width: 600px) {
   nav ul{
     flex-direction: column;

@@ -8,6 +8,7 @@
 
   @for (category of categoryData; track category.id) {
     <app-category-card
+      (click)="this.selectedCategory.emit(category)"
       [category]="category"
       [route]="route()"
     />

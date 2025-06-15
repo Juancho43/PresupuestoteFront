@@ -8,6 +8,7 @@
 
   @for (subcategory of subcategoryData; track subcategory.id) {
     <app-subcategory-card
+      (click)="this.selectedSubcategory.emit(subcategory)"
       [subcategory]="subcategory"
       [route]="route()"
     />
