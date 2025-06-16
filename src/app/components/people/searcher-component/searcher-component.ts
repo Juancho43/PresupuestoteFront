@@ -32,11 +32,11 @@ export class SearcherComponent {
     },
   })
 
-  search() {
-    this.searchResource.reload();
-  }
+
+
   complete() {
-    console.log(this.searchResource.error);
+
+    this.searchResource.reload();
     this.results.emit(this.searchResource.value()!.data!.results || []);
   }
 }

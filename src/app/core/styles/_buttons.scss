@@ -16,6 +16,11 @@ button{
     background-color: core.$nogal;
   }
 }
+
+.disactive{
+  color: core.$gris;
+  background-color: core.$nogal;
+}
 .container{
   @include core.flex-row;
   width: 100%;

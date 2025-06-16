@@ -3,12 +3,13 @@ import {IPerson} from '@models/IPerson';
 import {IPersonCardComponent} from '@components/people/person-card-component/i-person-card.component';
 import {SearcherComponent} from '@components/people/searcher-component/searcher-component';
 import {CommonModule} from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
+import {RouterLink} from '@angular/router';
 import {PaginationButtons} from '@shared/pagination-buttons/pagination-buttons';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
+import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
 
 @Component({
-  selector: 'app-person-list-component',
+  selector: 'app-person-list',
   imports: [
     IPersonCardComponent,
     SearcherComponent,
@@ -21,7 +22,8 @@ import {Pagination} from '@core/interfaces/ApiResponseCollection';
   styleUrl: './person-list-component.scss'
 })
 export class PersonListComponent implements OnInit {
-  router = inject(Router);
+
+  private confirmationService = inject(ConfirmationDialogService);
   readonly data = input.required<IPerson[]>();
   readonly pagination = input.required<Pagination>()
   readonly entity = input.required<string>();
@@ -29,6 +31,7 @@ export class PersonListComponent implements OnInit {
   readonly action = input.required<string>();
   readonly option = input.required<boolean>();
   changePage = output<number>();
+  delete = output<number>();
   personList = signal<IPerson[]>([]);
   paginationData = signal<Pagination>({} as Pagination);
   ngOnInit() {
@@ -41,4 +44,20 @@ export class PersonListComponent implements OnInit {
   }
 
 
+  handleDelete($event: number) {
+    const dialog = this.confirmationService.openDialog(
+      `¿Estás seguro de eliminar este ${this.entity()}?`
+    );
+
+    dialog.afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.delete.emit($event);
+        }
+      },
+      error: (error) => {
+        console.error('Error al eliminar:', error);
+      }
+    });
+  }
 }

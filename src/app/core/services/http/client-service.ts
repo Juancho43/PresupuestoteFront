@@ -29,10 +29,10 @@ export class ClientService implements ICrudeable<Client> {
       return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity);
     }
     update(entity: Client): Observable<ApiResponse<Client>> {
-      return this.http.put<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.update.replace(':id',entity.id!.toString()), entity.person);
+      return this.http.put<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.update.replace(':id',entity.id!.toString()), entity);
     }
     delete(id: number): Observable<ApiResponse<Client>> {
-      return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
+      return this.http.delete<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
     }
 
     getPayments(id: number): Observable<ApiResponseCollection<Payment>> {

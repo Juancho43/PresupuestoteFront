@@ -1,30 +1,27 @@
-
-@let employee = this.employeeResource.value()?.data!;
-
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
   <fieldset>
 
-    @if (employeeForm.invalid && employeeForm.dirty) {
+    @if (supplierForm.invalid && supplierForm.dirty) {
       <div class="invalid">
 
-        @if (employeeForm.get('name')?.invalid && employeeForm.get('lastName')?.invalid) {
+        @if (supplierForm.get('name')?.invalid && supplierForm.get('lastName')?.invalid) {
           <p>El nombre es obligatorio.</p>
         }
 
-        @if (employeeForm.get('phoneNumber')?.invalid) {
+        @if (supplierForm.get('phoneNumber')?.invalid) {
           <p>El número de telefono es obligatorio.</p>
         }
 
-        @if(employeeForm.get('mail')?.invalid ){
+        @if(supplierForm.get('mail')?.invalid ){
           <p>Ingrese un correo eléctronico válido.</p>
         }
 
-        @if(employeeForm.get('dni')?.invalid ){
+        @if(supplierForm.get('dni')?.invalid ){
           <p>El dni debe ser mínimo de 7 caracteres y máximo 10.</p>
           <p>Debe ir sin puntos.</p>
         }
 
-        @if(employeeForm.get('cuit')?.invalid ){
+        @if(supplierForm.get('cuit')?.invalid ){
           <p>El dni debe ser mínimo de 10 caracteres y máximo 13.</p>
           <p>Debe ir sin puntos ni guiones.</p>
         }
@@ -34,9 +31,9 @@
 
 
     @if (isEdit()) {
-      <legend class="List-title">Actualizar empleado</legend>
+      <legend class="List-title">Actualizar proveedor</legend>
     }@else {
-      <legend class="List-title">Cargar empleado</legend>
+      <legend class="List-title">Cargar proveedor</legend>
     }
 
     <label for="name">Nombre:</label>
@@ -45,6 +42,8 @@
     <input type="text" name="lastName" id="lastName" placeholder="Apellido..." formControlName="lastName">
     <label for="direction">Dirección:</label>
     <input type="text" name="direction" id="direction" placeholder="Direcion..." formControlName="direction">
+    <label for="notes">Notas:</label>
+    <input type="text" name="notes" id="notes" placeholder="Notas..." formControlName="notes">
     <label for="phoneNumber">Número celular:</label>
     <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Telefono..." formControlName="phoneNumber">
     <label for="mail">Correo eléctornico:</label>
@@ -53,41 +52,12 @@
     <input type="text" name="dni" id="dni" placeholder="DNI..." formControlName="dni">
     <label for="cuit">CUIT:</label>
     <input type="text" name="cuit" id="cuit" placeholder="CUIT..." formControlName="cuit">
-    <label for="salary">Salario:</label>
-    <input type="number" name="salary" id="salary" placeholder="Salario..." formControlName="salary">
-    <label for="startDate">Fecha de ingreso:</label>
-    @if(employee !== null && employee.start_date) {
-      <input type="datetime" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
-             formControlName="start_date"
-             [value]="employee!.start_date | date:'MM-dd-yyyy'"
-      >
-
-    }@else{
-      <input type="datetime" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
-             formControlName="start_date"
-      >
-    }
-
-    <label for="endDate">Fecha de salida:</label>
-
-    @if(employee !== null && employee.end_date) {
-      <input type="datetime" name="endDate" id="endDate" placeholder="Fecha de salida..."
-             formControlName="end_date"
-             [value]="employee!.end_date | date:'MM-dd-yyyy'"
-      >
-    } @else {
-      <input type="datetime" name="endDate" id="endDate" placeholder="Fecha de salida..."
-             formControlName="end_date"
-      >
-    }
-    <label for="isActive">Activo:</label>
-    <input type="checkbox" name="isActive" id="isActive" formControlName="is_active">
   </fieldset>
 
   <fieldset class="Form-actions">
     <button
       type="reset"
-      [routerLink]="['/employee']"
+      [routerLink]="['/supplier']"
       (click)="setUp()"
     >
       Limpiar

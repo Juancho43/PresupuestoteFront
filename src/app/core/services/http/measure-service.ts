@@ -30,7 +30,7 @@ export class MeasureService implements ICrudeable<Measure> {
     return this.http.put<ApiResponse<Measure>>(environment.apiUrlV1 + measureEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Measure>> {
-    return this.http.get<ApiResponse<Measure>>(environment.apiUrlV1 + measureEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Measure>>(environment.apiUrlV1 + measureEndpoint.delete.replace(':id', id.toString()));
   }
 
   search(query: string): Observable<ApiResponseCollection<Measure>> {

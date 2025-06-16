@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
 import {Measure} from '@models/measure';
-import {CardButtonComponent} from '@shared/card-button-component/card-button-component';
+import {CardButtonComponent} from '@shared/card-button/card-button-component';
 
 @Component({
   selector: 'app-measure-card',

@@ -5,19 +5,15 @@
     <p>{{thing().total | currency}}</p>
   </div>
   <div class="Card-Options">
-    <app-card-button-component
+    <app-card-button
       [text]="'Ver detalles'"
       [icon]="'info'"
       [link]="`/${route()}/detail/${thing().id!}`"
     />
-    <app-card-button-component
+    <app-card-button
       [text]="'Editar'"
       [icon]="'edit'"
       [link]="`/${route()}/edit/${thing().id}/${thing().id}`"
-    />
-    <app-card-button-component
-      [text]="'Eliminar'"
-      [icon]="'delete'"
     />
   </div>
 

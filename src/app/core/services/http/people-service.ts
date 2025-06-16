@@ -1,13 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Person} from '../../interfaces/entities/person';
+import {Person} from '@models/person';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {peopleEndpoint} from '../endpoints/people.endpoint';
-import {IPerson} from '../../interfaces/entities/IPerson';
+import {IPerson} from '@models/IPerson';
 
 
 @Injectable({
@@ -29,7 +29,7 @@ export class PeopleService implements ICrudeable<Person> {
     return this.http.put<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Person>> {
-    return this.http.get<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Person>>(environment.apiUrlV1 + peopleEndpoint.delete.replace(':id', id.toString()));
   }
   search(entity : string ,query: string): Observable<ApiResponseCollection<IPerson>> {
     const url = peopleEndpoint.search

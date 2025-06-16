@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Subcategory} from '@models/subcategory';
 import {CommonModule} from '@angular/common';
-import {CardButtonComponent} from '@shared/card-button-component/card-button-component';
+import {CardButtonComponent} from '@shared/card-button/card-button-component';
 
 @Component({
   selector: 'app-subcategory-card',

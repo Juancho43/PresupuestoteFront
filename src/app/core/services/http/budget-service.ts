@@ -31,7 +31,7 @@ export class BudgetService implements ICrudeable<Budget,BudgetRequest> {
     return this.http.put<ApiResponse<Budget>>(environment.apiUrlV1 + budgetEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Budget>> {
-    return this.http.get<ApiResponse<Budget>>(environment.apiUrlV1 + budgetEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Budget>>(environment.apiUrlV1 + budgetEndpoint.delete.replace(':id', id.toString()));
   }
 
   getStates(): Observable<ApiResponse<BudgetState>> {

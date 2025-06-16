@@ -9,24 +9,20 @@
   </div>
   <div class="Card-Options">
 
-    <app-card-button-component
+    <app-card-button
       [text]="`Añadir ${action()}`"
       [icon]="'add'"
       [link]="`/${action()}/new/${id}`"
     />
-    <app-card-button-component
+    <app-card-button
       [text]="'Ver detalles'"
       [icon]="'info'"
       [link]="`/${route()}/detail/${id}`"
       />
-    <app-card-button-component
+    <app-card-button
       [text]="'Editar'"
       [icon]="'edit'"
       [link]="`/${route()}/edit/${id}`"
-    />
-    <app-card-button-component
-      [text]="'Eliminar'"
-      [icon]="'delete'"
     />
   </div>
 

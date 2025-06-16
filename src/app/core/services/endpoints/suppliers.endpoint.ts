@@ -4,4 +4,5 @@ export const supplierEndpoint = {
   create: '/suppliers',
   update: '/suppliers/:id',
   delete: '/suppliers/:id',
+  paginate: '/suppliers/paginate/',
 };

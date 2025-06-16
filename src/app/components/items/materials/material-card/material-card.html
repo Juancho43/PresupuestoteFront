@@ -6,19 +6,15 @@
     <p>{{data.measure.abbreviation}}</p>
   </div>
   <div class="Card-Options">
-    <app-card-button-component
+    <app-card-button
       [text]="'Ver detalles'"
       [icon]="'info'"
       [link]="`/${route()}/detail/${data.id!}`"
     />
-    <app-card-button-component
+    <app-card-button
       [text]="'Editar'"
       [icon]="'edit'"
       [link]="`/${route()}/edit/material/${data.id!}`"
-    />
-    <app-card-button-component
-      [text]="'Eliminar'"
-      [icon]="'delete'"
     />
   </div>
 </div>

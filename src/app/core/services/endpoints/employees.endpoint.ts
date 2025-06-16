@@ -4,4 +4,5 @@ export const employeeEndpoint = {
   create: '/employees',
   update: '/employees/:id',
   delete: '/employees/:id',
+  paginate: '/employees/paginate/',
 };

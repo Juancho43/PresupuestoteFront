@@ -5,14 +5,10 @@
     <p>{{data.category.name}}</p>
   </div>
   <div class="Card-Options">
-    <app-card-button-component
+    <app-card-button
       [text]="'Editar'"
       [icon]="'edit'"
       [link]="`/${route()}/edit/subcategory/${data.id!}`"
-    />
-    <app-card-button-component
-      [text]="'Eliminar'"
-      [icon]="'delete'"
     />
   </div>
 </div>

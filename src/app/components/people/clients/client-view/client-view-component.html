@@ -4,7 +4,7 @@
 <section>
   @if(!this.clientsResource.isLoading() && !this.clientsResource.error()){
 
-    <app-person-list-component
+    <app-person-list
       [data] = data
       entity="cliente"
       route="client"

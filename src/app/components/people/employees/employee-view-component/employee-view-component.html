@@ -4,15 +4,19 @@
 <section>
   @if(!this.employeeResource.isLoading() && !this.employeeResource.error()){
 
-    <app-person-list-component
+    <app-person-list
       [data] = data
       entity="empleado"
       route="employee"
       action="salary"
       [option]="false"
       [pagination]="pagination"
+      (changePage)="this.page.set($event)"
     />
-    <app-employee-form-component/>
+    <app-employee-form
+      [id] = this.id()
+      (submitted)="onFormSubmitted()"
+    />
   }
 </section>
 

@@ -22,7 +22,6 @@ import {EmployeeViewComponent} from '@components/people/employees/employee-view-
 import {
   EmployeeDetailComponent
 } from '@components/people/employees/employee-detail-component/employee-detail-component';
-import {EmployeeFormComponent} from '@components/people/employees/employee-form-component/employee-form-component';
 import {WorkAreaComponent} from '@components/works/work-area/work-area-component';
 import {MaterialAreaComponent} from '@components/items/materials/material-area-component/material-area-component';
 import {UserViewComponent} from '@components/user/user-view-component/user-view-component';
@@ -80,7 +79,7 @@ export const routes: Routes = [
       // //EmployeeRoutes
       {path: 'employee', component: EmployeeViewComponent},
       {path: 'employee/detail/:id', component: EmployeeDetailComponent},
-      {path: 'employee/edit/:id', component: EmployeeFormComponent},
+      {path: 'employee/edit/:id', component: EmployeeViewComponent},
     ]
   },
 

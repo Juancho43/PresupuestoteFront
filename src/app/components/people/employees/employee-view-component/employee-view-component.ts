@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {EmployeeService} from '@services/http/employee-service';
 import {PersonListComponent} from '@components/people/person-list-component/person-list-component';
@@ -16,10 +16,16 @@ import {EmployeeFormComponent} from '../employee-form-component/employee-form-co
 })
 export class EmployeeViewComponent {
   private service = inject(EmployeeService);
+  readonly id = input(0);
+  page = signal(1);
   employeeResource = rxResource({
-    stream :() => {
-      return this.service.getAll();
+    params : () => {return{page : this.page()}},
+    stream :({params}) => {
+      return this.service.getAll(params.page);
     }
   })
+  onFormSubmitted() {
+    this.employeeResource.reload();
+  }
 
 }

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Stock} from '../../interfaces/entities/stock';
+import {Stock} from '@models/stock';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -28,7 +28,7 @@ export class StockService implements ICrudeable<Stock> {
     return this.http.put<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Stock>> {
-    return this.http.get<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Stock>>(environment.apiUrlV1 + stockEndpoint.delete.replace(':id', id.toString()));
   }
 
 }

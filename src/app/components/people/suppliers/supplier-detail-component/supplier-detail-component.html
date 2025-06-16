@@ -1,14 +1,13 @@
 @let supplier = supplierResource.value()?.data!;
-@let payments = paymentsResource.value()?.data!.results;
+<!--@let payments = paymentsResource.value()?.data!.results;-->
 <section>
   <article>
     <app-supplier [supplier]="supplier"/>
-    <app-payments-table-component [payments]="payments"/>
   </article>
   <app-ownable-list
-    [data]="supplier.invoices"
+    [data]="supplier.invoices!"
     entity="factura"
     route="invoice"
     [option]="true"
-    [pagination]=""/>
+  />
 </section>

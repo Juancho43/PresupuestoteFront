@@ -2,7 +2,7 @@ import {Component, input} from '@angular/core';
 import {RouterLink} from '@angular/router';
 
 @Component({
-    selector: 'app-card-button-component',
+    selector: 'app-card-button',
     imports: [
         RouterLink,
     ],

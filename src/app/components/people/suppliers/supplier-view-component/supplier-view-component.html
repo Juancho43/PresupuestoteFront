@@ -4,15 +4,19 @@
 <section>
   @if(!this.supplierResource.isLoading() && !this.supplierResource.error()){
 
-    <app-person-list-component
+    <app-person-list
       [data] = data
       entity="proveedor"
       route="supplier"
       action="invoice"
       [option]="false"
       [pagination]="pagination"
+      (changePage)="this.page.set($event)"
     />
-    <app-supplier-form-component/>
+    <app-supplier-form
+      [id] = this.id()
+      (submitted)="onFormSubmitted()"
+    />
   }
 </section>
 

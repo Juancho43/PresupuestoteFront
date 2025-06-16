@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
-import {Work} from '../../../core/interfaces/entities/work';
+import {Work} from '@models/work';
 import {CurrencyPipe, DatePipe} from '@angular/common';
-import {CardButtonComponent} from '../../shared/card-button-component/card-button-component';
+import {CardButtonComponent} from '@shared/card-button/card-button-component';
 
 @Component({
   selector: 'app-work-card',

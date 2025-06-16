@@ -30,7 +30,7 @@ export class SubcategoryService implements ICrudeable<Subcategory,SubCategoryReq
     return this.http.put<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Subcategory>> {
-    return this.http.get<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Subcategory>>(environment.apiUrlV1 + subcategoryEndpoint.delete.replace(':id', id.toString()));
   }
   search(query: string): Observable<ApiResponseCollection<Subcategory>> {
     const url = subcategoryEndpoint.search

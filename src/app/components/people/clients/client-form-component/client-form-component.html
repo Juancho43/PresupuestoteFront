@@ -5,11 +5,7 @@
       <div class="invalid">
 
         @if (clientForm.get('name')?.invalid && clientForm.get('lastName')?.invalid) {
-          <p>El nombre y apellido es obligatorio.</p>
-        }
-
-        @if (clientForm.get('direction')?.invalid) {
-          <p>La dirección de entrega es obligatoria.</p>
+          <p>El nombre es obligatorio.</p>
         }
 
         @if (clientForm.get('phoneNumber')?.invalid) {
@@ -55,11 +51,12 @@
     <label for="cuit">CUIT:</label>
     <input type="text" name="cuit" id="cuit" placeholder="CUIT..." formControlName="cuit">
   </fieldset>
+
   <fieldset class="Form-actions">
     <button
       type="reset"
       [routerLink]="['/client']"
-      (click)="resetForm($event)"
+      (click)="setUp()"
     >
       Limpiar
     </button>
@@ -68,7 +65,6 @@
       type="submit"
       [disabled]="!canSubmit"
       [class.disactive]="!canSubmit"
-      [routerLink]="['/client']"
     >
       @if (isEdit()) {
         Actualizar
@@ -76,5 +72,15 @@
         Guardar
       }
     </button>
+    @if(isEdit()) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+
   </fieldset>
 </form>

@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Invoice} from '../../interfaces/entities/invoice';
+import {Invoice} from '@models/invoice';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -28,7 +28,7 @@ export class InvoiceService implements ICrudeable<Invoice> {
     return this.http.put<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Invoice>> {
-    return this.http.get<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.delete.replace(':id', id.toString()));
   }
 
 }

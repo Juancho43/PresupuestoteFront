@@ -1,13 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Supplier} from '../../interfaces/entities/supplier';
+import {Supplier} from '@models/supplier';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {supplierEndpoint} from '../endpoints/suppliers.endpoint';
-import {Payment} from '../../interfaces/entities/payment';
+import {Payment} from '@models/payment';
 import {paymentEndpoint} from '../endpoints/payments.endpoint';
 
 
@@ -17,8 +17,10 @@ import {paymentEndpoint} from '../endpoints/payments.endpoint';
 export class SupplierService implements ICrudeable<Supplier> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Supplier>> {
-    return this.http.get<ApiResponseCollection<Supplier>>(environment.apiUrlV1 + supplierEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Supplier>> {
+    return this.http.get<ApiResponseCollection<Supplier>>(
+      `${environment.apiUrlV1}${supplierEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Supplier>> {
     return this.http.get<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.getById.replace(':id', id.toString()));
@@ -30,7 +32,7 @@ export class SupplierService implements ICrudeable<Supplier> {
     return this.http.put<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Supplier>> {
-    return this.http.get<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));
   }
   getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
     return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.bySupplier.replace(':id', id.toString()));

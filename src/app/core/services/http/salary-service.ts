@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Salary} from '../../interfaces/entities/salary';
+import {Salary} from '@models/salary';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -28,7 +28,7 @@ export class SalaryService implements ICrudeable<Salary> {
     return this.http.put<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Salary>> {
-    return this.http.get<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Salary>>(environment.apiUrlV1 + salaryEndpoint.delete.replace(':id', id.toString()));
   }
 
 }

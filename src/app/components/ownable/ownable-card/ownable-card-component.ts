@@ -1,5 +1,5 @@
 import {Component, input} from '@angular/core';
-import {CardButtonComponent} from "@shared/card-button-component/card-button-component";
+import {CardButtonComponent} from "@shared/card-button/card-button-component";
 import {CommonModule, CurrencyPipe} from "@angular/common";
 import {IOwnable} from '@models/IOwnable';
 

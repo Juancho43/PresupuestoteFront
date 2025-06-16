@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Price} from '../../interfaces/entities/price';
+import {Price} from '@models/price';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -28,7 +28,7 @@ export class PriceService implements ICrudeable<Price> {
     return this.http.put<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Price>> {
-    return this.http.get<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Price>>(environment.apiUrlV1 + priceEndpoint.delete.replace(':id', id.toString()));
   }
 
 }

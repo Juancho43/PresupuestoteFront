@@ -30,7 +30,7 @@ export class MaterialService implements ICrudeable<Material, MaterialRequest> {
     return this.http.put<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Material>> {
-    return this.http.get<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Material>>(environment.apiUrlV1 + materialEndpoint.delete.replace(':id', id.toString()));
   }
   search(query: string): Observable<ApiResponseCollection<Material>> {
     const url = materialEndpoint.search

@@ -6,6 +6,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {RouterLink} from '@angular/router';
+import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
 
 @Component({
   selector: 'app-client-form',
@@ -16,6 +17,7 @@ import {RouterLink} from '@angular/router';
 })
 export class ClientFormComponent implements OnInit {
   private clientService = inject(ClientService);
+  private confirmationService = inject(ConfirmationDialogService);
   readonly id = input<number>(0)
   submitted = output<boolean>();
 
@@ -23,7 +25,7 @@ export class ClientFormComponent implements OnInit {
   clientResource = rxResource({
     params:() => ({id: this.id()}),
     stream: ({params}) => {
-      if( params.id > 0) return  this.clientService.getById(this.id());
+      if( params.id > 0) return  this.clientService.getById(params.id);
       return of({} as ApiResponse<Client>);
     }
   })
@@ -32,8 +34,8 @@ export class ClientFormComponent implements OnInit {
   //Form
   clientForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', Validators.required),
-    direction: new FormControl('', Validators.required),
+    lastName: new FormControl(''),
+    direction: new FormControl(''),
     phoneNumber: new FormControl('', Validators.required),
     mail: new FormControl('', [Validators.email]),
     dni: new FormControl('', [
@@ -67,8 +69,6 @@ export class ClientFormComponent implements OnInit {
     let flag: boolean = false;
     if (
       this.clientForm.get('name')?.valid &&
-      this.clientForm.get('lastName')?.valid &&
-      this.clientForm.get('direction')?.valid &&
       this.clientForm.get('phoneNumber')?.valid
     ) {
       flag = true;
@@ -76,10 +76,7 @@ export class ClientFormComponent implements OnInit {
     return flag;
   }
 
-  resetForm($Event: Event) {
-    this.setUp();
-    $Event.preventDefault();
-  }
+
 
   onEditHandler() {
     if(this.id()>0){
@@ -90,15 +87,13 @@ export class ClientFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.isEdit());
     if (!this.isEdit()) {
       this.clientService.create(this.toClient()).subscribe()
-      this.submitted.emit(true);
     } else {
-      let client = this.toClient();
-      client.id = this.clientResource.value()?.data?.id;
-      client.person.id = this.clientResource.value()?.data?.person?.id;
-      this.clientService.update(client).subscribe()
+      this.clientService.update(this.toClient()).subscribe()
     }
+    this.submitted.emit(true);
     this.setUp();
   }
 
@@ -106,7 +101,6 @@ export class ClientFormComponent implements OnInit {
 
   setForm(data: Client) {
     this.clientForm.patchValue({
-
       name: data.person.name,
       lastName: data.person.last_name,
       direction: data.person.address,
@@ -117,9 +111,11 @@ export class ClientFormComponent implements OnInit {
     });
   }
 
-  toClient() : Client{
+  toClient() : Client {
     return{
+      id: this.id(),
       person: {
+        id: this.clientResource.value()?.data?.person?.id,
         name : this.clientForm.get('name')?.value,
         last_name : this.clientForm.get('lastName')?.value,
         address : this.clientForm.get('direction')?.value,
@@ -129,6 +125,19 @@ export class ClientFormComponent implements OnInit {
         cuit : this.clientForm.get('cuit')?.value,
       }
     }
+  }
+
+  onDelete() {
+    const result = this.confirmationService.openDialog('¿Está seguro de que desea eliminar este cliente?');
+   result.afterClosed().subscribe(result =>{
+      if (result) {
+          this.clientService.delete(this.clientResource.value()?.data?.id!).subscribe({
+            next: () => {
+              this.confirmationService.navigateTo('/client')
+            }
+          });
+        }
+   })
   }
 
 }
