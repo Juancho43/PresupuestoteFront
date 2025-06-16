@@ -1,1 +1,59 @@
-<p>salary-form-component works!</p>
+@let edit = this.isEdit();
+@let employee = this.employeeResource.value()?.data!;
+@let employeeId = this.employeeResource.value()?.data!.id;
+
+<form [formGroup]="SalaryForm" (ngSubmit)="onSubmit()" >
+  <fieldset>
+
+    @if(SalaryForm.invalid && SalaryForm.dirty){
+      <div class="invalid">
+        @if (SalaryForm.get('date')?.invalid){
+          <p>Debe seleccionar una fecha.</p>
+        }
+        @if (SalaryForm.get('amount')?.invalid){
+          <p>Debe poner un monto.</p>
+        }
+
+      </div>
+    }
+    <legend class="List-title"> {{ edit ? 'Actualizar un salario' : 'Crear un salario' }}</legend>
+
+    @if (employeeId !== undefined){
+      <label for="employee">Empleado:</label>
+      <input type="text" id="employee" name="employee" [value]="employee!.person.last_name + ' ' + employee!.person.name " readonly>
+    }@else{
+      <label>Seleccione un empleado por favor</label>
+    }
+
+    <label for="amount">Cantidad:</label>
+    <input type="number" name="amount" id="amount" formControlName="amount" min="0" step="any">
+    <label for="date">Fecha cobro:</label>
+    <input type="date" name="date" id="date" formControlName="date">
+    <label for="active">Activo</label>
+    <input type="checkbox" name="active" id="active" formControlName="active">
+
+  </fieldset>
+  <fieldset class="Form-actions">
+    <button type="reset" (click)="resetForm($event)" [routerLink]="'/salary'">Limpiar</button>
+
+    <button type="submit" [disabled]="!SalaryForm.valid" [class.disactive]="!SalaryForm.valid">
+      @if (edit) {
+        Actualizar
+      }@else {
+        Guardar
+      }
+    </button>
+    @if(isEdit()) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+  </fieldset>
+</form>
+
+
+

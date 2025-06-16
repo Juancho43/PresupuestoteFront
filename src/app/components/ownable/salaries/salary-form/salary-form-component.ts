@@ -5,13 +5,17 @@ import {EmployeeService} from '@services/http/employee-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Salary, SalaryRequest} from '@models/salary';
 import {Employee} from '@models/employee';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-salary-form',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink
+  ],
   templateUrl: './salary-form-component.html',
   styleUrl: './salary-form-component.scss'
 })
@@ -74,7 +78,7 @@ export class SalaryFormComponent implements OnInit {
   setForm(data: Salary) {
     this.SalaryForm.patchValue({
       date: data.date,
-      amount: data.amount,
+      amount: data.total,
       active: data.active,
       supplierId: data.owner!.id
     });
@@ -103,7 +107,7 @@ export class SalaryFormComponent implements OnInit {
   toInvoice(): SalaryRequest {
     return {
       id: this.salaryId(),
-      employeeId: this.employeeId(),
+      employee_id: this.employeeId(),
       amount: this.SalaryForm.get('amount')?.value,
       active: this.SalaryForm.get('active')?.value,
       date: this.SalaryForm.get('date')?.value,

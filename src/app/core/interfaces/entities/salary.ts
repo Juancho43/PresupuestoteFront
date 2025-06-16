@@ -10,5 +10,5 @@ export interface SalaryRequest {
   active: boolean;
   amount: number;
   date: Date;
-  employeeId: number;
+  employee_id: number;
 }
