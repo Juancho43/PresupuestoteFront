@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Invoice} from '@models/invoice';
+import {Invoice, InvoiceRequest} from '@models/invoice';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -12,19 +12,21 @@ import {invoiceEndpoint} from '../endpoints/invoices.endpoint';
 @Injectable({
   providedIn: 'root'
 })
-export class InvoiceService implements ICrudeable<Invoice> {
+export class InvoiceService implements ICrudeable<Invoice,InvoiceRequest> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Invoice>> {
-    return this.http.get<ApiResponseCollection<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Invoice>> {
+    return this.http.get<ApiResponseCollection<Invoice>>(
+      `${environment.apiUrlV1}${invoiceEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Invoice>> {
     return this.http.get<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.getById.replace(':id', id.toString()));
   }
-  create(entity: Invoice): Observable<ApiResponse<Invoice>> {
+  create(entity: InvoiceRequest): Observable<ApiResponse<Invoice>> {
     return this.http.post<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.create, entity);
   }
-  update(entity: Invoice): Observable<ApiResponse<Invoice>> {
+  update(entity: InvoiceRequest): Observable<ApiResponse<Invoice>> {
     return this.http.put<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.update.replace(':id',entity.id!.toString()), entity);
   }
   delete(id: number): Observable<ApiResponse<Invoice>> {

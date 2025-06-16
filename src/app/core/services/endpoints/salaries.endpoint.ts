@@ -4,4 +4,5 @@ export const salaryEndpoint = {
   create: '/salaries',
   update: '/salaries/:id',
   delete: '/salaries/:id',
+  paginate: '/salaries/paginate/',
 };

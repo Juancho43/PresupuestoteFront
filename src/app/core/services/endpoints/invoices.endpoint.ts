@@ -4,4 +4,5 @@ export const invoiceEndpoint = {
   create: '/invoices',
   update: '/invoices/:id',
   delete: '/invoices/:id',
+  paginate: '/invoices/paginate/',
 };

@@ -1,0 +1,38 @@
+@let data = this.salariesResource.value()?.data!.results;
+@let pagination = this.salariesResource.value()?.data!.pagination;
+@let data2 = this.employeeResource.value()?.data!.results;
+@let pagination2 = this.employeeResource.value()?.data!.pagination;
+<section>
+  @if (salariesResource.hasValue()) {
+    <app-ownable-list
+      [data] = data
+      entity="salario"
+      route="salary"
+      [option]="false"
+      [pagination]="pagination"
+      (changePage)="this.salaryPage.set($event)"
+    />
+  }
+  @if (employeeResource.hasValue()){
+    <app-person-list
+      [data] = data2
+      entity="empleado"
+      route="employee"
+      action="salary"
+      [option]="true"
+      [pagination]="pagination2"
+      (changePage)="this.employeePage.set($event)"
+      (selectedPerson)="this.owner.set($event.id!)"
+    />
+
+  }
+
+  <app-salary-form
+    [salaryId]="id()"
+    [employeeId]="owner()"
+    (submitted)="salariesResource.reload()"
+  />
+
+
+</section>
+

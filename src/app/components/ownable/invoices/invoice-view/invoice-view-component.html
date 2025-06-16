@@ -1,0 +1,38 @@
+@let data = this.invoicesResource.value()!.data!.results;
+@let pagination = this.invoicesResource.value()!.data!.pagination;
+@let data2 = this.supplierResource.value()!.data!.results;
+@let pagination2 = this.supplierResource.value()!.data!.pagination;
+<section>
+  @if (invoicesResource.hasValue()) {
+    <app-ownable-list
+      [data] = data
+      entity="boleta"
+      route="invoice"
+      [option]="false"
+      [pagination]="pagination"
+      (changePage)="this.invoicePage.set($event)"
+    />
+  }
+  @if (supplierResource.hasValue()){
+    <app-person-list
+      [data] = data2
+      entity="proveedor"
+      route="supplier"
+      action="invoice"
+      [option]="true"
+      [pagination]="pagination2"
+      (changePage)="this.supplierPage.set($event)"
+      (selectedPerson)="this.owner.set($event.id!)"
+    />
+
+  }
+
+  <app-invoice-form
+    [invoiceId]="id()"
+    [supplierId]="owner()"
+    (submitted)="invoicesResource.reload()"
+  />
+
+
+</section>
+

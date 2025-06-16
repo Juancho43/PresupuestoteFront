@@ -1,0 +1,21 @@
+@let items = this.items();
+<div class="List">
+  <h3 class="List-title">Listado de materiales.</h3>
+  @for(item of items; track $index) {
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.description }}</p>
+    <span class="price">{{ item.latestPrice.price | currency }}</span>
+    <span>{{ item.quantity }}</span>
+
+  }
+<!--  @for (person of personData; track person.id) {-->
+<!--    <app-person-card-->
+<!--      [person]="person"-->
+<!--      [entity]="entity()"-->
+<!--      [route]="route()"-->
+<!--      [action]="action()"-->
+<!--    />-->
+<!--  }-->
+
+</div>
+

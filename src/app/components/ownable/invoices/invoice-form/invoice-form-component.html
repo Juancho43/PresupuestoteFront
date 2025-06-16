@@ -1,0 +1,50 @@
+@let edit = this.isEdit();
+@let employee = this.supplierResource.value()?.data;
+@let employeeId = this.supplierResource.value()?.data?.id;
+
+<form [formGroup]="InvoiceForm" (ngSubmit)="onSubmit()" >
+  <fieldset>
+
+    @if(InvoiceForm.invalid && InvoiceForm.dirty){
+      <div class="invalid">
+        @if (InvoiceForm.get('date')?.invalid){
+          <p>Debe seleccionar una fecha.</p>
+        }
+      </div>
+    }
+    <legend class="List-title"> {{ edit ? 'Actualizar una boleta' : 'Crear una boleta' }}</legend>
+
+    @if (employeeId !== undefined){
+      <label for="client">Proveedor:</label>
+      <input type="text" id="client" name="client" [value]="employee!.person.last_name + ' ' + employee!.person.name " readonly>
+    }@else{
+      <label>Seleccione un proveedor por favor</label>
+    }
+    <label for="date">Fecha:</label>
+    <input type="date" name="date" id="date" formControlName="date">
+
+  </fieldset>
+  <fieldset class="Form-actions">
+    <button type="reset" (click)="resetForm($event)" [routerLink]="'/invoice'">Limpiar</button>
+
+    <button type="submit" [disabled]="!InvoiceForm.valid" [class.disactive]="!InvoiceForm.valid">
+      @if (edit) {
+        Actualizar
+      }@else {
+        Guardar
+      }
+    </button>
+    @if(isEdit()) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+  </fieldset>
+</form>
+
+
+

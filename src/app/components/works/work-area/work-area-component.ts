@@ -1,7 +1,7 @@
 import {Component, inject, input, signal} from '@angular/core';
 import {WorkService} from '@services/http/work-service';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {WorkFormComponent} from '@components/works/work-form-component/work-form-component';
+import {WorkFormComponent} from '@components/works/work-form/work-form-component';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Work} from '@models/work';

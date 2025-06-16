@@ -1,8 +1,8 @@
 import {Component, inject, input, signal} from '@angular/core';
-import {PersonListComponent} from '@components/people/person-list-component/person-list-component';
+import {PersonListComponent} from '@components/people/person-list/person-list-component';
 import {ClientService} from '@services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {ClientFormComponent} from '../client-form-component/client-form-component';
+import {ClientFormComponent} from '@components/people/clients/client-form/client-form-component';
 
 @Component({
   selector: 'app-client-view',

@@ -9,7 +9,6 @@ export interface Budget extends IOwnable{
   profit: number;
   dead_line: Date;
   state: string;
-
   works: Work[];
 
 }

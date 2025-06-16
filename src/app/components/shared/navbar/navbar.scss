@@ -23,7 +23,9 @@ ul{
   @include core.flex-comlumn;
   list-style: none;
   height: auto;
+  max-height: 100dvh;
   overflow-y: auto ;
+  overflow-x: hidden;
   gap: 5px;
 }
 li{

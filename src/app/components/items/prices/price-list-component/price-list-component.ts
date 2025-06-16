@@ -1,6 +1,6 @@
 import {Component, input} from '@angular/core';
 import {Price} from '@models/price';
-import {PriceCardComponent} from '@components/items/prices/price-card-component/price-card-component';
+import {PriceCardComponent} from '@components/items/prices/price-card/price-card-component';
 
 @Component({
   selector: 'app-price-list',
