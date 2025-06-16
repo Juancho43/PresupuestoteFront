@@ -1,14 +1,17 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {SupplierService} from '@services/http/supplier-service';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {SupplierComponent} from '../supplier/supplier-component';
+import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
+import {Pagination} from '@core/interfaces/ApiResponseCollection';
 
 @Component({
   selector: 'app-supplier-detail',
   imports: [
     OwnableListComponent,
-    SupplierComponent
+    SupplierComponent,
+    PaymentListComponent
   ],
   templateUrl: './supplier-detail-component.html',
   styleUrl: './supplier-detail-component.scss'
@@ -21,9 +24,10 @@ export class SupplierDetailComponent {
     params : () => ({id: this.id() || 0}),
     stream : (params) => this.service.getById(params.params.id),
   })
-
+  pagination = {} as Pagination;
+  paymentsPage = signal(1);
   paymentsResource = rxResource({
-    params : () => ({id: this.id() || 0}),
-    stream : () => this.service.getPayments(this.id()),
+    params : () => ({id: this.id() || 0, page: this.paymentsPage()}),
+    stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
 }

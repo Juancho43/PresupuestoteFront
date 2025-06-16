@@ -4,7 +4,8 @@ export const paymentEndpoint = {
   create: '/payments',
   update: '/payments/:id',
   delete: '/payments/:id',
-  byClient: '/payments/client/:id',
-  bySupplier: '/payments/supplier/:id',
-  byEmployee: '/payments/employee/:id',
+  paginate: '/payments/paginate/',
+  byClient: '/payments/client/:id/',
+  bySupplier: '/payments/supplier/:id/',
+  byEmployee: '/payments/employee/:id/',
 };

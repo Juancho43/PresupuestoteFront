@@ -12,16 +12,12 @@ import {BudgetViewComponent} from '@components/ownable/budgets/budget-view/budge
 import {BudgetDetailComponent} from '@components/ownable/budgets/budget-detail/budget-detail-component';
 import {MaterialViewComponent} from '@components/items/materials/material-view/material-view-component';
 import {MaterialDetailComponent} from '@components/items/materials/material-detail/material-detail-component';
-import {
-  SupplierDetailComponent
-} from '@components/people/suppliers/supplier-detail/supplier-detail-component';
+import {SupplierDetailComponent} from '@components/people/suppliers/supplier-detail/supplier-detail-component';
 import {SupplierViewComponent} from '@components/people/suppliers/supplier-view/supplier-view-component';
 import {InvoiceDetailComponent} from '@components/ownable/invoices/invoice-detail/invoice-detail-component';
 import {InvoiceViewComponent} from '@components/ownable/invoices/invoice-view/invoice-view-component';
 import {EmployeeViewComponent} from '@components/people/employees/employee-view/employee-view-component';
-import {
-  EmployeeDetailComponent
-} from '@components/people/employees/employee-detail/employee-detail-component';
+import {EmployeeDetailComponent} from '@components/people/employees/employee-detail/employee-detail-component';
 import {WorkAreaComponent} from '@components/works/work-area/work-area-component';
 import {MaterialAreaComponent} from '@components/items/materials/material-area/material-area-component';
 import {UserViewComponent} from '@components/user/user-view-component/user-view-component';

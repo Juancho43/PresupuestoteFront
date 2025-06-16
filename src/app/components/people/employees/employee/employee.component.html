@@ -7,5 +7,9 @@
   <p>Correo electrónico: {{employee.person.mail}}</p>
   <p>DNI: {{employee.person.dni}}</p>
   <p>CUIT: {{employee.person.cuit}}</p>
-  
+  <p>Fecha de ingreso: {{employee.start_date | date}}</p>
+  <p>Fecha de egreso: {{employee.end_date  | date}}</p>
+  <p>Salario: {{employee.salary | currency}}</p>
+  <p>Activo: {{employee.is_active ? 'Sí' : 'No'}}</p>
+  <p>Balance: {{employee.balance | currency}}</p>
 </div>

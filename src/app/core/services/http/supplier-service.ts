@@ -34,8 +34,9 @@ export class SupplierService implements ICrudeable<Supplier> {
   delete(id: number): Observable<ApiResponse<Supplier>> {
     return this.http.delete<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));
   }
-  getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
-    return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.bySupplier.replace(':id', id.toString()));
+  getPayments(id: number, page:number): Observable<ApiResponseCollection<Payment>> {
+    const url = environment.apiUrlV1 + paymentEndpoint.bySupplier.replace(':id', id.toString()) + page.toString() ;
+    return this.http.get<ApiResponseCollection<Payment>>(url);
   }
 
 }

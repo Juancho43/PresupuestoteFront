@@ -1,13 +1,24 @@
 @let supplier = supplierResource.value()?.data!;
-<!--@let payments = paymentsResource.value()?.data!.results;-->
-<section>
-  <article>
-    <app-supplier [supplier]="supplier"/>
-  </article>
-  <app-ownable-list
-    [data]="supplier.invoices!"
-    entity="factura"
-    route="invoice"
-    [option]="true"
-  />
-</section>
+@let payments = paymentsResource.value()?.data!.results;
+@let paymentsPagination = paymentsResource.value()?.data!.pagination;
+@if (!supplierResource.isLoading() && !paymentsResource.isLoading()) {
+
+  <section>
+    <article>
+      <app-supplier [supplier]="supplier"/>
+    </article>
+    <app-payment-list
+      [data]="payments"
+      [pagination]="paymentsPagination"
+      (pageChange)="paymentsPage.set($event)"
+    />
+    <app-ownable-list
+      [data]="supplier.invoices!"
+      entity="presupuesto"
+      route="budget"
+      [option]="true"
+      [personId]="supplier.id!"
+      [pagination]="pagination"
+    />
+  </section>
+}

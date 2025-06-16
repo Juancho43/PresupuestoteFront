@@ -1,9 +1,12 @@
 import {Component, input} from '@angular/core';
 import {Supplier} from '@models/supplier';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-supplier',
-  imports: [],
+  imports: [
+    CurrencyPipe
+  ],
   templateUrl: './supplier-component.html',
   styleUrl: './supplier-component.scss'
 })

@@ -1,16 +1,17 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, signal} from '@angular/core';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {EmployeeService} from '@services/http/employee-service';
-import {PaymentsTableComponent} from '@shared/payments-table-component/payments-table-component';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {EmployeeComponent} from '../employee/employee.component';
+import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
+import {Pagination} from '@core/interfaces/ApiResponseCollection';
 
 @Component({
   selector: 'app-employee-detail',
   imports: [
-    PaymentsTableComponent,
     OwnableListComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    PaymentListComponent
   ],
   standalone: true,
   templateUrl: './employee-detail-component.html',
@@ -22,11 +23,12 @@ export class EmployeeDetailComponent {
 
   employeeResource = rxResource({
     params : () => ({id: this.id() || 0}),
-    stream : (params) => this.service.getById(params.params.id),
+    stream : ({params}) => this.service.getById(params.id),
   })
-
+  pagination = {} as Pagination;
+  paymentsPage = signal(1);
   paymentsResource = rxResource({
-    params : () => ({id: this.id() || 0}),
-    stream : () => this.service.getPayments(this.id()),
+    params : () => ({id: this.id() || 0, page: this.paymentsPage()}),
+    stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
 }

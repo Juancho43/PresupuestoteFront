@@ -35,7 +35,8 @@ export class ClientService implements ICrudeable<Client> {
       return this.http.delete<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
     }
 
-    getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
-      return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.byClient.replace(':id', id.toString()));
+    getPayments(id: number,page:number): Observable<ApiResponseCollection<Payment>> {
+      const url = environment.apiUrlV1 + paymentEndpoint.byClient.replace(':id', id.toString()) + page.toString() ;
+      return this.http.get<ApiResponseCollection<Payment>>(url);
     }
 }

@@ -1,14 +1,20 @@
 @let employee = employeeResource.value()?.data!;
-@let payments = paymentsResource.value()?.data!.results;;
+@let payments = paymentsResource.value()?.data!.results;
+@let paymentsPagination = paymentsResource.value()?.data!.pagination;
 <section>
   <article>
     <app-employee [employee]="employee"/>
-    <app-payments-table-component [payments]="payments"/>
   </article>
+  <app-payment-list
+    [data]="payments"
+    [pagination]="paymentsPagination"
+    (pageChange)="paymentsPage.set($event)"
+  />
   <app-ownable-list
     [data]="employee.salaries!"
     entity="salario"
     route="salary"
     [option]="true"
+    [pagination]="pagination"
   />
 </section>

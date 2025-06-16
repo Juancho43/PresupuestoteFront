@@ -65,10 +65,6 @@ export class EmployeeFormComponent {
   }
 
 
-  ngOnInit(): void {
-    this.setUp();
-  }
-
   setUp() {
     this.employeeForm.reset();
     this.isEdit.set(false);

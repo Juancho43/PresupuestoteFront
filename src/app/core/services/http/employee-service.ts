@@ -33,8 +33,9 @@ export class EmployeeService implements ICrudeable<Employee> {
   delete(id: number): Observable<ApiResponse<Employee>> {
     return this.http.delete<ApiResponse<Employee>>(environment.apiUrlV1 + employeeEndpoint.delete.replace(':id', id.toString()));
   }
-  getPayments(id: number): Observable<ApiResponseCollection<Payment>> {
-    return this.http.get<ApiResponseCollection<Payment>>(environment.apiUrlV1 + paymentEndpoint.byEmployee.replace(':id', id.toString()));
+  getPayments(id: number,page:number): Observable<ApiResponseCollection<Payment>> {
+    const url = environment.apiUrlV1 + paymentEndpoint.byEmployee.replace(':id', id.toString()) + page.toString() ;
+    return this.http.get<ApiResponseCollection<Payment>>(url);
   }
 
 }

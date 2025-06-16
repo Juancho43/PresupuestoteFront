@@ -1,15 +1,24 @@
 @let client = clientResource.value()?.data!;
-<!--@let payments = paymentsResource.value()?.data!.results;;-->
-<section>
-  <article>
-    <app-client [client]="client"/>
-  </article>
-  <app-ownable-list
-    [data]="client.budgets!"
-    entity="presupuesto"
-    route="budget"
-    [option]="true"
-    [personId]="client.id!"
+@let payments = paymentsResource.value()?.data!.results;
+@let paymentsPagination = paymentsResource.value()?.data!.pagination;
+@if (!clientResource.isLoading() && !paymentsResource.isLoading()) {
 
-  />
-</section>
+  <section>
+    <article>
+      <app-client [client]="client"/>
+    </article>
+    <app-payment-list
+      [data]="payments"
+      [pagination]="paymentsPagination"
+      (pageChange)="paymentsPage.set($event)"
+    />
+    <app-ownable-list
+      [data]="client.budgets!"
+      entity="presupuesto"
+      route="budget"
+      [option]="true"
+      [personId]="client.id!"
+      [pagination]="pagination"
+    />
+  </section>
+}
