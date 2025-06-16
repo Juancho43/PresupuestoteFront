@@ -87,7 +87,6 @@ export class ClientFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.isEdit());
     if (!this.isEdit()) {
       this.clientService.create(this.toClient()).subscribe()
     } else {

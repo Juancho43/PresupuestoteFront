@@ -1,3 +1,4 @@
+@let edit = isEdit();
 <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
   <fieldset>
 
@@ -12,10 +13,6 @@
           <p>El monto es obligatorio.</p>
         }
 
-        @if (paymentForm.get('metodoPago')?.invalid) {
-          <p>El método de pago es obligatorio.</p>
-        }
-
         @if(paymentForm.get('Descripcion')?.invalid ){
           <p>La descripcion es obligatoria.</p>
         }
@@ -24,31 +21,43 @@
     }
 
     <legend class="List-title">
-      @if (isEdit) {
+      @if (edit) {
         Actualizar pago
       }@else {
         Cargar pago nuevo
       }
     </legend>
-
+    @if (!edit) {
+      <label for="payable">Pagar {{payable()}}:</label>
+      <input type="text" name="payable" id="payable" [value]="ownable().description || 'Seleccione un '+ payable()" readonly>
+    }
     <label for="fecha">Fecha:</label>
-    <input type="text" name="fecha" id="fecha" placeholder="fecha..." formControlName="fecha">
+    <input type="datetime-local" name="fecha" id="fecha" placeholder="fecha..." formControlName="date">
     <label for="monto">Monto:</label>
-    <input type="text" name="monto" id="monto" placeholder="monto..." formControlName="monto">
-    <label for="metodoPago">Metodo de pago:</label>
-    <input type="text" name="metodoPago" id="metodoPago" placeholder="metodoPago..." formControlName="metodoPago">
-    <label for="Descripcion">Descripcion:</label>
-    <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion..." formControlName="Descripcion"></textarea>
+    <input type="number" name="monto" id="monto" placeholder="monto..." formControlName="amount">
+    <label for="Descripcion">Descripción:</label>
+    <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion..." formControlName="description"></textarea>
   </fieldset>
   <fieldset class="Form-actions">
     <button type="reset" (click)="resetForm($event)">Limpiar</button>
 
     <button type="submit" [disabled]="!canSubmit" [class.disactive]="!canSubmit">
-      @if (isEdit) {
+      @if (edit) {
         Actualizar
       }@else {
         Guardar
       }
     </button>
+    @if(edit) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+
+
   </fieldset>
 </form>

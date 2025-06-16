@@ -10,3 +10,9 @@ export interface IOwnable extends Entity {
   payment_status: string;
   owner?: IPerson;
 }
+export enum Payables{
+  Invoice = 'App\\Models\\Invoice',
+  Salary = 'App\\Models\\Salary',
+  Budget = 'App\\Models\\Budget'
+}
+

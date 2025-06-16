@@ -5,13 +5,17 @@ import {ClientComponent} from '../client/client-component';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
-
+import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
+import {Budget} from '@models/budget';
+import {IOwnable, Payables} from '@models/IOwnable';
+import {Payment} from '@models/payment';
 @Component({
   selector: 'app-client-detail',
   imports: [
     ClientComponent,
     OwnableListComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    PaymentFormComponent
   ],
   templateUrl: './client-detail-component.html',
   styleUrl: './client-detail-component.scss'
@@ -19,7 +23,9 @@ import {Pagination} from '@core/interfaces/ApiResponseCollection';
 export class ClientDetailComponent {
   private service = inject(ClientService);
   readonly id = input.required<number>();
-
+  protected readonly Payables = Payables;
+  selectedBudget = signal<IOwnable>({} as Budget);
+  selectedPayment = signal<Payment>({} as Payment);
   clientResource = rxResource({
     params : () => ({id: this.id() || 0}),
     stream : ({params}) => this.service.getById(params.id),
@@ -30,6 +36,7 @@ export class ClientDetailComponent {
     params : () => ({id: this.id() || 0, page: this.paymentsPage()}),
     stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
+
 
 
 }

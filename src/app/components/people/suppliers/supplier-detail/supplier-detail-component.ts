@@ -5,13 +5,18 @@ import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-lis
 import {SupplierComponent} from '../supplier/supplier-component';
 import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
+import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
+import {IOwnable, Payables} from '@models/IOwnable';
+import {Budget} from '@models/budget';
+import {Payment} from '@models/payment';
 
 @Component({
   selector: 'app-supplier-detail',
   imports: [
     OwnableListComponent,
     SupplierComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    PaymentFormComponent
   ],
   templateUrl: './supplier-detail-component.html',
   styleUrl: './supplier-detail-component.scss'
@@ -19,7 +24,9 @@ import {Pagination} from '@core/interfaces/ApiResponseCollection';
 export class SupplierDetailComponent {
   private service = inject(SupplierService);
   readonly id = input.required<number>();
-
+  protected readonly Payables = Payables;
+  selectedInvoice = signal<IOwnable>({} as Budget);
+  selectedPayment = signal<Payment>({} as Payment);
   supplierResource = rxResource({
     params : () => ({id: this.id() || 0}),
     stream : (params) => this.service.getById(params.params.id),

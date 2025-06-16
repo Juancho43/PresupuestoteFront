@@ -12,6 +12,7 @@
       [thing]="data"
       [entity]="entity()"
       [route]="route()"
+      (click)="this.selected.emit(data)"
     />
   }
 

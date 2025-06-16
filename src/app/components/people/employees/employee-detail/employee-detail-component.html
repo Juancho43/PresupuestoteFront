@@ -4,11 +4,19 @@
 <section>
   <article>
     <app-employee [employee]="employee"/>
+    <app-payment-form
+      [paybleType]="Payables.Salary"
+      [payment]="selectedPayment()"
+      [ownable]="selectedSalary()"
+      payable="salario"
+      (submitted)="this.paymentsResource.reload(); this.employeeResource.reload()"
+    />
   </article>
   <app-payment-list
     [data]="payments"
     [pagination]="paymentsPagination"
     (pageChange)="paymentsPage.set($event)"
+    (selectedPayment)="this.selectedPayment.set($event)"
   />
   <app-ownable-list
     [data]="employee.salaries!"
@@ -16,5 +24,8 @@
     route="salary"
     [option]="true"
     [pagination]="pagination"
+    (selected)="this.selectedSalary.set($event)"
   />
+
+
 </section>

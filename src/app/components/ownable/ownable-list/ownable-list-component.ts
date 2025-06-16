@@ -27,6 +27,7 @@ export class OwnableListComponent implements OnInit {
   readonly option = input.required<boolean>();
   readonly personId= input<number>(0);
   changePage = output<number>();
+  selected = output<IOwnable>();
   ownableList = signal<IOwnable[]>([]);
   paginationData = signal<Pagination>({} as Pagination);
   ngOnInit() {

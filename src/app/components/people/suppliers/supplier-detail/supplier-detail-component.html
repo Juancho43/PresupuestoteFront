@@ -6,19 +6,27 @@
   <section>
     <article>
       <app-supplier [supplier]="supplier"/>
+      <app-payment-form
+        [paybleType]="Payables.Invoice"
+        [payment]="selectedPayment()"
+        [ownable]="selectedInvoice()"
+        payable="boleta"
+        (submitted)="this.paymentsResource.reload(); this.supplierResource.reload()"
+      />
     </article>
     <app-payment-list
       [data]="payments"
       [pagination]="paymentsPagination"
       (pageChange)="paymentsPage.set($event)"
+      (selectedPayment)="this.selectedPayment.set($event)"
     />
     <app-ownable-list
       [data]="supplier.invoices!"
-      entity="presupuesto"
-      route="budget"
+      entity="boleta"
+      route="invoice"
       [option]="true"
-      [personId]="supplier.id!"
       [pagination]="pagination"
+      (selected)="this.selectedInvoice.set($event)"
     />
   </section>
 }

@@ -57,13 +57,13 @@
     <input type="number" name="salary" id="salary" placeholder="Salario..." formControlName="salary">
     <label for="startDate">Fecha de ingreso:</label>
     @if(employee !== null && employee.start_date) {
-      <input type="datetime" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
+      <input type="datetime-local" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
              formControlName="start_date"
              [value]="employee!.start_date | date:'MM-dd-yyyy'"
       >
 
     }@else{
-      <input type="datetime" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
+      <input type="datetime-local" name="startDate" id="startDate" placeholder="Fecha de ingreso..."
              formControlName="start_date"
       >
     }
@@ -71,12 +71,12 @@
     <label for="endDate">Fecha de salida:</label>
 
     @if(employee !== null && employee.end_date) {
-      <input type="datetime" name="endDate" id="endDate" placeholder="Fecha de salida..."
+      <input type="datetime-local" name="endDate" id="endDate" placeholder="Fecha de salida..."
              formControlName="end_date"
              [value]="employee!.end_date | date:'MM-dd-yyyy'"
       >
     } @else {
-      <input type="datetime" name="endDate" id="endDate" placeholder="Fecha de salida..."
+      <input type="datetime-local" name="endDate" id="endDate" placeholder="Fecha de salida..."
              formControlName="end_date"
       >
     }

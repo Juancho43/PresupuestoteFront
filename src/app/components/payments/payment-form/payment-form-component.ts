@@ -1,7 +1,9 @@
-import {Component, inject} from '@angular/core';
-import {Payment} from '@models/payment';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, effect, inject, input, output, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {IOwnable, Payables} from '@models/IOwnable';
+import {PaymentService} from '@services/http/payment-service';
+import {Payment} from '@models/payment';
+import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
 
 @Component({
   selector: 'app-payment-form',
@@ -12,24 +14,46 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './payment-form-component.scss'
 })
 export class PaymentFormComponent {
+  private confirmationService = inject(ConfirmationDialogService);
+  private service = inject(PaymentService);
+  readonly payable = input.required<'boleta'| 'salario' | 'presupuesto'>();
+  readonly ownable = input.required<IOwnable>();
+  readonly payment = input.required<Payment>();
+  paybleType = input.required<Payables>();
+  submitted = output();
 
-  private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
+  isEdit = signal(false);
 
-  //Properties
-  currentPayment : Payment = {} as Payment;
-  paymentId? : number;
-  isEdit : boolean = false;
   //Form
   paymentForm : FormGroup = new FormGroup({
     date: new FormControl('',[ Validators.required]),
-    amount: new FormControl('', Validators.required),
+    amount: new FormControl(0, Validators.required),
     description : new FormControl('',Validators.required),
+    payable_id: new FormControl(0, Validators.required),
+    payable_type: new FormControl('', Validators.required)
   });
 
-  ngOnInit(): void {
-    this.setUp();
-    this.onEditHandler();
+  constructor() {
+    effect(() => {
+      this.payment();
+      this.onEditHandler();
+    });
+  }
+
+  onEditHandler() {
+    if(this.payment().id! > 0){
+      this.isEdit.set(true);
+      this.setForm(this.payment());
+
+    }
+  }
+
+  setForm(payment: Payment){
+    this.paymentForm.get('date')?.setValue(payment.date);
+    this.paymentForm.get('amount')?.setValue(payment.amount);
+    this.paymentForm.get('description')?.setValue(payment.description);
+    this.paymentForm.get('payable_id')?.setValue(this.ownable().id!);
+    this.paymentForm.get('payable_type')?.setValue(this.paybleType());
   }
 
   get canSubmit(){
@@ -46,40 +70,42 @@ export class PaymentFormComponent {
 
   setUp(){
     this.paymentForm.reset();
-    this.isEdit = false;
-    this.currentPayment = {} as Payment;
+    this.isEdit.set(false);
   }
 
   resetForm($Event : Event){
     this.setUp();
-    this.router.navigate(["/payment"]);
     $Event.preventDefault();
   }
 
-  onEditHandler(){
-    this.paymentId = parseInt(this.activatedRoute.snapshot.params['paymentId']);
-    if(this.paymentId){
-      let url = "/payment/edit/" + this.paymentId;
-      if(this.router.url == url){
-        this.isEdit = true;
-        //this.currentPayment = this.paymentControllerService.getPaymentById(this.paymentId)!;
-        this.paymentForm.patchValue(this.currentPayment);
-      }else{
-        this.isEdit = false;
-      }
-    }
-
-  }
-
   onSubmit(){
-    this.currentPayment = this.paymentForm.value;
-    if(this.isEdit){
-      //this.paymentService.handleUpdatePayment(this.currentPayment);
-      //this.notificationService.showNotification("pago editado con éxito!");
+
+    if(!this.isEdit()){
+      this.service.create(this.toPayment()).subscribe();
     }else{
-      //this.paymentService.handlePostPayment(this.currentPayment);
-      // this.notificationService.showNotification("pago guardado con éxito!");
+      this.service.update(this.toPayment()).subscribe();
     }
+    this.submitted.emit();
     this.setUp();
   }
+
+  toPayment() :Payment{
+    return {
+      id: this.payment().id ?? undefined,
+      date: this.paymentForm.get('date')?.value,
+      amount: this.paymentForm.get('amount')?.value,
+      description: this.paymentForm.get('description')?.value,
+      payable_id: this.ownable().id! ?? this.payment().payable_id,
+      payable_type: this.paybleType(),
+    }
+  }
+  onDelete() {
+    const result = this.confirmationService.openDialog('¿Está seguro de que desea eliminar este pago?');
+    result.afterClosed().subscribe(result =>{
+      if (result) {
+        this.service.delete(this.payment().id!).subscribe();
+      }
+    })
+  }
+
 }

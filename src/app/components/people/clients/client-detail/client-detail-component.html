@@ -5,12 +5,22 @@
 
   <section>
     <article>
-      <app-client [client]="client"/>
+      <app-client
+        [client]="client"
+      />
+      <app-payment-form
+        [paybleType]="Payables.Budget"
+        [payment]="selectedPayment()"
+        [ownable]="selectedBudget()"
+        payable="presupuesto"
+        (submitted)="this.paymentsResource.reload(); this.clientResource.reload()"
+      />
     </article>
     <app-payment-list
       [data]="payments"
       [pagination]="paymentsPagination"
       (pageChange)="paymentsPage.set($event)"
+      (selectedPayment)="this.selectedPayment.set($event)"
     />
     <app-ownable-list
       [data]="client.budgets!"
@@ -19,6 +29,7 @@
       [option]="true"
       [personId]="client.id!"
       [pagination]="pagination"
+      (selected)="this.selectedBudget.set($event)"
     />
   </section>
 }
