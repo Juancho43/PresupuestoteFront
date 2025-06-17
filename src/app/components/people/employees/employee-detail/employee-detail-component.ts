@@ -6,7 +6,7 @@ import {EmployeeComponent} from '../employee/employee.component';
 import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
 import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
-import {IOwnable, Payables} from '@models/IOwnable';
+import {IOwnable, Pagables, payableEntity, Payables} from '@models/IOwnable';
 import {Budget} from '@models/budget';
 import {Payment} from '@models/payment';
 
@@ -25,6 +25,7 @@ import {Payment} from '@models/payment';
 export class EmployeeDetailComponent {
   private service = inject(EmployeeService);
   readonly id = input.required<number>();
+  readonly pagable = Pagables.Salario;
   protected readonly Payables = Payables;
   selectedSalary = signal<IOwnable>({} as Budget);
   selectedPayment = signal<Payment>({} as Payment);
@@ -38,4 +39,5 @@ export class EmployeeDetailComponent {
     params : () => ({id: this.id() || 0, page: this.paymentsPage()}),
     stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
+  protected readonly payableEntity = payableEntity;
 }

@@ -10,7 +10,7 @@
         [paybleType]="Payables.Invoice"
         [payment]="selectedPayment()"
         [ownable]="selectedInvoice()"
-        payable="boleta"
+        [payable]="pagable"
         (submitted)="this.paymentsResource.reload(); this.supplierResource.reload()"
       />
     </article>
@@ -22,8 +22,8 @@
     />
     <app-ownable-list
       [data]="supplier.invoices!"
-      entity="boleta"
-      route="invoice"
+      [entity]="pagable"
+      [route]="payableEntity.Invoice"
       [option]="true"
       [pagination]="pagination"
       (selected)="this.selectedInvoice.set($event)"

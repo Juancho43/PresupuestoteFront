@@ -7,8 +7,9 @@ import {PaymentListComponent} from '@components/payments/payment-list/payment-li
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
 import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
 import {Budget} from '@models/budget';
-import {IOwnable, Payables} from '@models/IOwnable';
+import {IOwnable, Pagables, payableEntity, Payables} from '@models/IOwnable';
 import {Payment} from '@models/payment';
+
 @Component({
   selector: 'app-client-detail',
   imports: [
@@ -24,6 +25,7 @@ export class ClientDetailComponent {
   private service = inject(ClientService);
   readonly id = input.required<number>();
   protected readonly Payables = Payables;
+  readonly pagable = Pagables.Presupuesto;
   selectedBudget = signal<IOwnable>({} as Budget);
   selectedPayment = signal<Payment>({} as Payment);
   clientResource = rxResource({
@@ -38,5 +40,5 @@ export class ClientDetailComponent {
   });
 
 
-
+  protected readonly payableEntity = payableEntity;
 }

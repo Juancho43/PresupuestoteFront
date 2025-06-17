@@ -8,7 +8,7 @@
       [paybleType]="Payables.Salary"
       [payment]="selectedPayment()"
       [ownable]="selectedSalary()"
-      payable="salario"
+      [payable]="pagable"
       (submitted)="this.paymentsResource.reload(); this.employeeResource.reload()"
     />
   </article>
@@ -20,8 +20,8 @@
   />
   <app-ownable-list
     [data]="employee.salaries!"
-    entity="salario"
-    route="salary"
+    [entity]="pagable"
+    [route]="payableEntity.Salary"
     [option]="true"
     [pagination]="pagination"
     (selected)="this.selectedSalary.set($event)"

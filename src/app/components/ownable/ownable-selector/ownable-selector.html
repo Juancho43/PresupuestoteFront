@@ -1,0 +1,12 @@
+<form>
+  <label for="ownable">Seleccionar:</label>
+  <select
+    id="ownable"
+    name="ownable"
+    [(ngModel)]="selectedOwnable"
+    (ngModelChange)="this.selected.emit(selectedOwnable())">
+    @for( ownable of ownable(); track $index) {
+      <option [value]="ownable">{{pagables()[$index].toString() }}</option>
+    }
+  </select>
+</form>

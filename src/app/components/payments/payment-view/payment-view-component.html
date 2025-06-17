@@ -1,1 +1,38 @@
-<p>payment-view-component works!</p>
+@let paymentData = this.paymentsReource.value()!.data!.results;
+@let paginationData = this.paymentsReource.value()!.data!.pagination;
+
+@if (!this.paymentsReource.isLoading()) {
+  <section>
+    <app-payment-list
+      [data]="paymentData"
+      [pagination]="paginationData"
+      (pageChange)="this.page.set($event)"
+      (selectedPayment)="this.selectedPayment.set($event)"
+    />
+
+
+    <app-ownable-list
+      [data]="ownableList()"
+      [entity]="pagables()"
+      [route]="payable()"
+      [option]="false"
+      [pagination]="undefined"
+      (selected)="this.ownable.set($event)"
+    />
+
+    <article>
+      <app-ownable-selector
+        (selected)="this.payable.set($event)"
+      />
+       <app-payment-form
+         [payment]="selectedPayment()"
+         [ownable]="ownable()"
+         [payable]="pagables()"
+         [paybleType]="paybleType()"
+       />
+    </article>
+
+  </section>
+
+
+}

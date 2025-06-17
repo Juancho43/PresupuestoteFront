@@ -1,1 +1,7 @@
-<p>payment-component-component works!</p>
+@let payment = this.payment();
+<div class="Details">
+  <h3 class="Details-title">Detalle del pago</h3>
+  <p>Fecha: {{payment.date | date}}</p>
+  <p>Monto: {{payment.amount | currency}}</p>
+  <p>Descripción: {{payment.description}}</p>
+</div>

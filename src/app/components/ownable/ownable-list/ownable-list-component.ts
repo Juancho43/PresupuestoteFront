@@ -1,5 +1,5 @@
-import {Component, input, OnInit, output, signal} from '@angular/core';
-import {IOwnable} from '@models/IOwnable';
+import {Component, effect, input, OnInit, output, signal} from '@angular/core';
+import {IOwnable, Pagables, payableEntity} from '@models/IOwnable';
 import {OwnableCardComponent} from '@components/ownable/ownable-card/ownable-card-component';
 import {OwnableSearcherComponent} from '@components/ownable/ownable-searcher/ownable-searcher.component';
 import {RouterLink} from '@angular/router';
@@ -22,14 +22,26 @@ import {PaginationButtons} from '@shared/pagination-buttons/pagination-buttons';
 export class OwnableListComponent implements OnInit {
   readonly data = input.required<IOwnable[]>();
   readonly pagination = input<Pagination>();
-  readonly entity = input.required<string>();
-  readonly route = input.required<string>();
+
+  readonly entity = input.required<Pagables>();
+  readonly route = input.required<payableEntity>();
   readonly option = input.required<boolean>();
   readonly personId= input<number>(0);
+
   changePage = output<number>();
   selected = output<IOwnable>();
+
   ownableList = signal<IOwnable[]>([]);
   paginationData = signal<Pagination>({} as Pagination);
+
+  constructor() {
+    effect(() => {
+      this.data();
+      this.ownableList.set(this.data());
+    });
+
+  }
+
   ngOnInit() {
     this.ownableList.set(this.data());
     this.paginationData.set(this.pagination()!);

@@ -12,7 +12,7 @@
         [paybleType]="Payables.Budget"
         [payment]="selectedPayment()"
         [ownable]="selectedBudget()"
-        payable="presupuesto"
+        [payable]="pagable"
         (submitted)="this.paymentsResource.reload(); this.clientResource.reload()"
       />
     </article>
@@ -24,8 +24,8 @@
     />
     <app-ownable-list
       [data]="client.budgets!"
-      entity="presupuesto"
-      route="budget"
+      [entity]="pagable"
+      [route]="payableEntity.Budget"
       [option]="true"
       [personId]="client.id!"
       [pagination]="pagination"

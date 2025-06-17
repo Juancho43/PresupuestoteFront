@@ -1,10 +1,8 @@
 import {Component, inject, input, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {of} from 'rxjs';
-import {ApiResponseCollection} from '@core/interfaces/ApiResponseCollection';
 import {IOwnable} from '@models/IOwnable';
-import {BudgetService} from '@services/http/budget-service';
+import {OwnableService} from '@services/http/ownable-service';
 
 @Component({
   selector: 'app-ownable-searcher',
@@ -15,8 +13,9 @@ import {BudgetService} from '@services/http/budget-service';
   templateUrl: './ownable-searcher.component.html',
   styleUrl: './ownable-searcher.component.scss'
 })
+
 export class OwnableSearcherComponent {
-  private service = inject(BudgetService);
+  private service = inject(OwnableService);
   results = output<IOwnable[]>();
   readonly entity = input.required<string>()
   readonly route = input.required<string>()
@@ -27,8 +26,7 @@ export class OwnableSearcherComponent {
       return {query: this.query(), entity: this.route()}
     },
     stream: ({params}) => {
-      if(params.query.length > 2) return  this.service.search(params.entity,params.query)
-      return of({} as ApiResponseCollection<IOwnable>);
+      return  this.service.search(params.entity,params.query)
     },
   })
 

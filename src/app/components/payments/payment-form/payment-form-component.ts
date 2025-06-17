@@ -1,6 +1,6 @@
 import {Component, effect, inject, input, output, signal} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {IOwnable, Payables} from '@models/IOwnable';
+import {IOwnable, Pagables, Payables} from '@models/IOwnable';
 import {PaymentService} from '@services/http/payment-service';
 import {Payment} from '@models/payment';
 import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
@@ -16,7 +16,7 @@ import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-ser
 export class PaymentFormComponent {
   private confirmationService = inject(ConfirmationDialogService);
   private service = inject(PaymentService);
-  readonly payable = input.required<'boleta'| 'salario' | 'presupuesto'>();
+  readonly payable = input.required<Pagables>();
   readonly ownable = input.required<IOwnable>();
   readonly payment = input.required<Payment>();
   paybleType = input.required<Payables>();

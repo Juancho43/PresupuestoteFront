@@ -6,7 +6,7 @@ import {SupplierComponent} from '../supplier/supplier-component';
 import {PaymentListComponent} from '@components/payments/payment-list/payment-list-component';
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
 import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
-import {IOwnable, Payables} from '@models/IOwnable';
+import {IOwnable, Pagables, payableEntity, Payables} from '@models/IOwnable';
 import {Budget} from '@models/budget';
 import {Payment} from '@models/payment';
 
@@ -24,6 +24,7 @@ import {Payment} from '@models/payment';
 export class SupplierDetailComponent {
   private service = inject(SupplierService);
   readonly id = input.required<number>();
+  readonly pagable = Pagables.Boleta;
   protected readonly Payables = Payables;
   selectedInvoice = signal<IOwnable>({} as Budget);
   selectedPayment = signal<Payment>({} as Payment);
@@ -37,4 +38,5 @@ export class SupplierDetailComponent {
     params : () => ({id: this.id() || 0, page: this.paymentsPage()}),
     stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
+  protected readonly payableEntity = payableEntity;
 }
