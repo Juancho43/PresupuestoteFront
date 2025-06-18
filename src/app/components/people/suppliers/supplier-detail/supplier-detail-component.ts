@@ -7,8 +7,8 @@ import {PaymentListComponent} from '@components/payments/payment-list/payment-li
 import {Pagination} from '@core/interfaces/ApiResponseCollection';
 import {PaymentFormComponent} from '@components/payments/payment-form/payment-form-component';
 import {IOwnable, Pagables, payableEntity, Payables} from '@models/IOwnable';
-import {Budget} from '@models/budget';
 import {Payment} from '@models/payment';
+import {Invoice} from '@models/invoice';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -26,7 +26,7 @@ export class SupplierDetailComponent {
   readonly id = input.required<number>();
   readonly pagable = Pagables.Boleta;
   protected readonly Payables = Payables;
-  selectedInvoice = signal<IOwnable>({} as Budget);
+  selectedInvoice = signal<IOwnable>({} as Invoice);
   selectedPayment = signal<Payment>({} as Payment);
   supplierResource = rxResource({
     params : () => ({id: this.id() || 0}),
@@ -39,4 +39,9 @@ export class SupplierDetailComponent {
     stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
   protected readonly payableEntity = payableEntity;
+
+  reset(){
+    this.selectedInvoice.set({} as Invoice);
+    this.selectedPayment.set({} as Payment);
+  }
 }

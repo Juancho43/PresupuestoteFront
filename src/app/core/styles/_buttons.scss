@@ -10,12 +10,7 @@ button {
   width: 30%;
   font-family: core.$fontOtro;
 }
-button{
-  &:disabled{
-    color: core.$gris;
-    background-color: core.$nogal;
-  }
-}
+
 
 .disactive{
   color: core.$gris;
@@ -43,4 +38,10 @@ button{
 .Botones button:active,
 .Boton1:active {
   box-shadow: inset 2px 2px 2px core.$blanquecino;
+}
+button:disabled{
+
+  color: core.$gris;
+  background-color: core.$nogal;
+
 }

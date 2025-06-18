@@ -10,6 +10,7 @@
       [ownable]="selectedSalary()"
       [payable]="pagable"
       (submitted)="this.paymentsResource.reload(); this.employeeResource.reload()"
+      (reset)="reset()"
     />
   </article>
   <app-payment-list

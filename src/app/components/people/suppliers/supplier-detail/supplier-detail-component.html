@@ -12,6 +12,7 @@
         [ownable]="selectedInvoice()"
         [payable]="pagable"
         (submitted)="this.paymentsResource.reload(); this.supplierResource.reload()"
+        (reset)="reset()"
       />
     </article>
     <app-payment-list

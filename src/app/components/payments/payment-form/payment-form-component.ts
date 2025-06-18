@@ -16,26 +16,29 @@ import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-ser
 export class PaymentFormComponent {
   private confirmationService = inject(ConfirmationDialogService);
   private service = inject(PaymentService);
+
   readonly payable = input.required<Pagables>();
   readonly ownable = input.required<IOwnable>();
   readonly payment = input.required<Payment>();
-  paybleType = input.required<Payables>();
-  submitted = output();
+  readonly paybleType = input.required<Payables>();
 
+  submitted = output();
+  reset = output();
   isEdit = signal(false);
 
   //Form
   paymentForm : FormGroup = new FormGroup({
     date: new FormControl('',[ Validators.required]),
-    amount: new FormControl(0, Validators.required),
+    amount: new FormControl(0,Validators.required),
     description : new FormControl('',Validators.required),
-    payable_id: new FormControl(0, Validators.required),
-    payable_type: new FormControl('', Validators.required)
+    payable_id: new FormControl(0, [Validators.required]),
+    payable_type: new FormControl('' )
   });
 
   constructor() {
     effect(() => {
       this.payment();
+
       this.onEditHandler();
     });
   }
@@ -62,9 +65,9 @@ export class PaymentFormComponent {
       this.paymentForm.get('date')?.valid &&
       this.paymentForm.get('amount')?.valid &&
       this.paymentForm.get('description')?.valid
-    ){
+    )
       flag = true;
-    }
+
     return flag;
   }
 
@@ -75,6 +78,7 @@ export class PaymentFormComponent {
 
   resetForm($Event : Event){
     this.setUp();
+    this.reset.emit();
     $Event.preventDefault();
   }
 

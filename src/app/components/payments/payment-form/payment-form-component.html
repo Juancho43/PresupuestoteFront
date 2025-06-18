@@ -2,24 +2,23 @@
 <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
   <fieldset>
 
-    @if (paymentForm.invalid && paymentForm.dirty) {
-      <div class="invalid">
+  @if (paymentForm.invalid && (paymentForm.touched || paymentForm.dirty)) {
+    <div class="invalid">
 
-        @if (paymentForm.get('fecha')?.invalid) {
-          <p>La fecha es obligatoria.</p>
-        }
+      @if (paymentForm.get('date')?.invalid && paymentForm.get('date')?.touched) {
+        <p>La fecha es obligatoria.</p>
+      }
 
-        @if (paymentForm.get('monto')?.invalid) {
-          <p>El monto es obligatorio.</p>
-        }
+      @if (paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched) {
+        <p>El monto es obligatorio.</p>
+      }
 
-        @if(paymentForm.get('Descripcion')?.invalid ){
-          <p>La descripcion es obligatoria.</p>
-        }
+      @if (paymentForm.get('description')?.invalid && paymentForm.get('description')?.touched) {
+        <p>La descripción es obligatoria.</p>
+      }
 
-      </div>
-    }
-
+    </div>
+  }
     <legend class="List-title">
       @if (edit) {
         Actualizar pago
@@ -32,9 +31,9 @@
       <input type="text" name="payable" id="payable" [value]="ownable().description || 'Seleccione un '+ payable()" readonly>
     }
     <label for="fecha">Fecha:</label>
-    <input type="datetime-local" name="fecha" id="fecha" placeholder="fecha..." formControlName="date">
+    <input type="datetime-local" name="fecha" id="fecha" formControlName="date">
     <label for="monto">Monto:</label>
-    <input type="number" name="monto" id="monto" placeholder="monto..." formControlName="amount">
+    <input type="number" name="monto" id="monto" placeholder="Monto..." formControlName="amount">
     <label for="Descripcion">Descripción:</label>
     <textarea name="Descripcion" id="Descripcion" placeholder="Descripcion..." formControlName="description"></textarea>
   </fieldset>

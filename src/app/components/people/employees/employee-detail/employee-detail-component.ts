@@ -40,4 +40,9 @@ export class EmployeeDetailComponent {
     stream : ({params}) => this.service.getPayments(params.id,params.page),
   });
   protected readonly payableEntity = payableEntity;
+
+  reset() {
+    this.selectedSalary.set({} as Budget);
+    this.selectedPayment.set({} as Payment);
+  }
 }

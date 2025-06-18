@@ -14,6 +14,7 @@
         [ownable]="selectedBudget()"
         [payable]="pagable"
         (submitted)="this.paymentsResource.reload(); this.clientResource.reload()"
+        (reset)="reset()"
       />
     </article>
     <app-payment-list
