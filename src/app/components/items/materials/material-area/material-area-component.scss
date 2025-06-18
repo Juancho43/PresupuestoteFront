@@ -5,3 +5,13 @@ div{
   width: 80dvw;
   overflow-x: auto;
 }
+section {
+  display: grid;
+  grid-template-columns: 20dvw 1fr;
+  height: 85dvh;
+  justify-content: flex-start;
+}
+
+.Options{
+  align-self: start;
+}

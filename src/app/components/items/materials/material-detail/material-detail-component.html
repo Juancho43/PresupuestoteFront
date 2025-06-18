@@ -1,20 +1,31 @@
-@let works = this.workResource.value()!.data!.works!;
-@let invoices = this.invoiceResource.value()!.data!.invoices!;
-@let prices = this.priceResource.value()!.data!.prices!;
-@let stocks = this.stockResource.value()!.data!.stocks!;
-@if ( works || invoices || prices || stocks) {
+@let material = this.materialResource.value()!.data!;
+@if (materialResource?.value()) {
+  @let works = workResource?.value()?.data?.works ?? [];
+  @let invoices = invoiceResource?.value()?.data?.invoices ?? [];
+  @let prices = priceResource?.value()?.data?.prices ?? [];
+  @let stocks = stockResource?.value()?.data?.stocks ?? [];
+
+
   <section>
-<!--    <app-material [material]="material"/>-->
-    <app-stock-list [stockList]="stocks"/>
-    <app-price-list [priceList]="prices"/>
-    <app-work-list [works]="works" [budgetId]="0"/>
+    <app-material [material]="material"/>
+    <app-stock-list
+      [stockList]="stocks"
+    />
+    <app-price-list
+      [priceList]="prices"
+    />
+    <app-work-list
+      [works]="works"
+      [budgetId]="0"
+    />
     <app-ownable-list
       [data]="invoices"
       [title]="'boletas'"
       [entity]="Pagables.Boleta"
       [route]="payableEntity.Invoice"
       [option]="true"
-
+      [pagination]="undefined"
     />
   </section>
+
 }

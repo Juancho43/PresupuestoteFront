@@ -6,6 +6,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {WorkListComponent} from '@components/works/work-list/work-list-component';
 import {Pagables, payableEntity} from '@models/IOwnable';
+import {MaterialComponent} from '@components/items/materials/material/material.component';
 
 @Component({
   selector: 'app-material-detail',
@@ -13,7 +14,8 @@ import {Pagables, payableEntity} from '@models/IOwnable';
     StockListComponent,
     PriceListComponent,
     OwnableListComponent,
-    WorkListComponent
+    WorkListComponent,
+    MaterialComponent
   ],
   templateUrl: './material-detail-component.html',
   styleUrl: './material-detail-component.scss'
@@ -21,6 +23,8 @@ import {Pagables, payableEntity} from '@models/IOwnable';
 export class MaterialDetailComponent {
   private service = inject(MaterialService);
   readonly id = input.required<number>();
+  protected readonly payableEntity = payableEntity;
+  protected readonly Pagables = Pagables;
 
   materialResource = rxResource({
     params : ()=>{return {id: this.id()}},
@@ -42,6 +46,7 @@ export class MaterialDetailComponent {
     params : ()=>{return {id: this.id()}},
     stream : ({params}) => this.service.getByIdWithWorks(params.id),
   })
-  protected readonly payableEntity = payableEntity;
-  protected readonly Pagables = Pagables;
+
+
+
 }

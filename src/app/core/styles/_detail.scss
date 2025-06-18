@@ -3,11 +3,13 @@
   background-color: core.$gris;
   padding: 1em;
   border-radius: 10px 10px;
+  min-width: 20dvw;
   margin: 1em;
   h4{
     margin: 10px;
   }
   p{
+    margin: 10px 0 ;
     font-family: core.$fontOtro;
     text-align: left;
     line-height: 1.1em;

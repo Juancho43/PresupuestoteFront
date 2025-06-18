@@ -18,6 +18,10 @@ body{
   flex-direction: row;
 }
 main{
+  justify-content: center;
+  align-items: center;
   @include flex-comlumn;
+  width: 100dvw;
+  height: 100dvh;
 }
 

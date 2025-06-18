@@ -7,6 +7,8 @@ div{
   justify-content: space-between;
   align-items: center;
   height: 5dvh;
+  position: fixed;
+  top:0;
 }
 h2{
   color: core.$blanquecino;

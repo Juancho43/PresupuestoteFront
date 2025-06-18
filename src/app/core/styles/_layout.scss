@@ -10,7 +10,10 @@ section{
   justify-content: space-around;
   align-items: flex-start;
   height: 100%;
+  width: 98dvw;
+  overflow-x: auto;
   overflow-y: auto;
+  gap: 20px;
 }
 article{
   display: flex;
