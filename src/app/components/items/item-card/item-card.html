@@ -1,0 +1,9 @@
+@let item = this.item();
+<div class="Card">
+  <div class="Card-Details">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.description }}</p>
+    <p>{{ item.quantity }} u. * {{ item.latestPrice.price | currency }}</p>
+  </div>
+</div>
+

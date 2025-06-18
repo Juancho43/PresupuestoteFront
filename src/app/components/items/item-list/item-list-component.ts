@@ -1,12 +1,14 @@
 import {Component, input} from '@angular/core';
 import {Material} from '@models/material';
-import {CurrencyPipe} from '@angular/common';
+import {ItemCard} from '@components/items/item-card/item-card';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
   selector: 'app-item-list',
   imports: [
-    CurrencyPipe,
+    ItemCard,
+    RouterLink,
   ],
   templateUrl: './item-list-component.html',
   styleUrl: './item-list-component.scss'
