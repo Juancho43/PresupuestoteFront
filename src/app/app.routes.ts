@@ -26,6 +26,7 @@ import {SalaryViewComponent} from '@components/ownable/salaries/salary-view/sala
 import {PaymentViewComponent} from '@components/payments/payment-view/payment-view-component';
 import {PaymentDetailComponent} from '@components/payments/payment-detail/payment-detail-component';
 import {SalaryDetailComponent} from '@components/ownable/salaries/salary-detail/salary-detail-component';
+import {InvoiceAreaComponent} from '@components/ownable/invoices/invoice-area-component/invoice-area-component';
 
 
 export const routes: Routes = [
@@ -73,7 +74,7 @@ export const routes: Routes = [
       {path: 'invoice', component: InvoiceViewComponent},
       {path: 'invoice/detail/:id', component: InvoiceDetailComponent},
       {path: 'invoice/new/:supplierId', component: InvoiceViewComponent},
-      {path: 'invoice/edit/:id/:supplierId', component: InvoiceViewComponent},
+      {path: 'invoice/edit/:id/:supplierId', component: InvoiceAreaComponent},
       //EmployeeRoutes
       {path: 'employee', component: EmployeeViewComponent},
       {path: 'employee/detail/:id', component: EmployeeDetailComponent},

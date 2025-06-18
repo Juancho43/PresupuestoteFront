@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
-import {Invoice, InvoiceRequest} from '@models/invoice';
+import {AddMaterialsToInvoiceRequest, Invoice, InvoiceRequest} from '@models/invoice';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
@@ -31,6 +31,9 @@ export class InvoiceService implements ICrudeable<Invoice,InvoiceRequest> {
   }
   delete(id: number): Observable<ApiResponse<Invoice>> {
     return this.http.delete<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.delete.replace(':id', id.toString()));
+  }
+  addMaterial(request : AddMaterialsToInvoiceRequest): Observable<ApiResponse<Invoice>> {
+    return this.http.post<ApiResponse<Invoice>>(environment.apiUrlV1 + invoiceEndpoint.addMaterial, request);
   }
 
 }

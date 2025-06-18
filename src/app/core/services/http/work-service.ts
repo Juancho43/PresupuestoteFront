@@ -7,6 +7,7 @@ import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.development';
 import {workEndpoint} from '../endpoints/works.endpoint';
+import {BudgetState} from '@models/budget';
 
 
 @Injectable({
@@ -15,8 +16,10 @@ import {workEndpoint} from '../endpoints/works.endpoint';
 export class WorkService implements ICrudeable<Work, WorkRequest> {
   private http = inject(HttpClient);
 
-  getAll(): Observable<ApiResponseCollection<Work>> {
-    return this.http.get<ApiResponseCollection<Work>>(environment.apiUrlV1 + workEndpoint.getAll);
+  getAll(page: number = 1): Observable<ApiResponseCollection<Work>> {
+    return this.http.get<ApiResponseCollection<Work>>(
+      `${environment.apiUrlV1}${workEndpoint.paginate}${page}`
+    );
   }
   getById(id: number): Observable<ApiResponse<Work>> {
     return this.http.get<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.getById.replace(':id', id.toString()));
@@ -32,5 +35,12 @@ export class WorkService implements ICrudeable<Work, WorkRequest> {
   }
   addMaterial(request : AddMaterialsToWorkRequest): Observable<ApiResponse<Work>> {
     return this.http.post<ApiResponse<Work>>(environment.apiUrlV1 + workEndpoint.addMaterial, request);
+  }
+  getStates(): Observable<ApiResponse<BudgetState>> {
+    return this.http.get<ApiResponse<BudgetState>>(environment.apiUrlV1 + workEndpoint.getStates);
+  }
+  search(query: string): Observable<ApiResponseCollection<Work>> {
+    const url = workEndpoint.search + query;
+    return this.http.post<ApiResponseCollection<Work>>(environment.apiUrlV1 + url,{});
   }
 }

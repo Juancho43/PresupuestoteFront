@@ -1,0 +1,9 @@
+@let invoice = this.invoice();
+<div class="Details">
+  <h3 class="Details-title">Detalle de la boleta </h3>
+  <p>Fecha: {{ invoice.date | date : "dd/MM/yyyy" }}</p>
+  <p>Descripción: {{ invoice.description }}</p>
+  <p>Estado pago: {{ invoice.payment_status }}</p>
+  <p>Precio: {{ invoice.total | currency }}</p>
+</div>
+

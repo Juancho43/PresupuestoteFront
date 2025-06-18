@@ -1,6 +1,6 @@
 @let edit = this.isEdit();
 @let materials = this.materialList();
-
+@let states = this.statesResource.value()?.data!.state;
 <form [formGroup]="WorkForm" (ngSubmit)="onSubmit()">
   <legend class="List-title"> {{ edit ? 'Actualizar un trabajo' : 'Crear un trabajo' }}</legend>
   <fieldset class="Form-data">
@@ -37,19 +37,22 @@
     <label for="notes">Notas:</label>
     <textarea name="notes" id="notes" formControlName="notes"></textarea>
 
-    <label for="status">Estado:</label>
-    <select formControlName="estado">
-<!--      @for (option of estados; track $index) {-->
-<!--        <option [value]="option">{{option | uppercase}}</option>-->
-<!--      }-->
-    </select>
+    @if (edit){
+      <label for="state">Estado:</label>
+
+      <select formControlName="state">
+        @for (option of states; track $index) {
+          <option [value]="option">{{option}}</option>
+        }
+      </select>
+    }
   </fieldset >
   <fieldset class="Material-list">
     <legend class="List-title">Materiales</legend>
 
     @for(item of materials; track $index){
       <pre (click)="this.selectedItem.emit(item)" (dblclick)="deleteItem(item)" >
-        {{item.name }} - {{item.quantity}}
+        {{item.name }} - {{item.quantity}} - {{item.latestPrice.price | currency}}
       </pre>
     }
 

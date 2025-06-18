@@ -1,6 +1,6 @@
 import {Component, inject, input} from '@angular/core';
-import {StockListComponent} from '@components/items/stocks/stock-list-component/stock-list-component';
-import {PriceListComponent} from '@components/items/prices/price-list-component/price-list-component';
+import {StockListComponent} from '@components/items/stocks/stock-list/stock-list-component';
+import {PriceListComponent} from '@components/items/prices/price-list/price-list-component';
 import {MaterialService} from '@services/http/material-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';

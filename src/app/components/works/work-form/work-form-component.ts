@@ -6,11 +6,13 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Material} from '@models/material';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-work-form',
   imports: [
     ReactiveFormsModule,
+    CurrencyPipe,
   ],
   templateUrl: './work-form-component.html',
   styleUrl: './work-form-component.scss'
@@ -30,7 +32,7 @@ export class WorkFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     notes: new FormControl('', Validators.required),
     deadLine: new FormControl(new Date(), Validators.required),
-    estado: new FormControl('Presupuestado', Validators.required),
+    state: new FormControl('Presupuestado', Validators.required),
     hours: new FormControl(0, [Validators.required, Validators.min(1)]),
   });
 
@@ -41,6 +43,12 @@ export class WorkFormComponent implements OnInit {
     stream: ({params}) => {
       if (params.id > 0) return this.service.getById(params.id);
       return of({} as ApiResponse<Work>);
+    }
+  })
+
+  statesResource = rxResource({
+    stream: () => {
+      return this.service.getStates();
     }
   })
 
@@ -155,7 +163,7 @@ export class WorkFormComponent implements OnInit {
       order: this.WorkForm.get('order')?.value,
       notes: this.WorkForm.get('notes')?.value,
       dead_line: this.WorkForm.get('deadLine')?.value,
-      state: this.WorkForm.get('estado')?.value,
+      state: this.WorkForm.get('state')?.value,
       estimated_time: this.WorkForm.get('hours')?.value
     };
   }

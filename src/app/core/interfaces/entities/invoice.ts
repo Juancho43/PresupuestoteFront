@@ -1,10 +1,20 @@
 import {IOwnable} from './IOwnable';
+import {Material} from '@models/material';
 
 export interface Invoice extends IOwnable{
-  date: Date;
+  materials: Material[];
 }
 export interface InvoiceRequest{
   id?: number;
-  date: Date;
   supplier_id: number;
+  date: Date;
+  description: string;
+}
+export interface AddMaterialsToInvoiceRequest{
+  invoice_id: number;
+  materials: {
+    id: number;
+    quantity: number;
+    price: number;
+  }[];
 }

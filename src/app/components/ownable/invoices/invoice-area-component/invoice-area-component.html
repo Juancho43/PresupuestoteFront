@@ -1,0 +1,22 @@
+@if(!invoiceResource.isLoading() && !invoiceResource.error()) {
+  @let invoice = this.invoiceResource.value()!.data!;
+
+  <section>
+    <app-invoice-material-form
+      [invoice]="invoice"
+      [item]="material()"
+      (selectedItem)="onEditMaterial($event)"
+    />
+    <app-price-form
+      [material]="item().material"
+      (newPrice)="onEditedMaterial($event)"
+    />
+    <app-material-join
+      [item]="item()"
+      (finalItem)="onEditedMaterial($event)"
+    />
+
+  </section>
+
+
+}

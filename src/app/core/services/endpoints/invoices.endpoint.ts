@@ -5,4 +5,5 @@ export const invoiceEndpoint = {
   update: '/invoices/:id',
   delete: '/invoices/:id',
   paginate: '/invoices/paginate/',
+  addMaterial: '/invoices/materials'
 };

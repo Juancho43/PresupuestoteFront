@@ -1,0 +1,17 @@
+@let materials = this.materialList();
+<form (ngSubmit)="submit()">
+  <fieldset class="Material-list">
+    <legend class="List-title">Materiales</legend>
+
+    @for(item of materials; track $index){
+      <pre (click)="this.selectedItem.emit(item)" (dblclick)="deleteItem(item)" >
+          {{item.name | titlecase}} - {{item.quantity}} - {{item.latestPrice.price | currency}}
+
+        </pre>
+    }
+
+  </fieldset>
+  <div class="Buttons">
+    <button type="submit">Agregar Materiales</button>
+  </div>
+</form>

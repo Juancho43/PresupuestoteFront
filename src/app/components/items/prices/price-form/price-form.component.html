@@ -1,0 +1,11 @@
+@if(material()){
+  @let materialName = material()!.name ;
+  <form (ngSubmit)="onSubmit()" >
+    <legend>Material: {{materialName}} </legend>
+    <label for="price">Ingrese nuevo precio:</label>
+    <input type="number" name="price" id="price" [(ngModel)]="price">
+    <button type="submit">Setear</button>
+  </form>
+} @else {
+  <p>Seleccione un material por favor.</p>
+}

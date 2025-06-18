@@ -1,1 +1,16 @@
-<p>work-search-component works!</p>
+<div class="Searcher">
+  <input
+    type="text"
+    [(ngModel)]="query"
+    (input)="search()"
+    (keydown.enter)="complete()"
+    placeholder="Buscar trabajo..."
+  />
+  <img
+    src="icons/search.svg"
+    alt="search icon"
+    width="20"
+    height="20"
+    (click)="complete()"
+  >
+</div>

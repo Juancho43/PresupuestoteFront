@@ -1,1 +1,18 @@
+@let workList = this.workResource.value()!.data!.results;
+@let paginationData = this.workResource.value()!.data!.pagination;
+<section>
+  <app-work-list
+    [works]="workList"
+    [pagination]="paginationData"
+    [budgetId]="0"
+    [option]="false"
+    (changePage)="this.page.set($event)"
+    (selected)="this.budgetSelected.set($event)"
 
+  />
+
+  <app-budget
+    [budget]="this.budgetSelected()"
+    routerLink="/budget/detail/{{this.budgetSelected()?.id}}"
+  />
+</section>

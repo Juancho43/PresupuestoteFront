@@ -1,6 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Supplier} from '@models/supplier';
 import {CurrencyPipe} from '@angular/common';
+import {IPerson} from '@models/IPerson';
 
 @Component({
   selector: 'app-supplier',
@@ -11,5 +12,5 @@ import {CurrencyPipe} from '@angular/common';
   styleUrl: './supplier-component.scss'
 })
 export class SupplierComponent {
-  readonly supplier = input.required<Supplier>();
+  readonly supplier = input.required<Supplier|IPerson>();
 }

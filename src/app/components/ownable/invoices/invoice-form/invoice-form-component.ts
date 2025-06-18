@@ -51,6 +51,7 @@ export class InvoiceFormComponent implements OnInit {
   //Form
   InvoiceForm: FormGroup = new FormGroup({
     date: new FormControl('', Validators.required),
+    description : new FormControl('', Validators.required),
     supplierId: new FormControl(0, Validators.required),
   });
 
@@ -76,7 +77,8 @@ export class InvoiceFormComponent implements OnInit {
   setForm(data: Invoice) {
     this.InvoiceForm.patchValue({
       date: data.date,
-      supplierId: data.owner!.id
+      supplierId: data.owner!.id,
+      description: data.description
     });
   }
   setUp() {
@@ -104,6 +106,7 @@ export class InvoiceFormComponent implements OnInit {
     return {
       id: this.invoiceId(),
       supplier_id: this.supplierId(),
+      description: this.InvoiceForm.get('description')?.value,
       date: this.InvoiceForm.get('date')?.value,
     }
   }

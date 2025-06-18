@@ -4,5 +4,8 @@ export const workEndpoint = {
   create: '/works',
   update: '/works/:id',
   delete: '/works/:id',
-  addMaterial: '/works/materials'
+  addMaterial: '/works/materials',
+  getStates: '/works/states/get',
+  paginate: '/works/paginate/',
+  search: '/works/search/',
 };
