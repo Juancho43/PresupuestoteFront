@@ -6,8 +6,8 @@
   @if (salariesResource.hasValue()) {
     <app-ownable-list
       [data] = data
-      entity="salario"
-      route="salary"
+      [entity]="Pagables.Salario"
+      [route]="payableEntity.Salary"
       [option]="false"
       [pagination]="pagination"
       (changePage)="this.salaryPage.set($event)"

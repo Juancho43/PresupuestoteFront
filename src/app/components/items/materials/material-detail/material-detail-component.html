@@ -11,9 +11,10 @@
     <app-ownable-list
       [data]="invoices"
       [title]="'boletas'"
-      [entity]="'invoice'"
+      [entity]="Pagables.Boleta"
+      [route]="payableEntity.Invoice"
       [option]="true"
-      [route]="'/'"
+
     />
   </section>
 }

@@ -5,6 +5,7 @@ import {BudgetFormComponent} from '@components/ownable/budgets/budget-form/budge
 import {ClientService} from '@services/http/client-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {BudgetService} from '@services/http/budget-service';
+import {Pagables, payableEntity} from '@models/IOwnable';
 
 @Component({
   selector: 'app-budget-view',
@@ -44,4 +45,7 @@ export class BudgetViewComponent {
       this.owner.set(this.clientId());
     });
   }
+
+  protected readonly Pagables = Pagables;
+  protected readonly payableEntity = payableEntity;
 }

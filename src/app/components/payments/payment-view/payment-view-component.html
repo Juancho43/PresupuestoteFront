@@ -29,6 +29,7 @@
          [ownable]="ownable()"
          [payable]="pagables()"
          [paybleType]="paybleType()"
+         (submitted)="this.paymentsReource.reload()"
        />
     </article>
 

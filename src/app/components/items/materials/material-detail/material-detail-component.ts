@@ -5,6 +5,7 @@ import {MaterialService} from '@services/http/material-service';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {WorkListComponent} from '@components/works/work-list/work-list-component';
+import {Pagables, payableEntity} from '@models/IOwnable';
 
 @Component({
   selector: 'app-material-detail',
@@ -41,4 +42,6 @@ export class MaterialDetailComponent {
     params : ()=>{return {id: this.id()}},
     stream : ({params}) => this.service.getByIdWithWorks(params.id),
   })
+  protected readonly payableEntity = payableEntity;
+  protected readonly Pagables = Pagables;
 }

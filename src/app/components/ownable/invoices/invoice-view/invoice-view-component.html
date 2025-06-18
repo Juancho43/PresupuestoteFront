@@ -6,8 +6,8 @@
   @if (invoicesResource.hasValue()) {
     <app-ownable-list
       [data] = data
-      entity="boleta"
-      route="invoice"
+      [entity]="Pagables.Boleta"
+      [route]="payableEntity.Invoice"
       [option]="false"
       [pagination]="pagination"
       (changePage)="this.invoicePage.set($event)"

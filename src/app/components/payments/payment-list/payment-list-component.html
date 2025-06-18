@@ -2,24 +2,18 @@
 @let paginationData = pagination();
 <div class="List">
   <h3 class="List-title">Listado de pagos</h3>
-<!--  <app-measure-searcher-->
-<!--    (results)="handleResults($event)"-->
-<!--  />-->
-
   @for (payment of paymentsData; track payment.id) {
     <app-payment-card
       (click)="this.selectedPayment.emit(payment)"
       [payment]="payment"
     />
+  } @empty {
+    No hay pagos registrados.
   }
-
-<!--  @if(option()){-->
-<!--    <button class="Boton1" [routerLink]= "`/${route()}/new`">-->
-<!--      Agregar {{ entity() }}s-->
-<!--    </button>-->
-<!--  }-->
-  <app-pagination-buttons
-    [pagination]="paginationData"
-    (pageChange)="this.pageChange.emit($event)"
-  />
+  @if (pagination().links.next || pagination().links.previous) {
+    <app-pagination-buttons
+      [pagination]="paginationData"
+      (pageChange)="this.pageChange.emit($event)"
+    />
+  }
 </div>

@@ -6,8 +6,8 @@
   @if (budgetsResource.hasValue()) {
     <app-ownable-list
       [data] = data
-      entity="presupuesto"
-      route="budget"
+      [entity]="Pagables.Presupuesto"
+      [route]="payableEntity.Budget"
       [option]="false"
       [pagination]="pagination"
       (changePage)="this.budgetPage.set($event)"

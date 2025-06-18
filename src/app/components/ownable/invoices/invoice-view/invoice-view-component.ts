@@ -5,6 +5,7 @@ import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-lis
 import {PersonListComponent} from '@components/people/person-list/person-list-component';
 import {InvoiceFormComponent} from '@components/ownable/invoices/invoice-form/invoice-form-component';
 import {SupplierService} from '@services/http/supplier-service';
+import {Pagables, payableEntity} from '@models/IOwnable';
 
 @Component({
   selector: 'app-invoice-view',
@@ -44,4 +45,7 @@ export class InvoiceViewComponent {
       this.owner.set(this.supplierId());
     });
   }
+
+  protected readonly payableEntity = payableEntity;
+  protected readonly Pagables = Pagables;
 }

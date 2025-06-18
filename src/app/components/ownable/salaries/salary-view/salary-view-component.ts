@@ -5,6 +5,7 @@ import {EmployeeService} from '@services/http/employee-service';
 import {OwnableListComponent} from '@components/ownable/ownable-list/ownable-list-component';
 import {PersonListComponent} from '@components/people/person-list/person-list-component';
 import {SalaryFormComponent} from '@components/ownable/salaries/salary-form/salary-form-component';
+import {Pagables, payableEntity} from '@models/IOwnable';
 
 @Component({
   selector: 'app-salary-view',
@@ -44,4 +45,7 @@ export class SalaryViewComponent {
       this.owner.set(this.employeeId());
     });
   }
+
+  protected readonly payableEntity = payableEntity;
+  protected readonly Pagables = Pagables;
 }
