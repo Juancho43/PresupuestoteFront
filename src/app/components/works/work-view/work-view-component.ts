@@ -5,13 +5,15 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {Budget} from '@models/budget';
 import {BudgetComponent} from '@components/ownable/budgets/budget/budget.component';
 import {RouterLink} from '@angular/router';
+import {TextAdvise} from '@shared/text-advise/text-advise';
 
 @Component({
   selector: 'app-work-view',
   imports: [
     WorkListComponent,
     BudgetComponent,
-    RouterLink
+    RouterLink,
+    TextAdvise
 
   ],
   templateUrl: './work-view-component.html',

@@ -5,16 +5,16 @@
   <app-material-searcher
     (results)="handleResults($event)"
   />
-
-  @for (material of materialData; track material.id) {
-    <app-material-card
-        [material]="material"
-        [entity]="entity()"
-        [route]="route()"
-        (click)="selectMaterial(material)"
-    />
-  }
-
+  <div class="List-card-container">
+    @for (material of materialData; track material.id) {
+      <app-material-card
+          [material]="material"
+          [entity]="entity()"
+          [route]="route()"
+          (click)="selectMaterial(material)"
+      />
+    }
+  </div>
   @if(option()){
     <button class="Boton1" [routerLink]= "`/${route()}/new`">
       Agregar {{ entity() }}s

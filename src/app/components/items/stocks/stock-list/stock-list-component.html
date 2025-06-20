@@ -1,9 +1,11 @@
 @let stockData = stockList();
 <div class="List">
   <h3 class="List-title">Listado de stock</h3>
+  <div class="List-card-container">
   @for (stock of stockData; track stock.id) {
     <app-stock-card
       [stock]="stock"
     />
   }
+  </div>
 </div>

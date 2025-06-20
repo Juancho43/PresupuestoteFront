@@ -10,9 +10,16 @@
     (selected)="this.budgetSelected.set($event)"
 
   />
+  @if (this.budgetSelected().id != undefined) {
+    <app-budget
+      [budget]="this.budgetSelected()"
+      routerLink="/budget/detail/{{this.budgetSelected()?.id}}"
+    />
+  } @else {
+    <app-text-advise
+      [text]="`Seleccione un trabajo para ver el presupuesto asociado.`"
+    />
+  }
 
-  <app-budget
-    [budget]="this.budgetSelected()"
-    routerLink="/budget/detail/{{this.budgetSelected()?.id}}"
-  />
+
 </section>

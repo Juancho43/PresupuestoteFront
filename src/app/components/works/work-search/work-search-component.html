@@ -2,8 +2,6 @@
   <input
     type="text"
     [(ngModel)]="query"
-    (input)="search()"
-    (keydown.enter)="complete()"
     placeholder="Buscar trabajo..."
   />
   <img
@@ -11,6 +9,5 @@
     alt="search icon"
     width="20"
     height="20"
-    (click)="complete()"
   >
 </div>

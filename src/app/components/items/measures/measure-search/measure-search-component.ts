@@ -1,4 +1,4 @@
-import {Component, inject, output, signal} from '@angular/core';
+import {Component, effect, inject, output, signal} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
@@ -32,10 +32,11 @@ export class MeasureSearchComponent {
     },
   });
 
-  search() {
-    this.searchResource.reload();
+  constructor() {
+    effect(() => {
+      this.query().length > 2 ? this.complete() : this.results.emit([]);
+    });
   }
-
   complete() {
     this.results.emit(this.searchResource.value()?.data!.results || []);
   }

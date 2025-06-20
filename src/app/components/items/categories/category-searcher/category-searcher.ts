@@ -1,4 +1,4 @@
-import {Component, inject, output, signal} from '@angular/core';
+import {Component, effect, inject, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {ApiResponseCollection} from '@core/interfaces/ApiResponseCollection';
@@ -30,8 +30,10 @@ export class CategorySearcherComponent {
     },
   });
 
-  search() {
-    this.searchResource.reload();
+  constructor() {
+    effect(() => {
+      this.query().length > 2 ? this.complete() : this.results.emit([]);
+    });
   }
 
   complete() {

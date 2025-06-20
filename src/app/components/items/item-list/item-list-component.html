@@ -1,13 +1,13 @@
 @let items = this.items();
 <div class="List">
   <h3 class="List-title">Listado de materiales.</h3>
-
+  <div class="List-card-container">
   @for(item of items; track $index) {
     <app-item-card
       routerLink="/material/detail/{{item.id}}"
       [item]="item"
     />
   }
-
+  </div>
 </div>
 

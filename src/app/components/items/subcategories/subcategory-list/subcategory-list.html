@@ -5,15 +5,15 @@
   <app-subcategory-searcher
     (results)="handleResults($event)"
   />
-
-  @for (subcategory of subcategoryData; track subcategory.id) {
-    <app-subcategory-card
-      (click)="this.selectedSubcategory.emit(subcategory)"
-      [subcategory]="subcategory"
-      [route]="route()"
-    />
-  }
-
+  <div class="List-card-container">
+    @for (subcategory of subcategoryData; track subcategory.id) {
+      <app-subcategory-card
+        (click)="this.selectedSubcategory.emit(subcategory)"
+        [subcategory]="subcategory"
+        [route]="route()"
+      />
+    }
+  </div>
   @if(option()){
     <button class="Boton1" [routerLink]= "`/${route()}/new`">
       Agregar {{ entity() }}s

@@ -5,20 +5,21 @@
   <app-measure-searcher
     (results)="handleResults($event)"
   />
-
-  @for (measure of measureData; track measure.id) {
-    <app-measure-card
-      (click)="this.selectedMeasure.emit(measure)"
-      [measure]="measure"
-      [route]="route()"
-    />
-  }
-
+  <div class="List-card-container">
+    @for (measure of measureData; track measure.id) {
+      <app-measure-card
+        (click)="this.selectedMeasure.emit(measure)"
+        [measure]="measure"
+        [route]="route()"
+      />
+    }
+  </div>
   @if(option()){
     <button class="Boton1" [routerLink]= "`/${route()}/new`">
       Agregar {{ entity() }}s
     </button>
   }
+
   <app-pagination-buttons
     [pagination]="pagination"
     (pageChange)="this.pageChange.emit($event)"

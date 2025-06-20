@@ -2,14 +2,16 @@
 @let paginationData = pagination();
 <div class="List">
   <h3 class="List-title">Listado de pagos</h3>
-  @for (payment of paymentsData; track payment.id) {
-    <app-payment-card
-      (click)="this.selectedPayment.emit(payment)"
-      [payment]="payment"
-    />
-  } @empty {
-    No hay pagos registrados.
-  }
+  <div class="List-card-container">
+    @for (payment of paymentsData; track payment.id) {
+      <app-payment-card
+        (click)="this.selectedPayment.emit(payment)"
+        [payment]="payment"
+      />
+    } @empty {
+      No hay pagos registrados.
+    }
+  </div>
   @if (pagination().links.next || pagination().links.previous) {
     <app-pagination-buttons
       [pagination]="paginationData"

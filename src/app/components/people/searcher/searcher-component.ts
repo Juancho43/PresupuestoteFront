@@ -1,4 +1,4 @@
-import {Component, inject, input, output, signal} from '@angular/core';
+import {Component, effect, inject, input, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {PeopleService} from '@services/http/people-service';
 import {IPerson} from '@models/IPerson';
@@ -22,6 +22,7 @@ export class SearcherComponent {
   readonly route = input.required<string>()
   query = signal('');
 
+
   searchResource = rxResource({
     params : () => {
       return {query: this.query(), entity: this.route()}
@@ -32,11 +33,12 @@ export class SearcherComponent {
     },
   })
 
-
-
+  constructor() {
+    effect(() => {
+      this.query().length > 2 ? this.complete() : this.results.emit([]);
+    });
+  }
   complete() {
-
-    this.searchResource.reload();
     this.results.emit(this.searchResource.value()!.data!.results || []);
   }
 }

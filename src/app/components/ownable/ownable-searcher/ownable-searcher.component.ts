@@ -1,4 +1,4 @@
-import {Component, inject, input, output, signal} from '@angular/core';
+import {Component, effect, inject, input, output, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {IOwnable} from '@models/IOwnable';
@@ -30,8 +30,11 @@ export class OwnableSearcherComponent {
     },
   })
 
-  search() {
-    this.searchResource.reload();
+  constructor() {
+    effect(() => {
+      this.query().length > 2 ? this.complete() : this.results.emit([]);
+      this.searchResource.value()!.data!.results.length > 0 ? this.complete() : this.results.emit([]);
+    });
   }
   complete() {
     this.results.emit(this.searchResource.value()!.data!.results || []);

@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ItemCard} from './item-card';
+import {TextAdvise} from './text-advise';
 
-describe('ItemCard', () => {
-  let component: ItemCard;
-  let fixture: ComponentFixture<ItemCard>;
+describe('TextAdvise', () => {
+  let component: TextAdvise;
+  let fixture: ComponentFixture<TextAdvise>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ItemCard]
+      imports: [TextAdvise]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ItemCard);
+    fixture = TestBed.createComponent(TextAdvise);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

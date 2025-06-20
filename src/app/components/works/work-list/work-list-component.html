@@ -13,13 +13,15 @@
       (results)="handleResults($event)"
     />
   }
-  @for (work of data ; track work.id) {
-    <app-work-card
-      [work]="work"
-      [budgetId]="budgetId()"
-      (click)="this.selected.emit(work.budget!)"
-    />
-  }
+  <div class="List-card-container">
+    @for (work of data ; track work.id) {
+      <app-work-card
+        [work]="work"
+        [budgetId]="budgetId()"
+        (click)="this.selected.emit(work.budget!)"
+      />
+    }
+  </div>
 
   @if (pagination() != undefined) {
     <app-pagination-buttons

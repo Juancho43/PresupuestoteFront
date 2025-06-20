@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
 import {Supplier} from '@models/supplier';
-import {Observable} from 'rxjs';
+import {catchError, Observable, of, tap} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
@@ -9,6 +9,7 @@ import {environment} from '../../../../environments/environment.development';
 import {supplierEndpoint} from '../endpoints/suppliers.endpoint';
 import {Payment} from '@models/payment';
 import {paymentEndpoint} from '../endpoints/payments.endpoint';
+import {NotificationService} from '@services/utils/notification-service';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ import {paymentEndpoint} from '../endpoints/payments.endpoint';
 })
 export class SupplierService implements ICrudeable<Supplier> {
   private http = inject(HttpClient);
-
+  private notification = inject(NotificationService);
   getAll(page: number = 1): Observable<ApiResponseCollection<Supplier>> {
     return this.http.get<ApiResponseCollection<Supplier>>(
       `${environment.apiUrlV1}${supplierEndpoint.paginate}${page}`
@@ -26,13 +27,37 @@ export class SupplierService implements ICrudeable<Supplier> {
     return this.http.get<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.getById.replace(':id', id.toString()));
   }
   create(entity: Supplier): Observable<ApiResponse<Supplier>> {
-    return this.http.post<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.create, entity);
+    return this.http.post<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.create, entity) .pipe(
+      tap(() => {
+        this.notification.showSuccessNotification();
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
   }
   update(entity: Supplier): Observable<ApiResponse<Supplier>> {
-    return this.http.put<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.update.replace(':id',entity.id!.toString()), entity);
+    return this.http.put<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.update.replace(':id',entity.id!.toString()), entity) .pipe(
+      tap(() => {
+        this.notification.showSuccessNotification();
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
   }
   delete(id: number): Observable<ApiResponse<Supplier>> {
-    return this.http.delete<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString()));
+    return this.http.delete<ApiResponse<Supplier>>(environment.apiUrlV1 + supplierEndpoint.delete.replace(':id', id.toString())) .pipe(
+      tap(() => {
+        this.notification.showSuccessNotification();
+      }),
+      catchError(() => {
+        this.notification.showErrorNotification();
+        return of();
+      }),
+    );
   }
   getPayments(id: number, page:number): Observable<ApiResponseCollection<Payment>> {
     const url = environment.apiUrlV1 + paymentEndpoint.bySupplier.replace(':id', id.toString()) + page.toString() ;

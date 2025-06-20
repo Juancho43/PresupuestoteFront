@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {ICrudeable} from './ICrudeable';
 import {Client} from '@core/interfaces/entities/client';
-import {Observable} from 'rxjs';
+import {catchError, Observable, of, tap} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
 import {ApiResponseCollection} from '../../interfaces/ApiResponseCollection';
 import {HttpClient} from '@angular/common/http';
@@ -9,6 +9,7 @@ import {environment} from '../../../../environments/environment.development';
 import {clientEndpoint} from '../endpoints/clients.endpoint';
 import {Payment} from '@models/payment';
 import {paymentEndpoint} from '../endpoints/payments.endpoint';
+import {NotificationService} from '@services/utils/notification-service';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ import {paymentEndpoint} from '../endpoints/payments.endpoint';
 })
 export class ClientService implements ICrudeable<Client> {
     private http = inject(HttpClient);
-
+    private notification = inject(NotificationService);
     getAll(page: number = 1): Observable<ApiResponseCollection<Client>> {
       return this.http.get<ApiResponseCollection<Client>>(
         `${environment.apiUrlV1}${clientEndpoint.paginate}${page}`
@@ -26,13 +27,39 @@ export class ClientService implements ICrudeable<Client> {
         return this.http.get<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.getById.replace(':id', id.toString()));
     }
     create(entity: Client): Observable<ApiResponse<Client>> {
-      return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity);
+      return this.http.post<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.create, entity)
+        .pipe(
+          tap(() => {
+            this.notification.showSuccessNotification();
+          }),
+          catchError(() => {
+            this.notification.showErrorNotification();
+            return of();
+          }),
+        );
     }
     update(entity: Client): Observable<ApiResponse<Client>> {
-      return this.http.put<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.update.replace(':id',entity.id!.toString()), entity);
+      return this.http.put<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.update.replace(':id',entity.id!.toString()), entity)
+        .pipe(
+          tap(() => {
+            this.notification.showSuccessNotification();
+          }),
+          catchError(() => {
+            this.notification.showErrorNotification();
+            return of();
+          }),
+        );
     }
     delete(id: number): Observable<ApiResponse<Client>> {
-      return this.http.delete<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString()));
+      return this.http.delete<ApiResponse<Client>>(environment.apiUrlV1 + clientEndpoint.delete.replace(':id', id.toString())).pipe(
+        tap(() => {
+          this.notification.showSuccessNotification();
+        }),
+        catchError(() => {
+          this.notification.showErrorNotification();
+          return of();
+        }),
+      );
     }
 
     getPayments(id: number,page:number): Observable<ApiResponseCollection<Payment>> {

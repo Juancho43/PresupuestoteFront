@@ -9,7 +9,7 @@
   overflow-y: visible;
   height: 80vh;
   width: 24vw;
-
+justify-content: space-between;
   .List-title {
     text-decoration: underline;
     font-family: core.$fontTitulo;
@@ -21,6 +21,14 @@
     padding: 10px;
     color: core.$blanquecino;
     font-family: core.$fontOtro;
+  }
+
+  .List-card-container {
+    @include core.flex-comlumn;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
   }
 }
 

@@ -1,5 +1,6 @@
 @let personData = personList();
 @let pagination = paginationData();
+
 <div class="List">
   <h3 class="List-title">Listado de {{ entity() }}s</h3>
   <app-searcher
@@ -8,16 +9,18 @@
     (results)="handleResults($event)"
   />
 
-  @for (person of personData; track person.id) {
-    <app-person-card
-      [person]="person"
-      [entity]="entity()"
-      [route]="route()"
-      [action]="action()"
-      (click)="this.selectedPerson.emit(person)"
-      (delete)="handleDelete($event)"
-    />
-  }
+  <div class="List-card-container">
+    @for (person of personData; track person.id) {
+      <app-person-card
+        [person]="person"
+        [entity]="entity()"
+        [route]="route()"
+        [action]="action()"
+        (click)="this.selectedPerson.emit(person)"
+      />
+    }
+  </div>
+
 
   @if(option()){
     <button
@@ -27,9 +30,13 @@
       Agregar {{ entity() }}
     </button>
   }
-  <app-pagination-buttons
-    [pagination]="pagination"
-    (pageChange)="this.changePage.emit($event)"
-  />
+
+  @if (pagination != undefined) {
+    <app-pagination-buttons
+      [pagination]="pagination"
+      (pageChange)="this.changePage.emit($event)"
+    />
+  }
+
 </div>
 

@@ -1,9 +1,11 @@
 @let priceData = priceList();
 <div class="List">
   <h3 class="List-title">Listado de precios</h3>
+  <div class="List-card-container">
   @for (price of priceData; track price.id) {
     <app-price-card
       [price]="price"
     />
   }
+  </div>
 </div>

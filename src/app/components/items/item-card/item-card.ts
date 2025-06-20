@@ -1,6 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Material} from '@models/material';
 import {CurrencyPipe} from '@angular/common';
+
 @Component({
   selector: 'app-item-card',
   imports: [

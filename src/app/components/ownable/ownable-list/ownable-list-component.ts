@@ -32,7 +32,7 @@ export class OwnableListComponent implements OnInit {
   selected = output<IOwnable>();
 
   ownableList = signal<IOwnable[]>([]);
-  paginationData = signal<Pagination>({} as Pagination);
+  paginationData = signal<Pagination | undefined>(undefined);
 
   constructor() {
     effect(() => {
@@ -46,6 +46,8 @@ export class OwnableListComponent implements OnInit {
     this.ownableList.set(this.data());
     this.paginationData.set(this.pagination()!);
   }
+
+
   handleResults(results: IOwnable[]) {
     this.ownableList.set(results);
   }

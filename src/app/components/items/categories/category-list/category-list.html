@@ -5,7 +5,7 @@
   <app-category-searcher
     (results)="handleResults($event)"
   />
-
+  <div class="List-card-container">
   @for (category of categoryData; track category.id) {
     <app-category-card
       (click)="this.selectedCategory.emit(category)"
@@ -13,12 +13,13 @@
       [route]="route()"
     />
   }
-
+  </div>
   @if(option()){
     <button class="Boton1" [routerLink]= "`/${route()}/new`">
       Agregar {{ entity() }}s
     </button>
   }
+
   <app-pagination-buttons
     [pagination]="pagination"
     (pageChange)="this.pageChange.emit($event)"

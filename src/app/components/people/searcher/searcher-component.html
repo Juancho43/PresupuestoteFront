@@ -1,8 +1,7 @@
 <div class="Searcher">
      <input
-       type="text"
+      type="text"
       [(ngModel)]="query"
-      (keydown.enter)="complete()"
       [placeholder]="`Buscar ${entity()}`"
     >
     <img
@@ -10,6 +9,5 @@
       alt="search icon"
       width="20"
       height="20"
-      (click)="complete()"
     >
 </div>
