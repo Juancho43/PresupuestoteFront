@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {ApiResponse} from '../../interfaces/ApiResponse';
@@ -15,7 +15,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private cookieService = inject(CookieService);
   login$ = new BehaviorSubject<boolean>(false);
-
+  $login = signal<boolean>(false);
   sendLogin(data: { email: string; password: string }) {
     return this.http.post<ApiResponse<{token:string,user : any}>>(environment.apiUrl + authEndpoint.login, data,
       {context: checkToken(),}
@@ -28,7 +28,7 @@ export class AuthService {
 
   login(token: string) {
     this.saveToken(token);
-    this.login$.next(true);
+    this.$login.set(true);
   }
 
   saveToken(token: string) {
@@ -37,7 +37,7 @@ export class AuthService {
 
   logout() {
     this.cookieService.removeCookie('token');
-    this.login$.next(false);
+    this.$login.set(false);
   }
 
   getToken() {
@@ -46,10 +46,10 @@ export class AuthService {
 
   isLoggedIn() {
     if (this.getToken() !== undefined) {
-      this.login$.next(true);
+      this.$login.set(true);
     } else {
-      this.login$.next(false);
+      this.$login.set(false);
     }
-    return this.login$.getValue();
+    return this.$login();
   }
 }

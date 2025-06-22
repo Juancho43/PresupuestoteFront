@@ -10,11 +10,29 @@ nav{
   position: fixed;
   bottom: 0;
   right: 0;
-
+  height: 100dvh;
+  overflow-x: auto;
+  @include core.tablet(){
+    width: 60dvw;
+  }
+  @include core.mobile(){
+    width: 100dvw;
+    height: 80vh;
+  }
 }
 .hide{
-  width: 5dvw;
+  width: 10dvw;
+  height: 15vh;
+  @include core.tablet(){
+    height: 20vh;
+    width: 60dvw;
+  }
+  @include core.mobile(){
+    width: 100dvw;
+    height: 10dvh;
+  }
   li{
+
     width: auto;
     justify-content: center;
   }
@@ -60,26 +78,6 @@ li:hover{
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
-  nav ul{
-    flex-direction: column;
-    align-items: center;
-    justify-content: stretch;
-  }
-  nav ul li{
-    width: 80%;
-  }
-  .oculto{
-    display: block;
-  }
-}
 
 
-@media only screen and (max-width: 400px) {
 
-  nav ul li{
-    margin: 10px;
-  }
-
-
-}

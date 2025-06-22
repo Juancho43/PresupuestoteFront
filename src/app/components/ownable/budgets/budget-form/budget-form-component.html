@@ -17,12 +17,11 @@
       </div>
     }
     <legend class="List-title"> {{ edit ? 'Actualizar un presupuesto' : 'Crear un presupuesto' }}</legend>
-
+    <label for="client">Cliente:</label>
     @if (clientId !== undefined){
-      <label for="client">Cliente:</label>
       <input type="text" id="client" name="client" [value]="client!.person.last_name + ' ' + client!.person.name " readonly>
     }@else{
-      <label>Seleccione un cliente por favor</label>
+      <input type="text" id="client" value="No hay cliente seleccionado" readonly>
     }
     <label for="description">Descripción:</label>
     <textarea name="description" id="description" formControlName="description"></textarea>

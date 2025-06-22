@@ -14,11 +14,24 @@
     text-align: left;
     line-height: 1.1em;
   }
+  .Details-title{
+    text-decoration: underline;
+    font-family: core.$fontTitulo;
+    margin-bottom: 6px;
+  }
+
+  @include core.tablet() {
+    width: 90vw;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 10px 10px;
+    h4{
+      text-align: center;
+    }
+    p{
+      text-align: justify;
+    }
+  }
 }
 
 
-.Details-title{
-  text-decoration: underline;
-  font-family: core.$fontTitulo;
-  margin-bottom: 6px;
-}

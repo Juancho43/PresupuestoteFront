@@ -3,21 +3,36 @@
 body{
   background-color: black;
 }
+
 section{
   margin: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
+  @include core.flex-row();
   height: 100%;
   width: 98dvw;
   overflow-x: auto;
   overflow-y: auto;
   gap: 20px;
+justify-content: space-around;
+  align-items: center;
+  @include core.tablet(){
+    @include core.flex-comlumn();
+    align-items: center;
+    height: 100dvh;
+
+  }
+
 }
+
 article{
-  display: flex;
-  flex-direction: column;
+  max-height: 90dvh;
+  overflow-y: auto;
+  @include core.flex-comlumn();
+  @include core.tablet(){
+    align-items: center;
+    height: 100%;
+    border-bottom: dashed 1px white;
+    margin-bottom: 20px;
+  }
   justify-content: space-between;
   gap:20px;
 }

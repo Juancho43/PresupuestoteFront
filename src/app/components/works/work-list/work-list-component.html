@@ -1,14 +1,7 @@
 @let data = this.workList();
 <div class="List">
   <h3 class="List-title">Listado de trabajos</h3>
-  @if(option()){
-    <button
-      class="Boton1"
-      [routerLink]="`/work/new/${budgetId()}`"
-    >
-      Agregar trabajo
-    </button>
-  } @else {
+  @if(!option()){
     <app-work-search
       (results)="handleResults($event)"
     />
@@ -22,7 +15,14 @@
       />
     }
   </div>
-
+  @if(option()){
+    <button
+      class="Boton1"
+      [routerLink]="`/work/new/${budgetId()}`"
+    >
+      Agregar trabajo
+    </button>
+  }
   @if (pagination() != undefined) {
     <app-pagination-buttons
       [pagination]="pagination()!"

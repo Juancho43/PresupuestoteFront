@@ -11,6 +11,7 @@ import {Work} from '@models/work';
 import {of} from 'rxjs';
 import {WorkComponent} from '@components/works/work/work.component';
 import {ItemListComponent} from '@components/items/item-list/item-list-component';
+import {TextAdvise} from '@shared/text-advise/text-advise';
 
 @Component({
   selector: 'app-budget-detail',
@@ -20,7 +21,8 @@ import {ItemListComponent} from '@components/items/item-list/item-list-component
     WorkListComponent,
     RouterLink,
     WorkComponent,
-    ItemListComponent
+    ItemListComponent,
+    TextAdvise
   ],
   templateUrl: './budget-detail-component.html',
   styleUrl: './budget-detail-component.scss'

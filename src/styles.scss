@@ -17,13 +17,23 @@ body{
   display: flex;
   flex-direction: row;
 }
+@mixin tablet {
+  @media screen and (max-width: 900px) {
+    @content
+  }
+}
+@mixin mobile{
+  @media screen and (max-width: 520px) {
+    @content
+  }
+}
 main{
-  justify-content: center;
-  align-items: center;
   @include flex-comlumn;
   width: 100dvw;
   height: 100dvh;
+
 }
+
 
 .success-snackbar {
   background-color: #4caf50;
@@ -36,5 +46,5 @@ main{
 }
 
 .mat-mdc-snack-bar-action .mdc-button__label {
-  color: white;
+  cursor: pointer;
 }

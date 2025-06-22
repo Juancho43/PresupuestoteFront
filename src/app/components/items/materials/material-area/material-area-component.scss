@@ -14,4 +14,18 @@ section {
 
 .Options{
   align-self: start;
+  font-family: layout.$fontOtro;
+  font-size: larger;
+
+  ul{
+    @include layout.flex-comlumn;
+    gap:8px;
+    li{
+      border-radius: 6px;
+      padding: 6px;
+      background-color: layout.$abedul;
+    }
+
+  }
 }
+
