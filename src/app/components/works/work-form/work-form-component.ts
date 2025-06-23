@@ -6,13 +6,14 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {of} from 'rxjs';
 import {ApiResponse} from '@core/interfaces/ApiResponse';
 import {Material} from '@models/material';
-import {CurrencyPipe} from '@angular/common';
+import {ItemCard} from '@components/items/item-card/item-card';
+import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
 
 @Component({
   selector: 'app-work-form',
   imports: [
     ReactiveFormsModule,
-    CurrencyPipe,
+    ItemCard,
   ],
   templateUrl: './work-form-component.html',
   styleUrl: './work-form-component.scss'
@@ -20,11 +21,17 @@ import {CurrencyPipe} from '@angular/common';
 
 export class WorkFormComponent implements OnInit {
   private service = inject(WorkService);
+  private confirmationService = inject(ConfirmationDialogService);
   readonly id = input(0);
+  readonly budgetId = input.required<number>();
 
-  budgetId = input.required<number>();
   isEdit = signal<boolean>(false);
-  work = input<Work>({order : 0} as Work);
+  item = input<Material>({} as Material);
+  materialList = signal<Material[]>([]);
+
+  selectedItem = output<Material>();
+  submitted = output<Material[]>();
+
 
   WorkForm: FormGroup = new FormGroup({
     budgetId: new FormControl(0, Validators.required),
@@ -32,7 +39,7 @@ export class WorkFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     notes: new FormControl('', Validators.required),
     deadLine: new FormControl(new Date(), Validators.required),
-    state: new FormControl('Presupuestado', Validators.required),
+    state: new FormControl('', Validators.required),
     hours: new FormControl(0, [Validators.required, Validators.min(1)]),
   });
 
@@ -52,26 +59,14 @@ export class WorkFormComponent implements OnInit {
     }
   })
 
-  bufferWork = signal<Work>({
-    materials: [],
-    order: 0,
-    name: '',
-    notes: '',
-    cost: 0,
-    state: '',
-    estimated_time: 0,
-    dead_line: new Date(),
-  });
 
-  item = input<Material>({} as Material);
-  materialList = signal<Material[]>([]);
-  selectedItem = output<Material>();
-  submitted = output<Material[]>();
+
+
 
   constructor() {
     effect(() => {
-      const currentWork = this.work();
-      if (currentWork && currentWork.order > 0) this.onEdit();
+      this.workResource.value();
+      this.onEditHandler();
     });
 
     effect(() => {
@@ -95,41 +90,37 @@ export class WorkFormComponent implements OnInit {
 
 
   ngOnInit() {
-    if (!this.workResource.isLoading()) this.bufferWork.set(this.workResource.value()!.data!);
-    this.bufferWork.set({name: ""} as Work)
-
     this.WorkForm.get('budgetId')?.setValue(this.budgetId());
     this.WorkForm.get('budgetId')?.disable();
   }
 
   setUp() {
     this.WorkForm.reset();
+    this.materialList.set([]);
     this.isEdit.set(false);
   }
 
-  resetForm($Event: Event) {
-    this.setUp();
-    $Event.preventDefault();
+
+
+  onEditHandler() {
+    if(this.id()>0){
+      this.isEdit.set(true);
+      if(!this.workResource.isLoading()) this.setForm(this.workResource.value()!.data!)
+
+    }
   }
 
-  onEdit() {
-    this.isEdit.set(true);
-    this.WorkForm.get('budgetId')?.setValue(this.budgetId);
-    this.bufferWork.set(this.work());
-    this.materialList.set(this.work().materials || []);
-    this.toForm();
-  }
-
-  toForm() {
+  setForm(data : Work) {
     this.WorkForm.patchValue({
       budgetId: this.budgetId(),
-      order: this.bufferWork().order,
-      name: this.bufferWork().name,
-      notes: this.bufferWork().notes,
-      deadLine: this.bufferWork().dead_line,
-      estado: this.bufferWork().state || 'Presupuestado',
-      hours: this.bufferWork().estimated_time
+      order: data.order,
+      name: data.name,
+      notes: data.notes,
+      deadLine: data.dead_line,
+      estado: data.state || 'Presupuestado',
+      hours: data.estimated_time
     })
+    this.materialList.set(data.materials || []);
   }
 
   onSubmit() {
@@ -157,7 +148,7 @@ export class WorkFormComponent implements OnInit {
 
   toWork(): WorkRequest {
     return {
-      id: this.isEdit() ? this.work().id : undefined,
+      id: this.isEdit() ? this.id()! : undefined,
       budget_id: this.WorkForm.get('budgetId')?.value,
       name: this.WorkForm.get('name')?.value,
       order: this.WorkForm.get('order')?.value,
@@ -182,5 +173,17 @@ export class WorkFormComponent implements OnInit {
     this.service.addMaterial(addMaterialsToWorkRequest).subscribe();
   }
 
+  onDelete() {
+    const result = this.confirmationService.openDialog('¿Está seguro de que desea eliminar este trabajo?');
+    result.afterClosed().subscribe(result =>{
+      if (result) {
+        this.service.delete(this.workResource.value()?.data?.id!).subscribe({
+          next: () => {
+            this.confirmationService.navigateTo('/budget/detail/' + this.budgetId());
+          }
+        });
+      }
+    })
+  }
 }
 

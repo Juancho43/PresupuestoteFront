@@ -1,10 +1,14 @@
 .JoinContainer{
   display: grid;
   grid-template-columns: repeat(2, 20dvw);
+  gap: 1rem;
+  min-height: 76vh;
 
-  .Buttons{
+  .ItemForm{
     grid-column-start: 1;
-    grid-row-start: 2;
+  }
+  .MaterialList{
+    grid-column-start: 2;
   }
 }
 

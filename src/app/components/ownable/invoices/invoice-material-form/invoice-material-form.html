@@ -1,17 +1,36 @@
 @let materials = this.materialList();
+@let edit = isEdit();
 <form (ngSubmit)="submit()">
   <fieldset class="Material-list">
     <legend class="List-title">Materiales</legend>
 
     @for(item of materials; track $index){
-      <pre (click)="this.selectedItem.emit(item)" (dblclick)="deleteItem(item)" >
-          {{item.name | titlecase}} - {{item.quantity}} - {{item.latestPrice.price | currency}}
-
-        </pre>
+      <app-item-card
+        (click)="this.selectedItem.emit(item)"
+        (dblclick)="deleteItem(item)"
+        [item]="item"
+      />
     }
 
   </fieldset>
-  <div class="Buttons">
-    <button type="submit">Agregar Materiales</button>
-  </div>
+  <fieldset class="Form-actions">
+    <button type="reset" (click)="setUp()">Limpiar</button>
+
+    <button type="submit" >
+      @if (edit) {
+        Actualizar
+      }@else {
+        Guardar
+      }
+    </button>
+    @if(edit) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+  </fieldset>
 </form>

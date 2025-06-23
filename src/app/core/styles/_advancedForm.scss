@@ -4,7 +4,7 @@ form{
   display: grid;
   width:  auto;
   grid-template-columns: repeat(2, 26vw);
-  grid-template-rows: 30px auto 70vh 60px;
+  grid-template-rows: 30px ;
 
 }
 
@@ -30,3 +30,8 @@ form{
   flex-direction: row;
   justify-content: space-evenly;
 }
+.Material-List{
+  height: 60dvh;
+  overflow-y: scroll;
+}
+

@@ -20,7 +20,7 @@ export interface Material extends Entity{
   quantity?: number;
   works? : Work[];
   invoices? : Invoice[];
-
+  unit_measure?: number;
 
 }
 

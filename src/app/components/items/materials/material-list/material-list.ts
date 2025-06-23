@@ -31,12 +31,11 @@ export class MaterialListComponent implements OnInit {
   pageChange = output<number>();
 
   ngOnInit() {
-    this.paginationData.set(this.pagination());
     this.materialList.set(this.data());
+    this.paginationData.set(this.pagination());
   }
 
   handleResults(results: Material[]) {
-    this.pageChange.emit(1);
     if(results.length > 0) this.materialList.set(results);
     if(results.length === 0) this.materialList.set(this.data());
   }

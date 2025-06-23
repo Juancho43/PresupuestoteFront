@@ -63,7 +63,7 @@ export const routes: Routes = [
       //MaterialRoute
       {path: 'material', component: MaterialViewComponent},
       {path: 'material/detail/:id', component: MaterialDetailComponent},
-      {path: 'material/new', component: MaterialAreaComponent},
+      {path: 'material/new/:entity', component: MaterialAreaComponent},
       {path: 'material/edit/:entity/:id', component: MaterialAreaComponent},
 
       //SupplierRoutes

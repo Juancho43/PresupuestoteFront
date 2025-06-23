@@ -4,22 +4,15 @@
 <div class="JoinContainer">
 
 <app-item-form
+  class="ItemForm"
   [initialItem]="selectedItem()"
   (finalItem)="toMaterial($event)"
 />
-<div class="Buttons">
-  <button type="button" (click)="toggleShow()">
-    @if (showList()) {
-      Ocultar lista de materiales
-    } @else {
-      Mostrar lista de materiales
-    }
-  </button>
-  <button type="reset" (click)="reset()">Limpiar enlaces</button>
-</div>
+
 @if(showList()){
   @if (!this.materialResource.isLoading()) {
     <app-material-list
+      class="MaterialList"
       [data]="materials"
       [option]="true"
       (selectedMaterial)="selectMaterial($event)"

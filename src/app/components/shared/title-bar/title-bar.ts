@@ -1,12 +1,10 @@
 import {Component, input} from '@angular/core';
 import {UpperCasePipe} from '@angular/common';
-import {NavigationButtons} from '@shared/navigation-buttons/navigation-buttons';
 
 @Component({
   selector: 'app-title-bar',
   imports: [
-    UpperCasePipe,
-    NavigationButtons
+    UpperCasePipe
   ],
   templateUrl: './title-bar.html',
   styleUrl: './title-bar.scss'

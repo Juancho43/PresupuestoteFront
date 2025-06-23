@@ -27,7 +27,7 @@ export class MaterialJoinComponent {
   finalItem = output<Material>();
 
 
-  showList = signal<boolean>(false);
+  showList = signal<boolean>(true);
   materialPage=signal(1);
   materialResource = rxResource({
     params : () => {return{page: this.materialPage()}},

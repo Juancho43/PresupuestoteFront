@@ -51,14 +51,16 @@
     <legend class="List-title">Materiales</legend>
 
     @for(item of materials; track $index){
-      <pre (click)="this.selectedItem.emit(item)" (dblclick)="deleteItem(item)" >
-        {{item.name }} - {{item.quantity}} - {{item.latestPrice.price | currency}}
-      </pre>
+      <app-item-card
+        (click)="this.selectedItem.emit(item)"
+        (dblclick)="deleteItem(item)"
+        [item]="item"
+      />
     }
 
   </fieldset>
   <fieldset class="Form-actions">
-    <button type="reset" (click)="resetForm($event)">Limpiar</button>
+    <button type="reset" (click)="setUp()">Limpiar</button>
 
     <button type="submit" [disabled]="!WorkForm.valid" [class.disactive]="!WorkForm.valid">
       @if (edit) {
@@ -67,6 +69,15 @@
         Guardar
       }
     </button>
+    @if(edit) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
   </fieldset>
 </form>
 

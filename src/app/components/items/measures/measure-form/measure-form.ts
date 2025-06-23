@@ -1,7 +1,11 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, effect, inject, input, signal} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Measure} from '@models/measure';
 import {MeasureService} from '@services/http/measure-service';
+import {ConfirmationDialogService} from '@services/utils/confirmation-dialog-service';
+import {rxResource} from '@angular/core/rxjs-interop';
+import {of} from 'rxjs';
+import {ApiResponse} from '@core/interfaces/ApiResponse';
 
 @Component({
   selector: 'app-measure-form',
@@ -14,13 +18,34 @@ import {MeasureService} from '@services/http/measure-service';
 })
 export class MeasureForm {
   private service = inject(MeasureService);
+  private confirmationService = inject(ConfirmationDialogService);
   isEditing = signal(false);
-
+  readonly id = input<number>(0);
   MeasureForm: FormGroup = new FormGroup({
-    idCategory: new FormControl(),
+    id: new FormControl(0),
     name: new FormControl('', Validators.required),
     abbreviation: new FormControl('', Validators.required)
   });
+
+  measureResource = rxResource(
+    {
+      params: () => ({id: this.id()}),
+      stream: ({params}) => {
+        if (this.id() > 0) {
+          this.isEditing.set(true);
+          return this.service.getById(params.id);
+        }
+        return of({} as ApiResponse<Measure>);
+      },
+    }
+  )
+
+  constructor() {
+    effect(() => {
+      this.measureResource.value();
+      this.onEditHandler();
+    });
+  }
 
   onSubmit() {
     if (!this.isEditing()) {
@@ -28,18 +53,47 @@ export class MeasureForm {
     } else {
       this.service.update(this.toMeasure()).subscribe()
     }
-    // this.setUp();
+    this.setUp();
   }
 
   toMeasure() : Measure{
     return {
-      id: this.MeasureForm.get('idCategory')?.value,
+      id: this.MeasureForm.get('id')?.value,
       name: this.MeasureForm.get('name')?.value,
       abbreviation: this.MeasureForm.get('abbreviation')?.value
     }
   }
-  resetForm($event: MouseEvent) {
-    // this.setUp();
-    $event.preventDefault();
+  onDelete() {
+    const result = this.confirmationService.openDialog('¿Está seguro de que desea eliminar esta unidad de medida?');
+    result.afterClosed().subscribe(result =>{
+      if (result) {
+        this.service.delete(this.measureResource.value()!.data!.id!).subscribe({
+          next: () => {
+            this.confirmationService.navigateTo('/material')
+          }
+        });
+      }
+    })
+  }
+
+  setUp() {
+    this.MeasureForm.reset();
+    this.isEditing.set(false);
+  }
+
+  private onEditHandler() {
+    if(this.id()>0){
+      this.isEditing.set(true);
+      if(!this.measureResource.isLoading()) this.setForm(this.measureResource.value()!.data!)
+
+    }
+  }
+
+  private setForm(param : Measure) {
+    this.MeasureForm.patchValue({
+      id: param.id!,
+      name: param.name,
+      abbreviation: param.abbreviation
+    });
   }
 }

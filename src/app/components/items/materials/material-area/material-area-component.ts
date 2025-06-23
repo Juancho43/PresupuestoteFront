@@ -1,4 +1,4 @@
-import {Component, computed, effect, inject, input, signal} from '@angular/core';
+import {Component, computed, inject, input, signal} from '@angular/core';
 import {MaterialForm} from '@components/items/materials/material-form/material-form';
 import {CategoryForm} from '@components/items/categories/category-form/category-form';
 import {SubcategoryForm} from '@components/items/subcategories/subcategory-form/subcategory-form';
@@ -13,6 +13,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {Subcategory} from '@models/subcategory';
 import {Category} from '@models/category';
 import {Measure} from '@models/measure';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-material-area',
@@ -23,7 +24,8 @@ import {Measure} from '@models/measure';
     MeasureForm,
     SubcategoryListComponent,
     CategoryListComponent,
-    MeasureListComponent
+    MeasureListComponent,
+    RouterLink
   ],
   templateUrl: './material-area-component.html',
   styleUrl: './material-area-component.scss'
@@ -33,6 +35,7 @@ export class MaterialAreaComponent {
   private categoryService = inject(CategoryService);
   private measureService = inject(MeasureService);
   readonly entity = input<'material' | 'category' | 'subcategory' | 'measure' | ''>('material');
+  readonly id = input<number>(0);
 
   subcategoryPage = signal(1);
   categoryPage = signal(1);
@@ -42,17 +45,11 @@ export class MaterialAreaComponent {
   selectedCategory = signal<Category>({name:'Seleccione un rubro'} as Category);
   selectedMeasure = signal<Measure>({name: 'Seleccione una unidad de medida'} as Measure);
 
-  openForm = signal<'material' | 'category' | 'subcategory' | 'measure' | ''>('material');
-  showMaterialForm = computed(() => this.openForm() === 'material');
-  showCategoryForm = computed(() => this.openForm() === 'category');
-  showSubcategoryForm = computed(() => this.openForm() === 'subcategory');
-  showMeasureForm = computed(() => this.openForm() === 'measure');
+  showMaterialForm = computed(() => this.entity() === 'material');
+  showCategoryForm = computed(() => this.entity() === 'category');
+  showSubcategoryForm = computed(() => this.entity() === 'subcategory');
+  showMeasureForm = computed(() => this.entity() === 'measure');
 
-  constructor() {
-    effect(()=>{
-      this.openForm.set(this.entity());
-    })
-  }
 
 
   subcategoryResource = rxResource({

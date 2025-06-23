@@ -1,4 +1,4 @@
-@let edit = false;
+@let edit = this.isEditing();
 <form [formGroup]="MeasureForm" (ngSubmit)="onSubmit()" >
   <fieldset>
     <legend class="List-title"> {{ edit ? 'Actualizar una Medida' : 'Crear una Medida' }}</legend>
@@ -17,16 +17,33 @@
     <label for="name">Abreviación:</label>
     <input type="text" name="name" id="name" formControlName="abbreviation">
   </fieldset>
-  <fieldset class="Botones">
-    <button type="reset" (click)="resetForm($event)">Limpiar</button>
+  <fieldset class="Form-actions">
+    <button
+      type="reset"
+      (click)="setUp()"
+    >
+      Limpiar
+    </button>
 
-    <button type="submit" [disabled]="!MeasureForm.valid" [class.disactive]="!MeasureForm.valid">
+    <button
+      type="submit"
+    >
       @if (edit) {
         Actualizar
       }@else {
         Guardar
       }
     </button>
+    @if(edit) {
+      <button
+        type="button"
+        class="delete"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    }
+
   </fieldset>
 </form>
 

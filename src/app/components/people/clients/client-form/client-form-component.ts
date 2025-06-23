@@ -128,7 +128,7 @@ export class ClientFormComponent implements OnInit {
 
   onDelete() {
     const result = this.confirmationService.openDialog('¿Está seguro de que desea eliminar este cliente?');
-   result.afterClosed().subscribe(result =>{
+    result.afterClosed().subscribe(result =>{
       if (result) {
           this.clientService.delete(this.clientResource.value()?.data?.id!).subscribe({
             next: () => {

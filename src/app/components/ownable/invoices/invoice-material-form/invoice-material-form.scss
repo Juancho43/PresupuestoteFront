@@ -1,2 +1,6 @@
+@use '../../../../core/styles/advancedForm';
 @use '../../../../core/styles/form';
 @use '../../../../core/styles/buttons';
+form{
+  height: 76dvh;
+}

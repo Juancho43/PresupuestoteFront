@@ -12,28 +12,31 @@
 <section>
   <article class="Options">
     <ul>
-      <li (click)="this.openForm.set('material')">
+      <li [routerLink]="`/material/new/material`">
         @if (showMaterialForm) {
           Cerrar formulario de Materiales
         }@else{
           Abrir formulario de Materiales
         }
       </li>
-      <li (click)="this.openForm.set('category')">
-        @if (showCategoryForm) {
-          Cerrar formulario de Rubros
-        }@else{
-          Abrir formulario de Rubros
-        }
-      </li>
-      <li (click)="this.openForm.set('subcategory')">
+
+      <li [routerLink]="`/material/new/subcategory`">
         @if (showSubcategoryForm) {
           Cerrar formulario de Sub-Rubros
         }@else{
           Abrir formulario de Sub-Rubros
         }
       </li>
-      <li (click)="this.openForm.set('measure')">
+
+      <li [routerLink]="`/material/new/category`">
+      @if (showCategoryForm) {
+        Cerrar formulario de Rubros
+      }@else{
+        Abrir formulario de Rubros
+      }
+      </li>
+
+      <li [routerLink]="`/material/new/measure`">
         @if (showMeasureForm) {
           Cerrar formulario de Medidas
         }@else{
@@ -43,9 +46,11 @@
     </ul>
   </article>
   <article>
+    <div>
     @if (showMaterialForm) {
-      <div>
+
         <app-material-form
+          [id] = "this.id()"
           [selectedMeasure]="this.selectedMeasure()!"
           [selectedSubcategory]="this.selectedSubcategory()!"
         />
@@ -63,17 +68,19 @@
           (pageChange)="this.measurePage.set($event)"
           (selectedMeasure)="this.selectedMeasure.set($event)"
         />
-      </div>
     }
     @if (showCategoryForm)
     {
-      <div>
-        <app-category-form/>
-      </div>
+
+        <app-category-form
+          [id] = "this.id()"
+        />
+
     }
     @if (showSubcategoryForm) {
-      <div>
+
         <app-subcategory-form
+          [id] = "this.id()"
           [selectedCategory]="this.selectedCategory()"
         />
         <app-category-list
@@ -83,13 +90,13 @@
           (pageChange)="this.categoryPage.set($event)"
           (selectedCategory)="this.selectedCategory.set($event)"
         />
-      </div>
     }
     @if (showMeasureForm) {
-      <div>
-        <app-measure-form/>
-      </div>
+        <app-measure-form
+          [id] = "this.id()"
+        />
     }
+    </div>
   </article>
 </section>
 }

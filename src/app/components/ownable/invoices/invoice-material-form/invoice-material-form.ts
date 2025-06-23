@@ -1,23 +1,22 @@
 import {Component, effect, inject, input, OnInit, output, signal} from '@angular/core';
 import {Material} from '@models/material';
 import {AddMaterialsToInvoiceRequest, Invoice} from '@models/invoice';
-import {CurrencyPipe, TitleCasePipe} from '@angular/common';
 import {InvoiceService} from '@services/http/invoice-service';
 import {FormsModule} from '@angular/forms';
+import {ItemCard} from '@components/items/item-card/item-card';
 
 @Component({
   selector: 'app-invoice-material-form',
   imports: [
-    CurrencyPipe,
-    TitleCasePipe,
-    FormsModule
+    FormsModule,
+    ItemCard
   ],
   templateUrl: './invoice-material-form.html',
   styleUrl: './invoice-material-form.scss'
 })
 export class InvoiceMaterialForm  implements OnInit {
   private service = inject(InvoiceService);
-  isEdit = signal<boolean>(false);
+  isEdit = signal<boolean>(true);
   invoice = input<Invoice>({} as Invoice);
 
 
@@ -72,5 +71,13 @@ export class InvoiceMaterialForm  implements OnInit {
     this.materialList.update((items) => {
       return items.filter(i => i.id !== item.id);
     })
+  }
+
+  onDelete() {
+
+  }
+
+  setUp() {
+
   }
 }

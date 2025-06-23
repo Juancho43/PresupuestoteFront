@@ -1,15 +1,21 @@
 @use '../.././../../core/styles/layout';
 div{
   @include layout.flex-row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 85dvh;
   gap:18px;
-  width: 80dvw;
+  width: fit-content;
+  max-width: 80dvw;
   overflow-x: auto;
+}
+article{
+  justify-content: flex-start;
 }
 section {
   display: grid;
   grid-template-columns: 20dvw 1fr;
   height: 85dvh;
-  justify-content: flex-start;
 }
 
 .Options{
@@ -21,6 +27,7 @@ section {
     @include layout.flex-comlumn;
     gap:8px;
     li{
+      cursor: pointer;
       border-radius: 6px;
       padding: 6px;
       background-color: layout.$abedul;

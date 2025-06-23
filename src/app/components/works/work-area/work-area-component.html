@@ -1,22 +1,19 @@
-@if(!workResource.isLoading() && !workResource.error()) {
-  @let work = this.workResource.value()!.data!;
-  @let budgetId=this.budgetId();
-  <section>
-    <app-work-form
-      [budgetId]="budgetId"
-      [item]="material()"
-      [work]="work"
-      (selectedItem)="onEditMaterial($event)"
-    />
+<section>
+  <app-work-form
+    [budgetId]="budgetId()"
+    [item]="material()"
+    [id]="id()"
+    (selectedItem)="onEditMaterial($event)"
+  />
 
-    <app-material-join
-      [item]="item()"
-      (finalItem)="onEditedMaterial($event)"
-    />
+  <app-material-join
+    [item]="item()"
+    (finalItem)="onEditedMaterial($event)"
+  />
 
-  </section>
+</section>
 
 
-}
+
 
 
