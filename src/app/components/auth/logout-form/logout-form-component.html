@@ -1,13 +1,16 @@
-<form class="glass" (ngSubmit)="logout()" [formGroup]="logoutForm" xmlns="http://www.w3.org/1999/html">
-  <legend>Cerrar sesión</legend>
-  <label for="confirmation">¿Estás seguro de cerrar la sesión?</label>
-
-  <button
-    type="submit"
-    id="confirmation"
-    (click)="logoutForm.patchValue({ confirmation: true })"
-  >
-    Sí
-  </button>
-  <button type="button" [routerLink]="'/home'">Cancelar</button>
-</form>
+<section>
+  <form class="glass" (ngSubmit)="logout()" [formGroup]="logoutForm">
+    <legend>Cerrar sesión</legend>
+    <label for="confirmation">¿Estás seguro de cerrar la sesión?</label>
+  <fieldset class="Form-actions">
+    <button
+      type="submit"
+      id="confirmation"
+      (click)="logoutForm.patchValue({ confirmation: true })"
+    >
+      Sí
+    </button>
+    <button type="button" [routerLink]="'/home'">Cancelar</button>
+  </fieldset>
+  </form>
+</section>

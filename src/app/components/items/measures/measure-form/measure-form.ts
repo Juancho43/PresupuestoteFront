@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Measure} from '@models/measure';
 import {MeasureService} from '@services/http/measure-service';
@@ -16,11 +16,14 @@ import {ApiResponse} from '@core/interfaces/ApiResponse';
   templateUrl: './measure-form.html',
   styleUrl: './measure-form.scss'
 })
-export class MeasureForm {
+export class MeasureForm implements OnInit {
   private service = inject(MeasureService);
   private confirmationService = inject(ConfirmationDialogService);
-  isEditing = signal(false);
   readonly id = input<number>(0);
+  isEditing= linkedSignal(()=>{
+    return this.id() > 0;
+  });
+
   MeasureForm: FormGroup = new FormGroup({
     id: new FormControl(0),
     name: new FormControl('', Validators.required),
@@ -31,8 +34,7 @@ export class MeasureForm {
     {
       params: () => ({id: this.id()}),
       stream: ({params}) => {
-        if (this.id() > 0) {
-          this.isEditing.set(true);
+        if (this.isEditing()) {
           return this.service.getById(params.id);
         }
         return of({} as ApiResponse<Measure>);
@@ -40,13 +42,17 @@ export class MeasureForm {
     }
   )
 
-  constructor() {
-    effect(() => {
-      this.measureResource.value();
-      this.onEditHandler();
-    });
+  ngOnInit() {
+    this.checkAndSetForm();
   }
 
+  private checkAndSetForm() {
+    if (this.isEditing() && !this.measureResource.isLoading() && this.measureResource.value()) {
+      this.setForm(this.measureResource.value()!.data!);
+    } else if (this.isEditing()) {
+      setTimeout(() => this.checkAndSetForm(), 100);
+    }
+  }
   onSubmit() {
     if (!this.isEditing()) {
       this.service.create(this.toMeasure()).subscribe()
@@ -58,7 +64,7 @@ export class MeasureForm {
 
   toMeasure() : Measure{
     return {
-      id: this.MeasureForm.get('id')?.value,
+      id: this.id(),
       name: this.MeasureForm.get('name')?.value,
       abbreviation: this.MeasureForm.get('abbreviation')?.value
     }
@@ -81,13 +87,6 @@ export class MeasureForm {
     this.isEditing.set(false);
   }
 
-  private onEditHandler() {
-    if(this.id()>0){
-      this.isEditing.set(true);
-      if(!this.measureResource.isLoading()) this.setForm(this.measureResource.value()!.data!)
-
-    }
-  }
 
   private setForm(param : Measure) {
     this.MeasureForm.patchValue({

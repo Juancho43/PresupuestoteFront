@@ -50,16 +50,17 @@
           <img src="./icons/logout_icon.svg" alt="Cerrar sesión" width="20px" height="20px">
           Cerrar sesión
         </li>
-        <li (click)="toggleMenu()">
-          <img src="./icons/menu_icon.svg" alt="Cerrar menú" width="20px" height="20px">
-          Cerrar menú...
-        </li>
+
       } @else {
         <li routerLinkActive="active" routerLink="/login" >
           <img src="./icons/login_icon.svg" alt="Iniciar sesión" width="20px" height="20px">
           Iniciar sesión
         </li>
       }
+      <li (click)="toggleMenu()">
+        <img src="./icons/menu_icon.svg" alt="Cerrar menú" width="20px" height="20px">
+        Cerrar menú...
+      </li>
     }@else{
       <li
         (click)="toggleMenu()"

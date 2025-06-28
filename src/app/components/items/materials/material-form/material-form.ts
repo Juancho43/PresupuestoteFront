@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Subcategory} from '@models/subcategory';
 import {Measure} from '@models/measure';
@@ -17,51 +17,67 @@ import {ApiResponse} from '@core/interfaces/ApiResponse';
   templateUrl: './material-form.html',
   styleUrl: './material-form.scss'
 })
-export class MaterialForm {
+export class MaterialForm implements OnInit{
   private service = inject(MaterialService);
   private confirmationService = inject(ConfirmationDialogService);
   readonly selectedSubcategory = input<Subcategory>();
   readonly selectedMeasure = input<Measure>();
   readonly id = input<number>(0);
-  isEditing= signal(false);
+
+  isEditing= linkedSignal(()=>{
+    return this.id() > 0;
+  });
+
+  materialResource = rxResource({
+    params: () => ({id: this.id()}),
+    stream: ({params}) => {
+      if (this.isEditing()) {
+        return this.service.getById(params.id);
+      }
+      return of({} as ApiResponse<Material>);
+    },
+  })
+
+  subcategory = linkedSignal<Subcategory>(() => {
+    if (this.selectedSubcategory() !== undefined && this.selectedSubcategory()?.id!> 0) {
+      return this.selectedSubcategory()!;
+    }
+    if(!this.materialResource.isLoading() && this.isEditing()){
+      return this.materialResource.value()!.data!.subcategory;
+    }
+    return {name:'Seleccione un sub rubro'} as Subcategory;
+  });
+
+  measure = linkedSignal<Measure>(() => {
+    if (this.selectedMeasure() !== undefined && this.selectedMeasure()?.id!> 0) {
+      return this.selectedMeasure()!;
+    }
+    if(!this.materialResource.isLoading() && this.isEditing()){
+      return this.materialResource.value()!.data!.measure;
+    }
+    return {name:'Seleccione una unidad de medida'} as Measure;
+  });
+
+
   MaterialForm: FormGroup = new FormGroup({
-    measure: new FormControl(0, Validators.required),
     unitMeasure: new FormControl(0, Validators.required),
-    subCategory: new FormControl(0, Validators.required),
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     brand: new FormControl(''),
     color: new FormControl(''),
   });
 
-  materialResource = rxResource({
-    params: () => ({id: this.id()}),
-    stream: ({params}) => {
-      if (this.id() > 0) {
-        this.isEditing.set(true);
-        return this.service.getById(params.id);
-      }
-      return of({} as ApiResponse<Material>);
-    },
+  ngOnInit() {
+    this.checkAndSetForm();
+  }
 
-  })
-
- constructor() {
-   effect(() => {
-     if (this.selectedMeasure()) {
-       this.MaterialForm.get('measure')?.setValue(this.selectedMeasure()!.id);
-     }
-     if (this.selectedSubcategory()) {
-       this.MaterialForm.get('subCategory')?.setValue(this.selectedSubcategory()!.id);
-     }
-   });
-
-   effect(() => {
-     this.materialResource.value();
-     this.onEditHandler();
-   });
- }
-
+  private checkAndSetForm() {
+    if (this.isEditing() && !this.materialResource.isLoading() && this.materialResource.value()) {
+      this.setForm(this.materialResource.value()!.data!);
+    } else if (this.isEditing()) {
+      setTimeout(() => this.checkAndSetForm(), 100);
+    }
+  }
   onSubmit() {
     if (!this.isEditing()) {
       this.service.create(this.toMaterial()).subscribe()
@@ -73,12 +89,13 @@ export class MaterialForm {
 
   toMaterial():MaterialRequest{
     return {
+      id: this.isEditing() ? this.materialResource.value()?.data?.id : undefined,
       name: this.MaterialForm.get('name')?.value,
       description: this.MaterialForm.get('description')?.value,
       brand: this.MaterialForm.get('brand')?.value,
       color: this.MaterialForm.get('color')?.value,
-      sub_category_id: this.MaterialForm.get('subCategory')?.value,
-      measure_id: this.MaterialForm.get('measure')?.value,
+      sub_category_id: this.subcategory().id!,
+      measure_id: this.measure().id!,
       unit_measure: this.MaterialForm.get('unitMeasure')?.value
     }
   }
@@ -102,23 +119,13 @@ export class MaterialForm {
     this.isEditing.set(false);
   }
 
-  private onEditHandler() {
-    if(this.id()>0){
-      this.isEditing.set(true);
-      if(!this.materialResource.isLoading()) this.setForm(this.materialResource.value()!.data!)
-
-    }
-  }
-
   private setForm(param : Material) {
     this.MaterialForm.patchValue({
       name: param.name,
       description: param.description,
       brand: param.brand,
       color: param.color,
-      subCategory: param.subcategory.id!,
       measure: param.measure.id!,
-      unitMeasure: param.unit_measure
     });
   }
 }

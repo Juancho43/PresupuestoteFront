@@ -1,8 +1,15 @@
-<form class="glass" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <legend>Iniciar sesión</legend>
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email" formControlName="email" />
-  <label for="password">Contraseña:</label>
-  <input type="password" name="password" id="password" formControlName="password" />
-  <input type="submit" value="Login" />
-</form>
+<section>
+  <form class="glass" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <legend>Iniciar sesión</legend>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" formControlName="email" />
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" id="password" formControlName="password" />
+    <fieldset class="Form-actions">
+      <button
+        type="submit">
+        Entrar
+      </button>
+    </fieldset>
+  </form>
+</section>

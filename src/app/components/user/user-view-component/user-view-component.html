@@ -1,1 +1,5 @@
-<p>user-view-component works!</p>
+@let user = this.userResource.value()!.data!;
+<section>
+  <app-user [user]="user"/>
+
+</section>

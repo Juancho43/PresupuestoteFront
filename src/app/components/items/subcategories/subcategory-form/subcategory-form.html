@@ -13,7 +13,12 @@
       <label for="name">Nombre</label>
       <input type="text" name="name" id="name" formControlName="name">
       <label for="category">Rubro:</label>
-      <input type="text" name="category" id="category" readonly [value]="this.selectedCategory()!.name">
+      <input
+        type="text"
+        name="category"
+        id="category"
+        readonly
+        [value]="this.category().name">
     </fieldset>
     <fieldset class="Form-actions">
       <button

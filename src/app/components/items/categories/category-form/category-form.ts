@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CategoryService} from '@services/http/category-service';
 import {Category} from '@models/category';
@@ -15,22 +15,23 @@ import {of} from 'rxjs';
   templateUrl: './category-form.html',
   styleUrl: './category-form.scss'
 })
-export class CategoryForm {
+export class CategoryForm implements OnInit {
   private service = inject(CategoryService);
   private confirmationService = inject(ConfirmationDialogService);
-  isEditing = signal(false);
   readonly id = input<number>(0)
+  isEditing= linkedSignal(()=>{
+    return this.id() > 0;
+  });
+
   CategoryForm: FormGroup = new FormGroup({
     idCategory: new FormControl(),
     name: new FormControl('', Validators.required),
   });
-  canSubmit: any;
 
   categoryResource = rxResource({
     params: () => ({id: this.id()}),
     stream: ({params}) => {
-      if (this.id() > 0) {
-        this.isEditing.set(true);
+      if (this.isEditing()) {
         return this.service.getById(params.id);
       }
       return of({} as ApiResponse<Category>);
@@ -39,13 +40,17 @@ export class CategoryForm {
   });
 
 
-  constructor() {
-    effect(() => {
-      this.categoryResource.value();
-      this.onEditHandler();
-    });
+  ngOnInit() {
+    this.checkAndSetForm();
   }
 
+  private checkAndSetForm() {
+    if (this.isEditing() && !this.categoryResource.isLoading() && this.categoryResource.value()) {
+      this.setForm(this.categoryResource.value()!.data!);
+    } else if (this.isEditing()) {
+      setTimeout(() => this.checkAndSetForm(), 100);
+    }
+  }
   onSubmit() {
     if (!this.isEditing()) {
       this.service.create(this.toCategory()).subscribe()
@@ -57,8 +62,8 @@ export class CategoryForm {
 
   toCategory() : Category{
       return {
-        id: this.CategoryForm.get('idCategory')?.value,
-        name: this.CategoryForm.get('name')?.value
+        id: this.id(),
+        name: this.CategoryForm.get('name')?.value,
       }
   }
 
@@ -80,14 +85,6 @@ export class CategoryForm {
   setUp() {
     this.CategoryForm.reset();
     this.isEditing.set(false);
-  }
-
-  private onEditHandler() {
-    if(this.id()>0){
-      this.isEditing.set(true);
-      if(!this.categoryResource.isLoading()) this.setForm(this.categoryResource.value()!.data!)
-
-    }
   }
 
   private setForm(param : Category) {

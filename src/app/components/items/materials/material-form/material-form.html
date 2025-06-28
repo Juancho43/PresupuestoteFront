@@ -1,5 +1,8 @@
 @let edit  = isEditing();
-  <form [formGroup]="MaterialForm" (ngSubmit)="onSubmit()" >
+  <form
+    [formGroup]="MaterialForm"
+    (ngSubmit)="onSubmit()"
+  >
 
       @if(MaterialForm.invalid && MaterialForm.dirty){
         <div class="invalid">
@@ -8,12 +11,6 @@
           }
           @if (MaterialForm.get('description')?.invalid){
             <p>Debe escribir una descripción.</p>
-          }
-          @if (MaterialForm.get('measure')?.invalid){
-            <p>Debe seleccionar una medida.</p>
-          }
-          @if (MaterialForm.get('subCategory')?.invalid){
-            <p>Debe seleccionar un subrubro.</p>
           }
         </div>
       }
@@ -35,24 +32,22 @@
 
 
       <label for="unitMeasure">Unidad de medida:</label>
-      <input type="text" name="unitMeasure" id="unitMeasure" readonly
-             [value]="this.selectedMeasure()!.name">
-
-      <label for="subCategory">Sub rubro</label>
-      <input type="text" name="subCategory" id="subCategory" readonly
-             [value]="this.selectedSubcategory()!.name"
+      <input
+        type="text"
+        name="unitMeasure"
+        id="unitMeasure"
+        [value]="this.measure()!.name"
+        readonly
       >
-      @if (edit){
-        <label for="category">Unidad de medida actual:</label>
-        <input type="text" name="unitMeasure" id="unitMeasure" readonly
-               [value]="this.materialResource.value()!.data!.measure.name"
-        >
+      <label for="subCategory">Sub rubro</label>
+      <input
+        type="text"
+        name="subCategory"
+        id="subCategory"
+        [value]="this.subcategory()!.name"
+        readonly
+      >
 
-        <label for="category">Sub Rubro actual:</label>
-        <input type="text" name="subCategory" id="subCategory" readonly
-               [value]="this.materialResource.value()!.data!.subcategory.name"
-        >
-      }
 
     </fieldset>
     <fieldset class="Form-actions">

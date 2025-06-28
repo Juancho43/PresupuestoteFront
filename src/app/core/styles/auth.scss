@@ -1,0 +1,7 @@
+@use 'form';
+@use 'buttons';
+
+form button {
+  @include buttons.button;
+}
+

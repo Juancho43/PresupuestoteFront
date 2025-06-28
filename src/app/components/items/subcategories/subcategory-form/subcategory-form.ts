@@ -1,4 +1,4 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
+import {Component, inject, input, linkedSignal, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Category} from '@models/category';
 import {SubcategoryService} from '@services/http/subcategory-service';
@@ -16,23 +16,24 @@ import {ApiResponse} from '@core/interfaces/ApiResponse';
   templateUrl: './subcategory-form.html',
   styleUrl: './subcategory-form.scss'
 })
-export class SubcategoryForm {
+export class SubcategoryForm implements OnInit {
   private service = inject(SubcategoryService);
   private confirmationService = inject(ConfirmationDialogService);
   readonly selectedCategory = input<Category>({id : 0} as Category);
   readonly id = input<number>(0);
-  isEditing = signal(false);
+  isEditing= linkedSignal(()=>{
+    return this.id() > 0;
+  });
+
   SubCategoryForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    category: new FormControl(0, Validators.required),
   });
 
 
   subcategoryResource = rxResource({
     params: () => ({id: this.id()}),
     stream: ({params}) => {
-      if (this.id() > 0) {
-        this.isEditing.set(true);
+      if (this.isEditing()) {
         return this.service.getById(params.id);
       }
       return of({} as ApiResponse<Subcategory>);
@@ -40,19 +41,28 @@ export class SubcategoryForm {
 
   })
 
-  constructor() {
-    effect(() => {
-      if (this.selectedCategory()) {
-        this.SubCategoryForm.get('category')?.setValue(this.selectedCategory()!.id);
-      }
-    });
-    effect(() => {
-      this.subcategoryResource.value();
-      this.onEditHandler();
-    });
+  category = linkedSignal<Category>(() => {
+    if (this.selectedCategory() !== undefined && this.selectedCategory()?.id!> 0) {
+      return this.selectedCategory()!;
+    }
+    if(!this.subcategoryResource.isLoading() && this.isEditing()){
+      return this.subcategoryResource.value()!.data!.category;
+    }
+    return {name:'Seleccione un rubro'} as Category;
+  });
+
+
+  ngOnInit() {
+    this.checkAndSetForm();
   }
 
-
+  private checkAndSetForm() {
+    if (this.isEditing() && !this.subcategoryResource.isLoading() && this.subcategoryResource.value()) {
+      this.setForm(this.subcategoryResource.value()!.data!);
+    } else if (this.isEditing()) {
+      setTimeout(() => this.checkAndSetForm(), 100);
+    }
+  }
     onSubmit() {
       if (!this.isEditing()) {
         this.service.create(this.toSubcategory()).subscribe()
@@ -66,7 +76,7 @@ export class SubcategoryForm {
     toSubcategory(): SubCategoryRequest {
     return {
         name: this.SubCategoryForm.get('name')?.value,
-        category_id: this.SubCategoryForm.get('category')?.value,
+        category_id: this.category().id!,
         id: this.selectedCategory().id
       }
     }
@@ -90,18 +100,11 @@ export class SubcategoryForm {
     this.isEditing.set(false);
   }
 
-  private onEditHandler() {
-    if(this.id()>0){
-      this.isEditing.set(true);
-      if(!this.subcategoryResource.isLoading()) this.setForm(this.subcategoryResource.value()!.data!)
 
-    }
-  }
 
   private setForm(param : Subcategory) {
     this.SubCategoryForm.patchValue({
       name: param.name,
-      category: param.category.id
     });
   }
 }
