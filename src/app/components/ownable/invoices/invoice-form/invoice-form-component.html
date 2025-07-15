@@ -1,6 +1,6 @@
 @let edit = this.isEdit();
-@let employee = this.supplierResource.value()?.data;
-@let employeeId = this.supplierResource.value()?.data?.id;
+@let supplier = this.supplierResource.value()?.data!;
+@let supplierId = this.supplierResource.value()?.data?.id!;
 
 <form [formGroup]="InvoiceForm" (ngSubmit)="onSubmit()" >
   <fieldset>
@@ -14,11 +14,11 @@
     }
     <legend class="List-title"> {{ edit ? 'Actualizar una boleta' : 'Crear una boleta' }}</legend>
 
-    @if (employeeId !== undefined){
-      <label for="client">Proveedor:</label>
-      <input type="text" id="client" name="client" [value]="employee!.person.last_name + ' ' + employee!.person.name " readonly>
+    <label for="supplier">Proveedor:</label>
+    @if (supplierId !== undefined){
+      <input type="text" id="supplier" name="supplier" [value]="supplier!.person.last_name + ' ' + supplier!.person.name " readonly>
     }@else{
-      <label>Seleccione un proveedor por favor</label>
+      <input type="text" id="client" value="No hay proveedor seleccionado" readonly>
     }
     <label for="date">Fecha:</label>
     <input type="date" name="date" id="date" formControlName="date">
